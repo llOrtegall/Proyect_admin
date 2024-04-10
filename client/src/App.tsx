@@ -1,11 +1,11 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom'
 
-function App(): JSX.Element {
+function App (): JSX.Element {
   return (
     <>
       <Routes>
-        <Route path="/" element={ } />
-        <Route path="/" element={ } />
+        <Route path="/login" element={<h1>Login</h1>} />
+        <Route path="/" element={<h1>Home Navbar</h1>} />
       </Routes>
     </>
   )
