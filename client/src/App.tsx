@@ -1,11 +1,12 @@
-function App (): JSX.Element {
+import { Route, Routes } from "react-router-dom";
+
+function App(): JSX.Element {
   return (
     <>
-      <div className="bg-slate-500">
-        <p>
-          hola
-        </p>
-      </div>
+      <Routes>
+        <Route path="/" element={ } />
+        <Route path="/" element={ } />
+      </Routes>
     </>
   )
 }
