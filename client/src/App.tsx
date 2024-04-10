@@ -1,4 +1,4 @@
-function App() {
+function App (): JSX.Element {
   return (
     <>
       <div className="bg-slate-500">
@@ -10,4 +10,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
