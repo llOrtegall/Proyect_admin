@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Button } from './iu/Button'
+import { Button } from './iu'
 
 function NavBar (): JSX.Element {
   return (
