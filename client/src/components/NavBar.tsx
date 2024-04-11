@@ -10,9 +10,6 @@ function NavBar (): JSX.Element {
             <NavLink to='/' className='font-semibold hover:text-rose-600'>Home</NavLink>
           </li>
           <li>
-            <NavLink to='/login' className='font-semibold hover:text-rose-600'>login 1</NavLink>
-          </li>
-          <li>
             <NavLink to='/example1' className='font-semibold hover:text-rose-600'>Example 1</NavLink>
           </li>
           <li>
