@@ -7,7 +7,7 @@ function NavBar (): JSX.Element {
       <ul className='flex items-center justify-around'>
         <div className='flex gap-4'>
           <li>
-            <NavLink to='/' className='font-semibold hover:text-rose-600'>Home</NavLink>
+            <NavLink to='/home' className='font-semibold hover:text-rose-600'>Home</NavLink>
           </li>
           <li>
             <NavLink to='/example1' className='font-semibold hover:text-rose-600'>Example 1</NavLink>
