@@ -7,11 +7,13 @@ import { useAuth } from './auth/AuthProvider'
 function App (): JSX.Element {
   const { isAuthenticated } = useAuth()
 
+  console.log(isAuthenticated)
+
   return (
     <>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
+        <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/'/>}>
           <Route path="/home" element={<Home />} />
           <Route path='/example1' element={<h1>Example 1</h1>} />
           <Route path='/example2' element={<h1>Example 2</h1>} />
