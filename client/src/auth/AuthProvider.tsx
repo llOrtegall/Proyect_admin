@@ -10,8 +10,10 @@ interface Props {
   children: React.ReactNode
 }
 
+// * Creación del contexto de autenticación
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
+// * Definición del componente AuthProvider que provee el contexto de autenticación
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   )
 }
 
+// * Hook que permite acceder al contexto de autenticación
 export const useAuth = (): IAuthContext => {
   const context = useContext(AuthContext)
   if (context === undefined) {
