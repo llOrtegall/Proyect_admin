@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Input, Button } from '../components/iu'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthProvider'
 import axios from 'axios'
 import { WarningIcon } from '../components/iu/warning'
@@ -10,7 +9,6 @@ function LoginPage (): JSX.Element {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
   const [errorString, setErrorString] = useState('')
-  const navigate = useNavigate()
 
   const handleSubmit = (ev: React.FormEvent): void => {
     ev.preventDefault()
@@ -19,7 +17,6 @@ function LoginPage (): JSX.Element {
       .then(res => {
         if (res.data?.auth === true) {
           login()
-          navigate('/home')
         }
       })
       .catch(error => {

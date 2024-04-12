@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface IAuthContext {
   isAuthenticated: boolean
@@ -17,8 +18,16 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined)
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const login = (): void => { setIsAuthenticated(true) }
-  const logout = (): void => { setIsAuthenticated(false) }
+  const navigate = useNavigate()
+
+  const login = (): void => {
+    setIsAuthenticated(true)
+    navigate('/home') // * Redirige a la ruta '/home' al autenticarse
+  }
+  const logout = (): void => {
+    setIsAuthenticated(false)
+    navigate('/') // * Redirige a la ruta '/' al cerrar sesión
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
