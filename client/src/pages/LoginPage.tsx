@@ -43,7 +43,7 @@ function LoginPage (): JSX.Element {
         <article className='w-full flex flex-col gap-2'>
           <label className="flex justify-center uppercase ">contraseña</label>
           <div className='flex justify-center mb-2'>
-            <Input name='contraseña' type='text' placeholder='***********' autoComplete='contraseña' value={password}
+            <Input name='contraseña' type='password' placeholder='***********' autoComplete='contraseña' value={password}
               onChange={(ev) => { setPassword(ev.target.value) }} />
           </div>
         </article>

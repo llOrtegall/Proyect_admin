@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface IAuthContext {
@@ -16,9 +16,16 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 // * Definición del componente AuthProvider que provee el contexto de autenticación
 export const AuthProvider = ({ children }: Props): JSX.Element => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const storedAuth = localStorage.getItem('isAuthenticated')
+    return (storedAuth != null) ? JSON.parse(storedAuth) : false
+  })
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated))
+  }, [isAuthenticated])
 
   const login = (): void => {
     setIsAuthenticated(true)
