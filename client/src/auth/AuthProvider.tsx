@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { autentificaToken } from '../services/tokenService'
 import { useNavigate } from 'react-router-dom'
 
 interface IAuthContext {
@@ -16,16 +17,28 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 // * Definición del componente AuthProvider que provee el contexto de autenticación
 export const AuthProvider = ({ children }: Props): JSX.Element => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated')
-    return (storedAuth != null) ? JSON.parse(storedAuth) : false
-  })
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated))
-  }, [isAuthenticated])
+    // * Verifica si el usuario está autenticado con el token si existe en el local storage
+    const token = localStorage.getItem('token')
+    if (token !== null) {
+      void autentificaToken({ token })
+        .then(res => {
+          if (res.status === 200) {
+            login() // * Autentica al usuario si el token es válido
+          }
+        })
+        .catch(error => {
+          console.error(error.response.data.message)
+          logout()
+        })
+    } else {
+      console.log('No hay token')
+    }
+  }, [])
 
   const login = (): void => {
     setIsAuthenticated(true)
@@ -34,6 +47,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   const logout = (): void => {
     setIsAuthenticated(false)
     navigate('/') // * Redirige a la ruta '/' al cerrar sesión
+    localStorage.removeItem('token') // * Elimina el token del local storage al cerrar sesión cuando expira el token ó se cierra la sesión
   }
 
   return (

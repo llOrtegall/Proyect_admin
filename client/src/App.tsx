@@ -7,8 +7,6 @@ import { useAuth } from './auth/AuthProvider'
 function App (): JSX.Element {
   const { isAuthenticated } = useAuth()
 
-  console.log(isAuthenticated)
-
   return (
     <>
       <Routes>

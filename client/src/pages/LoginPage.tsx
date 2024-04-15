@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { WarningIcon } from '../components/iu/warning'
 import { Input, Button } from '../components/iu'
 import { useAuth } from '../auth/AuthProvider'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { WarningIcon } from '../components/iu/warning'
 
 function LoginPage (): JSX.Element {
   const { login } = useAuth()
@@ -17,6 +17,9 @@ function LoginPage (): JSX.Element {
       .then(res => {
         if (res.data?.auth === true) {
           login()
+          // TODO: Montamos al local storage el token de la response, tener en cuenta el el nombre 'token'
+          const token: string = res.data.token
+          localStorage.setItem('token', token) // * <==============
         }
       })
       .catch(error => {
