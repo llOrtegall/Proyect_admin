@@ -1,4 +1,4 @@
-import { Input, Button } from '../components/iu'
+import { Input, Button, Label } from '../components/iu'
 import { UserIcon } from '../components/iu/userIcon'
 import { LockIcon } from '../components/iu/LockIcon'
 import { Error } from '../components/iu/error'
@@ -9,27 +9,33 @@ function LoginPage (): JSX.Element {
 
   return (
     <section className="h-[100vh] flex flex-col items-center justify-center bg-gradient-to-b from-blue-700 to-blue-200">
-      <form className='w-96 mb-2 border p-12 rounded-lg bg-white/30 flex flex-col gap-10 shadow-xl' onSubmit={(ev) => { handleSubmit(ev) }}>
+      <form className='w-[385px] mb-2 border p-12 rounded-lg bg-white/30 flex flex-col gap-10 shadow-xl' onSubmit={(ev) => { handleSubmit(ev) }}>
 
-        <article className='w-full flex flex-col '>
-          <label className="flex justify-center uppercase font-bold ">Usuario </label>
-          <div className='flex justify-center'>
+        <figure className='flex items-center justify-center'>
+          <img src="/gane.webp" alt="logo de gane" className='w-[160px] ' />
+        </figure>
+
+        <article className=''>
+          <Label>Usuario</Label>
+          <div className='flex items-center gap-2 w-full justify-around'>
             <UserIcon />
-            <Input name='username' type='text' placeholder='CP1118342523' autoComplete='username' value={user}
+            <Input name='username' type='text' placeholder='CP1118342523' required
+            autoComplete='username' value={user}
               onChange={(ev) => { setUser(ev.target.value) }} />
           </div>
         </article>
 
-        <article className='w-full flex flex-col '>
-          <label className="flex justify-center uppercase font-bold">contraseña</label>
-          <div className='flex justify-center w-'>
+        <article className=''>
+          <Label>Contraseña</Label>
+          <div className='flex items-center gap-2 w-full justify-around'>
             <LockIcon />
-            <Input name='contraseña' type='password' placeholder='***********' autoComplete='contraseña' value={password}
+            <Input name='contraseña' type='password' placeholder='***********' required
+            autoComplete='contraseña' value={password}
               onChange={(ev) => { setPassword(ev.target.value) }} />
           </div>
         </article>
 
-        <article className='flex flex-col items-center justify-center '>
+        <article className=''>
           <Button>Iniciar Sesión</Button>
         </article>
 
