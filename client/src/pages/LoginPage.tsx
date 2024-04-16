@@ -5,7 +5,7 @@ import { Error } from '../components/iu/error'
 import { useLogin } from '../hooks/useLogin'
 
 function LoginPage (): JSX.Element {
-  const { user, setUser, password, setPassword, errorString, handleSubmit } = useLogin()
+  const { user, setUser, password, setPassword, errorString, handleSubmit } = useLogin() // llama hook del login
 
   return (
     <section className="h-[100vh] flex flex-col items-center justify-center bg-gradient-to-b from-blue-700 to-blue-200">
