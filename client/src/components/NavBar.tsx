@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { Button } from './iu'
+import { useAuth } from '../auth/AuthProvider'
 
 function NavBar (): JSX.Element {
+  const { logout } = useAuth()
+
   return (
     <nav className='bg-blue-200 py-3'>
       <ul className='flex items-center justify-around'>
@@ -20,7 +23,7 @@ function NavBar (): JSX.Element {
           </li>
         </div>
         <li>
-          <Button>Cerrar Sesión</Button>
+          <Button onClick={logout}>Cerrar Sesión</Button>
         </li>
       </ul>
     </nav>

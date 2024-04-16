@@ -7,8 +7,8 @@ interface ProtectedRouteProps {
   isAllowed: boolean
 }
 
-export const ProtectedRoute: FC<ProtectedRouteProps> = ({ isAllowed, redirectTo = '/login' }) => {
-  if (!isAllowed) {
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({ isAllowed, redirectTo = '/home' }) => {
+  if (isAllowed) {
     return <Navigate to={redirectTo} />
   }
 
