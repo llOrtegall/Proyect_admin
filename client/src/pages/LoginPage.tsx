@@ -1,37 +1,11 @@
 import { Input, Button } from '../components/iu'
-import { useAuth } from '../auth/AuthProvider'
-import React, { useState } from 'react'
-import axios from 'axios'
 import { UserIcon } from '../components/iu/userIcon'
 import { LockIcon } from '../components/iu/LockIcon'
 import { Error } from '../components/iu/error'
+import { useLogin } from '../hooks/useLogin'
 
 function LoginPage (): JSX.Element {
-  const { login } = useAuth()
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorString, setErrorString] = useState('')
-
-  const handleSubmit = (ev: React.FormEvent): void => {
-    ev.preventDefault()
-
-    void axios.post('http://172.20.1.216:4000/api/login', { user, password })
-      .then(res => {
-        if (res.data?.auth === true) {
-          login()
-          // TODO: Montamos al local storage el token de la response, tener en cuenta el el nombre 'token'
-          const token: string = res.data.token
-          localStorage.setItem('token', token) // * <==============
-        }
-      })
-      .catch(error => {
-        const errorString: string = error.response.data.message
-        setErrorString(errorString)
-        setTimeout(() => {
-          setErrorString('')
-        }, 5000)
-      })
-  }
+  const { user, setUser, password, setPassword, errorString, handleSubmit } = useLogin()
 
   return (
     <section className="h-[100vh] flex flex-col items-center justify-center bg-gradient-to-b from-blue-700 to-blue-200">
