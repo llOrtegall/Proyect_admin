@@ -1,10 +1,10 @@
-import { WarningIcon } from '../components/iu/warning'
 import { Input, Button } from '../components/iu'
 import { useAuth } from '../auth/AuthProvider'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { UserIcon } from '../components/iu/userIcon'
 import { LockIcon } from '../components/iu/LockIcon'
+import { Error } from '../components/iu/error'
 
 function LoginPage (): JSX.Element {
   const { login } = useAuth()
@@ -61,16 +61,7 @@ function LoginPage (): JSX.Element {
 
       </form >
 
-      {(errorString !== '') &&
-        <div className='flex gap-2'>
-          <p className="text-center bg-red-600 text-white font-semibold p-2 rounded-md">
-            <WarningIcon />
-          </p>
-          <p className="text-center bg-red-600 text-white font-semibold p-2 rounded-md">
-            {errorString}
-          </p>
-        </div>
-      }
+      <Error errorString={errorString} />
 
     </section >
   )
