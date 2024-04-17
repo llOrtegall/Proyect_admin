@@ -6,14 +6,13 @@ import { Button } from './iu'
 
 const Links = [
   { link: '/home', name: 'Home' },
-  { link: '/example2', name: 'Example 2' },
-  { link: '/example3', name: 'Example 3' }
+  { link: '/detalles', name: 'Detalles' }
 ]
 
 const LinkComponent = ({ link, name }: { link: string, name: string }): JSX.Element => {
   return (
   <li>
-    <NavLink to={`${link}`} className='font-semibold hover:text-rose-500'>{name}</NavLink>
+    <NavLink to={`${link}`} className='font-semibold hover:text-rose-600 dark:hover:text-blue-300'>{name}</NavLink>
   </li>
   )
 }
@@ -23,7 +22,7 @@ function NavBar (): JSX.Element {
   const { toggleTheme } = useTheme()
 
   return (
-    <nav className='bg-blue-200 py-3 dark:bg-dark-tremor-brand-muted dark:text-white'>
+    <nav className='bg-blue-200 py-3 dark:bg-slate-900 dark:text-white'>
       <ul className='flex items-center justify-around'>
 
         <figure className='flex'>

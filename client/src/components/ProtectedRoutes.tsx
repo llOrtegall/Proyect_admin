@@ -14,10 +14,10 @@ export const ProtectedRoute: FC<ProtectedRouteProps> = ({ isAllowed, redirectTo 
 
   return (
     <>
-      <section className='w-full'>
+      <section className=''>
         <NavBar />
       </section>
-      <section className='h-[92vh] overflow-auto'>
+      <section className=''>
         <Outlet />
       </section>
     </>
