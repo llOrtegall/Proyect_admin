@@ -9,7 +9,7 @@ function NavBar (): JSX.Element {
   const { toggleTheme } = useTheme()
 
   return (
-    <nav className='bg-blue-200 py-3'>
+    <nav className='bg-blue-200 py-3 dark:bg-dark-tremor-brand-muted dark:text-white'>
       <ul className='flex items-center justify-around'>
         <li className='flex'>
           <img src="/gane.webp" alt="logo de gane" className='w-[70px]' />
