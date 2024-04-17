@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { Button } from './iu'
 import { useAuth } from '../auth/AuthProvider'
+import { useTheme } from '../contexts/ThemeContext'
+import { Switch } from '@tremor/react'
 
 function NavBar (): JSX.Element {
   const { logout } = useAuth()
+  const { toggleTheme } = useTheme()
 
   return (
     <nav className='bg-blue-200 py-3'>
@@ -28,6 +31,9 @@ function NavBar (): JSX.Element {
         <li>
           <Button onClick={logout}>Cerrar Sesión</Button>
         </li>
+        <article className='flex rounded-md p-2 h-7 w-16 dark:bg-slate-500'>
+          <Switch onChange={toggleTheme} />
+        </article>
       </ul>
     </nav>
   )
