@@ -8,6 +8,9 @@ function NavBar (): JSX.Element {
   return (
     <nav className='bg-blue-200 py-3'>
       <ul className='flex items-center justify-around'>
+        <li className='flex'>
+          <img src="/gane.webp" alt="logo de gane" className='w-[70px]' />
+        </li>
         <div className='flex gap-4'>
           <li>
             <NavLink to='/home' className='font-semibold hover:text-rose-600'>Home</NavLink>
