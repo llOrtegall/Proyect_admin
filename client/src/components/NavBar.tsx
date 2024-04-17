@@ -1,8 +1,8 @@
-import { NavLink } from 'react-router-dom'
-import { Button } from './iu'
-import { useAuth } from '../auth/AuthProvider'
 import { useTheme } from '../contexts/ThemeContext'
+import { useAuth } from '../auth/AuthProvider'
+import { NavLink } from 'react-router-dom'
 import { Switch } from '@tremor/react'
+import { Button } from './iu'
 
 function NavBar (): JSX.Element {
   const { logout } = useAuth()
