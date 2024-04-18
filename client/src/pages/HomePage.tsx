@@ -1,5 +1,5 @@
 import { CardComponent } from '../components/iu/CardComponent'
-import { CardMetas } from '../components/iu/CardMetas'
+import { CardMetas } from '../components/iu/cardMetas'
 
 const data = [
   {
