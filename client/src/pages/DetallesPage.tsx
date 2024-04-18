@@ -528,13 +528,12 @@ const data = [
 const DetallesPage = (): JSX.Element => {
   return (
     <>
-      <section className='flex w-auto items-center gap-2 bg-blue-200 fixed z-50 right-12 mt-1 p-2 px-8 rounded-lg'>
+      <section className='flex w-96 items-center gap-2 bg-blue-200 fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
         <Label>Filtrar:</Label>
         <Input placeholder='Filtrado'/>
       </section>
       <Card>
-        <h3 className="text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">Detallado Punto De Venta</h3>
-        <Table className="mt-5">
+        <Table className="mt-12">
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
