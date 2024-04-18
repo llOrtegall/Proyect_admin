@@ -1,5 +1,5 @@
-import { RiFlag2Line } from '@remixicon/react'
-import { Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
+import { Badge, Card, Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
+import { RiFlag2Line, RiNumbersLine, RiDatabase2Fill } from '@remixicon/react'
 import { Input, Label } from '../components/iu'
 
 const data = [
@@ -528,11 +528,23 @@ const data = [
 const DetallesPage = (): JSX.Element => {
   return (
     <>
+      <section className='flex items-center gap-2 bg-blue-200 fixed z-50 right-10 mt-1 p-2 px-8 rounded-lg'>
+        <Label>Mostrar:</Label>
+        <Select className='w-min'>
+          <SelectItem className='flex justify-around cursor-pointer' value="10" icon={RiNumbersLine}>10</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="20" icon={RiNumbersLine}>20</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>50</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>100</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiDatabase2Fill}>Todos</SelectItem>
+        </Select>
+      </section>
+
       <section className='flex w-96 items-center gap-2 bg-blue-200 fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
         <Label>Filtrar:</Label>
-        <Input placeholder='Filtrado'/>
+        <Input placeholder='Filtrado' />
       </section>
-      <Card>
+
+        <Card>
         <Table className="mt-12">
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
