@@ -15,9 +15,9 @@ function LoginPage (): JSX.Element {
           <img src="/gane.webp" alt="logo de gane" className='w-[160px] ' />
         </figure>
 
-        <article className=''>
-          <Label>Usuario</Label>
-          <div className='flex items-center gap-2 w-full justify-around'>
+        <article className='flex flex-col gap-1'>
+          <Label>Usuario: </Label>
+          <div className='flex items-center gap-2 w-full justify-around px-2'>
             <UserIcon />
             <Input name='username' type='text' placeholder='CP1118342523' required
             autoComplete='username' value={user}
@@ -25,9 +25,9 @@ function LoginPage (): JSX.Element {
           </div>
         </article>
 
-        <article className=''>
-          <Label>Contraseña</Label>
-          <div className='flex items-center gap-2 w-full justify-around'>
+        <article className='flex flex-col gap-1'>
+          <Label>Contraseña:</Label>
+          <div className='flex items-center gap-2 w-full justify-around px-2'>
             <LockIcon />
             <Input name='contraseña' type='password' placeholder='***********' required
             autoComplete='contraseña' value={password}
