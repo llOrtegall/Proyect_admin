@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { useAuth } from './auth/AuthProvider'
 import Login from './pages/LoginPage'
 import Home from './pages/HomePage'
+import DetallesPage from './pages/DetallesPage'
 
 function App (): JSX.Element {
   const { isAuthenticated } = useAuth()
@@ -11,11 +12,9 @@ function App (): JSX.Element {
     <>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/'/>}>
+        <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/' />}>
           <Route path="/home" element={<Home />} />
-          <Route path='/example1' element={<h1>Example 1</h1>} />
-          <Route path='/example2' element={<h1>Example 2</h1>} />
-          <Route path='/example3' element={<h1>Example 3</h1>} />
+          <Route path='/detalles' element={<DetallesPage />} />
         </Route>
       </Routes>
     </>
