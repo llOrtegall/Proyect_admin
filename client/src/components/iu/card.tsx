@@ -1,4 +1,4 @@
-import { Card, Button, Dialog, DialogPanel } from '@tremor/react'
+import { Card, Button, Dialog, DialogPanel, CategoryBar } from '@tremor/react'
 
 import React from 'react'
 
@@ -9,19 +9,24 @@ export function CardUsage () {
         <section className="flex justify-center">
 
             <Card
-                className="transition hover:scale-110 max-w-screen-sm mt-10"
+                className="transition hover:scale-110 max-w-3xl mt-10 shadow-rose-700 hover:bg-slate-50"
                 decoration="top"
-                decorationColor="indigo"
+                decorationColor="red"
                 onClick={() => { setIsOpen(true) }}
             >
-                <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Sales</p>
-                <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">$34,743</p>
+                <p className="text-tremor-default text-center mt-1 text-tremor-content dark:text-dark-tremor-content">Sales</p>
+                <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">$34,743</p>
             </Card>
             <Dialog open={isOpen} onClose={(val) => { setIsOpen(val) }} static={true}>
                 <DialogPanel>
-
+                    <CategoryBar
+                        className='mt-1'
+                        values={[40, 30, 20, 10]}
+                        colors={['emerald', 'yellow', 'orange', 'rose']}
+                        markerValue={70}
+                    />
                     <Button className="mt-8 w-full" onClick={() => { setIsOpen(false) }}>
-                        Got it!
+                        Close
                     </Button>
                 </DialogPanel>
             </Dialog>
