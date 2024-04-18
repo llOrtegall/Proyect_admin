@@ -2,8 +2,7 @@ import { Card, Button, Dialog, DialogPanel, CategoryBar } from '@tremor/react'
 
 import React from 'react'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function CardUsage () {
+export function CardUsage ({ cumplimiento, porcentaje }: { cumplimiento: string, porcentaje: string }): JSX.Element {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
         <section className="flex justify-center">
@@ -14,8 +13,8 @@ export function CardUsage () {
                 decorationColor="red"
                 onClick={() => { setIsOpen(true) }}
             >
-                <p className="text-tremor-default text-center mt-1 text-tremor-content dark:text-dark-tremor-content">Sales</p>
-                <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">$34,743</p>
+                <p className="text-tremor-default text-center mt-1 text-tremor-content dark:text-dark-tremor-content">{cumplimiento}</p>
+                <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{porcentaje}</p>
             </Card>
             <Dialog open={isOpen} onClose={(val) => { setIsOpen(val) }} static={true}>
                 <DialogPanel>
