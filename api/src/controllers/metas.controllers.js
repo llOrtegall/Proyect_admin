@@ -2,11 +2,9 @@ import { pool } from '../connections/mysqlMetas.js'
 
 export const getSucursales = async (_req, res) => {
   try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.execute('SELECT * FROM sucursales');
-    connection.release();
-    res.json(rows);
+    const results = await pool.query(" select * from METASPRODUCTOS where FECHA=CURDATE() and ZONA = '39628' ")
+    console.log(results);
   } catch (error) {
-    res.json({ error: error.message });
+    console.log(error);
   }
 }
