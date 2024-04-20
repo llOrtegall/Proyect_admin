@@ -9,7 +9,7 @@ import axios from 'axios'
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
 
-  const { filteredsPDV, searchPDV, setSearchPDV, setSearchCategoria } = useFilter(data)
+  const { filteredItems, searchCate, searchPDV, setSearchCate, setSearchPDV } = useFilter(data)
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
@@ -36,7 +36,7 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-[390px] mt-1 p-2 px-8 rounded-lg'>
         <Label>Categorías:</Label>
-        <Select className='w-min' placeholder='Seleccionar Categoría' onValueChange={setSearchCategoria}>
+        <Select className='w-min' placeholder='Seleccionar Categoría' value={searchCate} onValueChange={setSearchCate}>
           <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="DIAMANTE">DIAMANTE</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="ZAFIRO">ZAFIRO</SelectItem>
@@ -63,7 +63,7 @@ const DetallesPage = (): JSX.Element => {
           </TableHead>
           <TableBody>
             {
-              filteredsPDV.map(pdv => {
+              filteredItems.map(pdv => {
                 return (
                   <TableRow key={pdv.PDV_SUCURSAL}>
                     <TableCell className='text-center'>{pdv.PDV_SUCURSAL}</TableCell>
