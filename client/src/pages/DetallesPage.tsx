@@ -9,7 +9,7 @@ import axios from 'axios'
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
 
-  const { filteredsPDV, searchPDV, setSearchPDV } = useFilter(data)
+  const { filteredsPDV, searchPDV, setSearchPDV, setSearchCategoria } = useFilter(data)
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
@@ -20,12 +20,12 @@ const DetallesPage = (): JSX.Element => {
     <>
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 right-10 mt-1 p-2 px-8 rounded-lg'>
         <Label>Mostrar:</Label>
-        <Select className='w-min'>
+        <Select className='w-min' placeholder='Cantidad Datos'>
+          <SelectItem className='flex justify-around cursor-pointer' value="" icon={RiDatabase2Fill}>Todos</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="10" icon={RiNumbersLine}>10</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="20" icon={RiNumbersLine}>20</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>50</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="50" icon={RiNumbersLine}>50</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>100</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiDatabase2Fill}>Todos</SelectItem>
         </Select>
       </section>
 
@@ -36,8 +36,8 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-[390px] mt-1 p-2 px-8 rounded-lg'>
         <Label>Categorías:</Label>
-        <Select className='w-min'>
-          <SelectItem className='flex justify-around cursor-pointer' value="TODAS">TODAS</SelectItem>
+        <Select className='w-min' placeholder='Seleccionar Categoría' onValueChange={setSearchCategoria}>
+          <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="DIAMANTE">DIAMANTE</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="ZAFIRO">ZAFIRO</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="ORO">ORO</SelectItem>
