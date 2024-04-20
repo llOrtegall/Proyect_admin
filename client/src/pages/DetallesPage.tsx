@@ -9,7 +9,7 @@ import axios from 'axios'
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
 
-  const { filteredItems, searchCate, searchPDV, setSearchCate, setSearchPDV } = useFilter(data)
+  const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV } = useFilter(data)
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
@@ -63,7 +63,7 @@ const DetallesPage = (): JSX.Element => {
           </TableHead>
           <TableBody>
             {
-              filteredItems.map(pdv => {
+              filteredPDV.map(pdv => {
                 return (
                   <TableRow key={pdv.PDV_SUCURSAL}>
                     <TableCell className='text-center'>{pdv.PDV_SUCURSAL}</TableCell>
