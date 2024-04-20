@@ -9,7 +9,10 @@ export const getSucursales = async (_req, res) => {
     const connection = await pool.getConnection()
 
     const [rows] = await connection.query(`
-          SELECT mp.${PRODUCTOS}, ip.NOMBRE AS PDV_NOMBRE, ip.CATEGORIA AS PDV_CATE, ip.CODIGO AS PDV_SUCURSAL
+          SELECT mp.${PRODUCTOS}, 
+            ip.NOMBRE AS PDV_NOMBRE, 
+            ip.CATEGORIA AS PDV_CATE, 
+            ip.CODIGO AS PDV_SUCURSAL
           FROM METASPRODUCTOS mp
           JOIN 
             INFORMACION_PUNTOSVENTA ip ON mp.SUCURSAL = ip.CODIGO

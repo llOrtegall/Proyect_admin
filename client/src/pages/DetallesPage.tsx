@@ -1,38 +1,17 @@
 import { Badge, Card, Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
 import { RiFlag2Line, RiNumbersLine, RiDatabase2Fill } from '@remixicon/react'
 import { Input, Label } from '../components/iu'
-
-const data = [
-  {
-    id: 1,
-    categoria: 'Bronce',
-    name: 'P01 Principal',
-    sucursal: 41412,
-    cumChance: 2000,
-    cumRecargas: 1000,
-    cumAstro: 500,
-    cumBetplay: 200,
-    cumRecaudos: 100,
-    cumRaspe: 50,
-    estado: 10
-  },
-  {
-    id: 2,
-    categoria: 'Bronce',
-    name: 'P02 Principal',
-    sucursal: 41413,
-    cumChance: 2000,
-    cumRecargas: 1000,
-    cumAstro: 500,
-    cumBetplay: 200,
-    cumRecaudos: 100,
-    cumRaspe: 50,
-    estado: 10
-  }
-
-]
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const DetallesPage = (): JSX.Element => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    void axios.get('http://localhost:3000/api/sucursales')
+      .then((response) => { setData(response.data as any) })
+  }, [])
+
   return (
     <>
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 right-10 mt-1 p-2 px-8 rounded-lg'>
@@ -71,7 +50,7 @@ const DetallesPage = (): JSX.Element => {
             {
               data.map((item) => {
                 return (
-                  <TableRow key={item.id}>
+                  <TableRow key={item.}>
                     <TableCell className='text-center'>{item.categoria}</TableCell>
                     <TableCell className='text-center'>{item.name}</TableCell>
                     <TableCell className='text-center'>{item.sucursal}</TableCell>
