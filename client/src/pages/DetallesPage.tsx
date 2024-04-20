@@ -29,9 +29,21 @@ const DetallesPage = (): JSX.Element => {
         </Select>
       </section>
 
-      <section className='flex w-96 items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
-        <Label>Filtrar:</Label>
-        <Input value={searchItems} onChange={ev => { setSearchItems(ev.target.value) } } placeholder='Filtrado' />
+      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
+        <Label>Filtrar PDVS:</Label>
+        <Input value={searchItems} onChange={ev => { setSearchItems(ev.target.value) } } placeholder='38656 | Punto Principal ...' />
+      </section>
+
+      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-[390px] mt-1 p-2 px-8 rounded-lg'>
+        <Label>Categorías:</Label>
+        <select name="" id="" className='rounded-lg border-none'>
+          <option value="Todas">TODAS</option>
+          <option value="DIAMANTE">DIAMANTE</option>
+          <option value="ZAFIRO">ZAFIRO</option>
+          <option value="ORO">ORO</option>
+          <option value="PLATA">PLATA</option>
+          <option value="BRONCE">BRONCE</option>
+        </select>
       </section>
 
         <Card>
