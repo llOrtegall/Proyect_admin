@@ -1,15 +1,16 @@
 import { Badge, Card, Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
 import { RiFlag2Line, RiNumbersLine, RiDatabase2Fill } from '@remixicon/react'
+import { type Sucursales } from '../types/sucursal'
 import { Input, Label } from '../components/iu'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const DetallesPage = (): JSX.Element => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Sucursales>([])
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
-      .then((response) => { setData(response.data as any) })
+      .then((response) => { setData(response.data as Sucursales) })
   }, [])
 
   return (
@@ -34,9 +35,9 @@ const DetallesPage = (): JSX.Element => {
         <Table className="mt-12">
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
-              <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
-              <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Chance</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Astro</TableHeaderCell>
@@ -50,19 +51,19 @@ const DetallesPage = (): JSX.Element => {
             {
               data.map((item) => {
                 return (
-                  <TableRow key={item.}>
-                    <TableCell className='text-center'>{item.categoria}</TableCell>
-                    <TableCell className='text-center'>{item.name}</TableCell>
-                    <TableCell className='text-center'>{item.sucursal}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumChance}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumRecargas}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumAstro}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumBetplay}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumRecaudos}</TableCell>
-                    <TableCell className='text-center'>$ {item.cumRaspe}</TableCell>
+                  <TableRow key={item.PDV_SUCURSAL}>
+                    <TableCell className='text-center'>{item.PDV_SUCURSAL}</TableCell>
+                    <TableCell className='text-center'>{item.PDV_NOMBRE}</TableCell>
+                    <TableCell className='text-center'>{item.PDV_CATE}</TableCell>
+                    <TableCell className='text-center'>$ {item.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {item.RECARGAS}</TableCell>
+                    <TableCell className='text-center'>$ {item.ASTRO}</TableCell>
+                    <TableCell className='text-center'>$ {item.BETPLAY}</TableCell>
+                    <TableCell className='text-center'>$ {item.RECARGAS}</TableCell>
+                    <TableCell className='text-center'>$ {item.RECAUDOS}</TableCell>
                     <TableCell className='text-center'>
                       <Badge color="green" icon={RiFlag2Line}>
-                        {item.estado}
+                        any
                       </Badge>
                     </TableCell>
                   </TableRow>
