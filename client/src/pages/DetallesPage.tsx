@@ -5,6 +5,24 @@ import { Input, Label } from '../components/iu'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+interface FilterItems {
+  searchItems: string
+  setSearchItems: React.Dispatch<React.SetStateAction<string>>
+  filteredItems: Sucursales
+}
+
+function useFilter (items: Sucursales): FilterItems {
+  const [searchItems, setSearchItems] = useState('')
+
+  const filteredItems =
+  items.filter(({ PDV_NOMBRE, PDV_SUCURSAL }) =>
+    PDV_NOMBRE.toLowerCase().includes(searchItems.toLowerCase()) ||
+    PDV_SUCURSAL.toString().toLowerCase().includes(searchItems.toLowerCase())
+  )
+
+  return { searchItems, setSearchItems, filteredItems }
+}
+
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
 
@@ -12,6 +30,8 @@ const DetallesPage = (): JSX.Element => {
     void axios.get('http://localhost:3000/api/sucursales')
       .then((response) => { setData(response.data as Sucursales) })
   }, [])
+
+  const { filteredItems, searchItems, setSearchItems } = useFilter(data)
 
   return (
     <>
@@ -28,7 +48,7 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='flex w-96 items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
         <Label>Filtrar:</Label>
-        <Input placeholder='Filtrado' />
+        <Input value={searchItems} onChange={ev => { setSearchItems(ev.target.value) } } placeholder='Filtrado' />
       </section>
 
         <Card>
@@ -48,7 +68,7 @@ const DetallesPage = (): JSX.Element => {
           </TableHead>
           <TableBody>
             {
-              data.map((item) => {
+              filteredItems.map((item) => {
                 return (
                   <TableRow key={item.PDV_SUCURSAL}>
                     <TableCell className='text-center'>{item.PDV_SUCURSAL}</TableCell>
