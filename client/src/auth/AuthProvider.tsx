@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { autentificaToken } from '../services/tokenService'
 import { useNavigate } from 'react-router-dom'
+import { type User } from '../types/user'
 
 interface IAuthContext {
   isAuthenticated: boolean
   login: () => void
   logout: () => void
+  user: User | undefined
 }
 
 interface Props {
@@ -18,6 +20,7 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined)
 // * Definición del componente AuthProvider que provee el contexto de autenticación
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState<User>()
 
   const navigate = useNavigate()
 
@@ -29,6 +32,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
         .then(res => {
           if (res.status === 200) {
             login() // * Autentica al usuario si el token es válido
+            setUser(res.data as User)
           }
         })
         .catch(error => {
@@ -42,6 +46,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const login = (): void => {
     setIsAuthenticated(true)
+
     navigate('/home') // * Redirige a la ruta '/home' al autenticarse
   }
   const logout = (): void => {
@@ -51,7 +56,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   )
