@@ -9,7 +9,7 @@ import axios from 'axios'
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
 
-  const { filteredItems, searchItems, setSearchItems } = useFilter(data)
+  const { filteredsPDV, searchPDV, setSearchPDV } = useFilter(data)
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
@@ -31,22 +31,22 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
         <Label>Filtrar PDVS:</Label>
-        <Input value={searchItems} onChange={ev => { setSearchItems(ev.target.value) } } placeholder='38656 | Punto Principal ...' />
+        <Input value={searchPDV} onChange={ev => { setSearchPDV(ev.target.value) }} placeholder='38656 | Punto Principal ...' />
       </section>
 
       <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-[390px] mt-1 p-2 px-8 rounded-lg'>
         <Label>Categorías:</Label>
-        <select name="" id="" className='rounded-lg border-none'>
-          <option value="Todas">TODAS</option>
-          <option value="DIAMANTE">DIAMANTE</option>
-          <option value="ZAFIRO">ZAFIRO</option>
-          <option value="ORO">ORO</option>
-          <option value="PLATA">PLATA</option>
-          <option value="BRONCE">BRONCE</option>
-        </select>
+        <Select className='w-min'>
+          <SelectItem className='flex justify-around cursor-pointer' value="TODAS">TODAS</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="DIAMANTE">DIAMANTE</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="ZAFIRO">ZAFIRO</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="ORO">ORO</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
+          <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
+        </Select>
       </section>
 
-        <Card>
+      <Card>
         <Table className="mt-12">
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
@@ -63,18 +63,18 @@ const DetallesPage = (): JSX.Element => {
           </TableHead>
           <TableBody>
             {
-              filteredItems.map((item) => {
+              filteredsPDV.map(pdv => {
                 return (
-                  <TableRow key={item.PDV_SUCURSAL}>
-                    <TableCell className='text-center'>{item.PDV_SUCURSAL}</TableCell>
-                    <TableCell className='text-center'>{item.PDV_CATE}</TableCell>
-                    <TableCell className='text-center'>{item.PDV_NOMBRE}</TableCell>
-                    <TableCell className='text-center'>$ {item.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {item.RECARGAS}</TableCell>
-                    <TableCell className='text-center'>$ {item.ASTRO}</TableCell>
-                    <TableCell className='text-center'>$ {item.BETPLAY}</TableCell>
-                    <TableCell className='text-center'>$ {item.RECARGAS}</TableCell>
-                    <TableCell className='text-center'>$ {item.RECAUDOS}</TableCell>
+                  <TableRow key={pdv.PDV_SUCURSAL}>
+                    <TableCell className='text-center'>{pdv.PDV_SUCURSAL}</TableCell>
+                    <TableCell className='text-center'>{pdv.PDV_CATE}</TableCell>
+                    <TableCell className='text-center'>{pdv.PDV_NOMBRE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.RECARGAS}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.ASTRO}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.BETPLAY}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.RECARGAS}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.RECAUDOS}</TableCell>
                   </TableRow>
                 )
               })

@@ -2,19 +2,19 @@ import { type Sucursales } from '../types/sucursal'
 import { useState } from 'react'
 
 interface FilterItems {
-  searchItems: string
-  setSearchItems: React.Dispatch<React.SetStateAction<string>>
-  filteredItems: Sucursales
+  searchPDV: string
+  setSearchPDV: React.Dispatch<React.SetStateAction<string>>
+  filteredsPDV: Sucursales
 }
 
 export function useFilter (items: Sucursales): FilterItems {
-  const [searchItems, setSearchItems] = useState('')
+  const [searchPDV, setSearchPDV] = useState('')
 
-  const filteredItems =
+  const filteredsPDV =
   items.filter(({ PDV_NOMBRE, PDV_SUCURSAL }) =>
-    PDV_NOMBRE.toLowerCase().includes(searchItems.toLowerCase()) ||
-    PDV_SUCURSAL.toString().toLowerCase().includes(searchItems.toLowerCase())
+    PDV_NOMBRE.toLowerCase().includes(searchPDV.toLowerCase()) ||
+    PDV_SUCURSAL.toString().toLowerCase().includes(searchPDV.toLowerCase())
   )
 
-  return { searchItems, setSearchItems, filteredItems }
+  return { searchPDV, setSearchPDV, filteredsPDV }
 }
