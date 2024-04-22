@@ -22,15 +22,27 @@ function filterByCate (pdv: Sucursales, searchCate: string): Sucursales {
   )
 }
 
-export function useFilter (pdv: Sucursales): FilterPDV {
+function filterByAscDes (pdv: Sucursales, asc: boolean): Sucursales {
+  return pdv.sort((a, b) => {
+    if (asc) {
+      return a.CHANCE - b.CHANCE
+    } else {
+      return b.CHANCE - a.CHANCE
+    }
+  })
+}
+
+export function useFilter (pdv: Sucursales, asc: boolean): FilterPDV {
   const [searchPDV, setSearchPDV] = useState('')
   const [searchCate, setSearchCate] = useState('')
 
   const filteredPDV = useMemo(() => {
     let filtered = filterByPDV(pdv, searchPDV)
     filtered = filterByCate(filtered, searchCate)
+    filtered = filterByAscDes(filtered, asc)
+
     return filtered
-  }, [pdv, searchPDV, searchCate])
+  }, [pdv, searchPDV, searchCate, asc])
 
   return { searchPDV, setSearchPDV, filteredPDV, setSearchCate, searchCate }
 }
