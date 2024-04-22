@@ -12,57 +12,71 @@ const DetallesPage = (): JSX.Element => {
   const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
 
   useEffect(() => {
-    void axios.get('http://localhost:3000/api/sucursales')
-      .then((response) => {
-        setData(response.data as Sucursales)
-        console.log(response)
-      })
+    const fetchData = async (): Promise<void> => {
+      const response = await axios.get('http://localhost:3000/api/sucursales')
+      setData(response.data as Sucursales)
+      console.log(response)
+    }
+
+    // Llama a fetchData inmediatamente y luego cada 5 minutos
+    void fetchData()
+    const intervalId = setInterval(fetchData, 5 * 60 * 1000)
+
+    // Limpia el intervalo cuando el componente se desmonta
+    return () => {
+      clearInterval(intervalId)
+    }
   }, [])
 
   return (
     <>
-      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 right-10 mt-1 p-2 px-8 rounded-lg'>
-        <Label>Mostrar:</Label>
-        <Select className='w-min' placeholder='Cantidad Datos'>
-          <SelectItem className='flex justify-around cursor-pointer' value="" icon={RiDatabase2Fill}>Todos</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="10" icon={RiNumbersLine}>10</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="20" icon={RiNumbersLine}>20</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="50" icon={RiNumbersLine}>50</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>100</SelectItem>
-        </Select>
-      </section>
 
-      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-6 mt-1 p-2 px-8 rounded-lg'>
-        <Label>Filtrar PDVS:</Label>
-        <Input value={searchPDV} onChange={ev => { setSearchPDV(ev.target.value) }} placeholder='38656 | Punto Principal ...' />
-      </section>
+      <section className='bg-blue-200 p-2 flex justify-around items-center'>
 
-      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 left-[390px] mt-1 p-2 px-8 rounded-lg'>
-        <Label>Categorías:</Label>
-        <Select className='w-min' placeholder='Seleccionar Categoría' value={searchCate} onValueChange={setSearchCate}>
-          <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="DIAMANTE">DIAMANTE</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="ZAFIRO">ZAFIRO</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="ORO">ORO</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
-          <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
-        </Select>
-      </section>
+        <section className='text-center gap-2 flex items-center'>
+          <Label>Filtrar PDVS:</Label>
+          <Input value={searchPDV} onChange={ev => { setSearchPDV(ev.target.value) }} placeholder='38656 | Punto Principal ...' />
+        </section>
 
-      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 right-96 mt-1 p-4 px-8 rounded-lg'>
-        <Label>N° Logins:</Label>
-        <h1 className='font-bold'>{data.length}</h1>
+        <section className='text-center gap-2 flex items-center'>
+          <Label>Categorías:</Label>
+          <Select className='w-min' placeholder='Seleccionar Categoría' value={searchCate} onValueChange={setSearchCate}>
+            <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="DIAMANTE">DIAMANTE</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="ZAFIRO">ZAFIRO</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="ORO">ORO</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
+          </Select>
+        </section>
+
+        <section className='text-center flex gap-2 items-center'>
+          <Label>N° Logins:</Label>
+          <h1 className='font-bold'>{data.length}</h1>
+        </section>
+
+        <section className='text-center gap-2 flex items-center'>
+          <Label>Mostrar:</Label>
+          <Select className='' placeholder='Todos'>
+            <SelectItem className='flex justify-around cursor-pointer' value="" icon={RiDatabase2Fill}>Todos</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="10" icon={RiNumbersLine}>10</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="20" icon={RiNumbersLine}>20</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="50" icon={RiNumbersLine}>50</SelectItem>
+            <SelectItem className='flex justify-around cursor-pointer' value="30" icon={RiNumbersLine}>100</SelectItem>
+          </Select>
+        </section>
+
       </section>
 
       <Card>
-        <Table className="mt-12">
+        <Table>
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
               <TableHeaderCell className='text-center flex items-center cursor-pointer select-none hover:text-blue-600'
-                onClick={handleClick}>{asc ? <RiArrowDownSFill/> : <RiArrowUpSFill />} <span>Cum. Chance</span>
+                onClick={handleClick}>{asc ? <RiArrowDownSFill /> : <RiArrowUpSFill />} <span>Cum. Chance</span>
               </TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Astro</TableHeaderCell>
