@@ -13,7 +13,10 @@ const DetallesPage = (): JSX.Element => {
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
-      .then((response) => { setData(response.data as Sucursales) })
+      .then((response) => {
+        setData(response.data as Sucursales)
+        console.log(response)
+      })
   }, [])
 
   return (
@@ -44,6 +47,11 @@ const DetallesPage = (): JSX.Element => {
           <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
           <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
         </Select>
+      </section>
+
+      <section className='flex items-center gap-2 bg-blue-200 dark:bg-dark-tremor-brand-muted dark:text-white fixed z-50 right-96 mt-1 p-4 px-8 rounded-lg'>
+        <Label>N° Logins:</Label>
+        <h1 className='font-bold'>{data.length}</h1>
       </section>
 
       <Card>
