@@ -1,4 +1,4 @@
-import { Card, Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
+import { Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
 import { RiNumbersLine, RiDatabase2Fill, RiArrowUpSFill, RiArrowDownSFill } from '@remixicon/react'
 import { type Sucursales } from '../types/sucursal'
 import { Input, Label } from '../components/iu'
@@ -68,14 +68,13 @@ const DetallesPage = (): JSX.Element => {
 
       </section>
 
-      <Card>
         <Table>
           <TableHead>
             <TableRow className='bg-blue-100 dark:bg-dark-tremor-brand-muted'>
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
-              <TableHeaderCell className='text-center flex items-center cursor-pointer select-none hover:text-blue-600'
+              <TableHeaderCell className={`text-center flex items-center cursor-pointer select-none hover:text-blue-600 ${asc ? '' : 'text-blue-600'}`}
                 onClick={handleClick}>{asc ? <RiArrowDownSFill /> : <RiArrowUpSFill />} <span>Cum. Chance</span>
               </TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
@@ -105,7 +104,7 @@ const DetallesPage = (): JSX.Element => {
             }
           </TableBody>
         </Table>
-      </Card>
+
     </>
   )
 }
