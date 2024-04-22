@@ -1,5 +1,5 @@
 import { Card, Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
-import { RiNumbersLine, RiDatabase2Fill } from '@remixicon/react'
+import { RiNumbersLine, RiDatabase2Fill, RiArrowUpSFill, RiArrowDownSFill } from '@remixicon/react'
 import { type Sucursales } from '../types/sucursal'
 import { Input, Label } from '../components/iu'
 import { useFilter } from '../hooks/useFilters'
@@ -66,7 +66,9 @@ const DetallesPage = (): JSX.Element => {
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
-              <TableHeaderCell className='text-center' onClick={handleClick}>Cum. Chance</TableHeaderCell>
+              <TableHeaderCell className='text-center flex items-center gap-1 cursor-pointer select-none'
+                onClick={handleClick}>{asc ? <RiArrowDownSFill/> : <RiArrowUpSFill />} <span>Cum. Chance</span>
+              </TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Astro</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Betplay</TableHeaderCell>
