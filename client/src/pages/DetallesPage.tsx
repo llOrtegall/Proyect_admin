@@ -8,13 +8,8 @@ import axios from 'axios'
 
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
-  const [asc, setAsc] = useState(false)
 
-  const handleClick = (): void => {
-    setAsc(!asc)
-  }
-
-  const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV } = useFilter(data, asc)
+  const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
 
   useEffect(() => {
     void axios.get('http://localhost:3000/api/sucursales')
@@ -66,7 +61,7 @@ const DetallesPage = (): JSX.Element => {
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
-              <TableHeaderCell className='text-center flex items-center gap-1 cursor-pointer select-none'
+              <TableHeaderCell className='text-center flex items-center cursor-pointer select-none hover:text-blue-600'
                 onClick={handleClick}>{asc ? <RiArrowDownSFill/> : <RiArrowUpSFill />} <span>Cum. Chance</span>
               </TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
