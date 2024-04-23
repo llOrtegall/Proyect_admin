@@ -1,5 +1,6 @@
 import { pool } from '../connections/mysqlMetas.js'
 
+
 const PRODUCTOS = "CHANCE,PAGAMAS,PAGATODO,GANE5,PAGATODO_JAMUNDI,CHOLADITO,PATA_MILLONARIA,DOBLECHANCE,CHANCE_MILLONARIO,ASTRO,LOTERIA_FISICA,LOTERIA_VIRTUAL,BETPLAY,GIROS,SOAT,RECAUDOS,RECARGAS,PROMO1,PROMO2"
 
 const MULTIRED = '39627'
@@ -26,20 +27,5 @@ export const getSucursales = async (_req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
-  }
-}
-
-export const executeQuery = async (_req, res) => {
-  try {
-    const connection = await pool.getConnection()
-    const [results] = await connection.query("select CODIGO from INFORMACION_PUNTOSVENTA where zona = '39627';")
-
-    console.log(results.length);
-    
-    
-
-    res.status(200).json(results)
-  } catch (error) {
-    
   }
 }
