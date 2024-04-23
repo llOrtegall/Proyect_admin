@@ -23,5 +23,5 @@ app.listen(port, () => {
 
   // Programa la tarea para que se ejecute cada hora desde las 6 AM hasta las 11 PM
   // cron.schedule('0 6-23 * * *', myTask);
-   cron.schedule('*/5 * * * *', myTask);
+   cron.schedule('*/1 * * * *', myTask);
 });
