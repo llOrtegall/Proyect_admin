@@ -9,7 +9,7 @@ export const myTask = async () => {
   try {
     const connection = await pool.getConnection()
   
-    const [rows] = await connection.query(`SELECT ${PRODUCTOS} FROM METASPRODUCTOS WHERE FECHA = CURDATE() and SUCURSAL = '39825' and ZONA = '39627'`)
+    const [rows] = await connection.query(`SELECT ${PRODUCTOS} FROM METASPRODUCTOS WHERE FECHA = CURDATE() and ZONA = '39627'`)
     connection.release();  
 
     console.log(rows);
