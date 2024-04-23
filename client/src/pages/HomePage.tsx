@@ -1,4 +1,3 @@
-import { useAuth } from '../auth/AuthProvider'
 import { CardComponent } from '../components/iu/CardComponent'
 import { CardMetas } from '../components/iu/cardMetas'
 
@@ -79,12 +78,8 @@ const cumplimiento = 'Cumplimiento Servired Venta Total Del Día'
 const porcentaje = 60
 
 function HomePage (): JSX.Element {
-  const { user } = useAuth()
   return (
     <>
-    <section>
-       {user !== undefined ? user.nombres : null}
-    </section>
       <section className='flex px-10 justify-center py-6'>
         <CardComponent name={nombre} cumplimiento={cumplimiento} porcentaje={porcentaje} />
       </section>

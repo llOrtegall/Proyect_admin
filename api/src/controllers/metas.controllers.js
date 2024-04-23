@@ -2,7 +2,6 @@ import { pool } from '../connections/mysqlMetas.js'
 
 const PRODUCTOS = "CHANCE,PAGAMAS,PAGATODO,GANE5,PAGATODO_JAMUNDI,CHOLADITO,PATA_MILLONARIA,DOBLECHANCE,CHANCE_MILLONARIO,ASTRO,LOTERIA_FISICA,LOTERIA_VIRTUAL,BETPLAY,GIROS,SOAT,RECAUDOS,RECARGAS,PROMO1,PROMO2"
 
-const MULTIRED = '39627'
 
 export const getSucursales = async (_req, res) => {
   try {
@@ -18,7 +17,7 @@ export const getSucursales = async (_req, res) => {
             INFORMACION_PUNTOSVENTA ip ON mp.SUCURSAL = ip.CODIGO
           WHERE 
           mp.FECHA = CURDATE() AND mp.ZONA = ?
-    `, [MULTIRED])
+    `, [_req.params.empresa])
 
     connection.release();
 

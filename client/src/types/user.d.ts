@@ -13,10 +13,10 @@ type Proceso = 'Técnología' |
 export interface User {
   apellidos: string
   correo: string
-  empresa: Empresa
+  empresa: string
   id: string
   nombres: string
-  proceso: Proceso
+  proceso: string
   rol: string
   username: string
 }
