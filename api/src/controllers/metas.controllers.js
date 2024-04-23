@@ -28,3 +28,18 @@ export const getSucursales = async (_req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+export const executeQuery = async (_req, res) => {
+  try {
+    const connection = await pool.getConnection()
+    const [results] = await connection.query("select CODIGO from INFORMACION_PUNTOSVENTA where zona = '39627';")
+
+    console.log(results.length);
+    
+    
+
+    res.status(200).json(results)
+  } catch (error) {
+    
+  }
+}
