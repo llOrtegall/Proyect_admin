@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useAuth } from '../auth/AuthProvider'
+import React from 'react'
 
 export function CambiarCompany (): JSX.Element {
   const { user, setUser } = useAuth()
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleEmpresaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedEmpresa = e.target.value
     console.log('e.target.value', e.target.value)
