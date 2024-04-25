@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import { metas } from './routes/routes.js';
+import { horas } from './routes/horas.routes.js'
 
 // Creación de la aplicación Express
 const app = express();
@@ -14,6 +15,8 @@ app.use(morgan('dev'));
 
 // Configuración de rutas
 app.use('/api', metas);
+
+app.use('/api', horas);
 
 // Inicio del servidor
 app.listen(port, () => {
