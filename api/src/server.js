@@ -12,6 +12,7 @@ const port = 3000;
 // Configuración de middleware
 app.use(cors());
 app.use(morgan('dev'));
+app.use(express.json());
 
 // Configuración de rutas
 app.use('/api', metas);

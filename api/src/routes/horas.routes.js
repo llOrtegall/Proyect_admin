@@ -3,4 +3,4 @@ import { Router } from 'express'
 
 export const horas = Router()
 
-horas.get('/horas', getHoras)
+horas.post('/horas', getHoras)
