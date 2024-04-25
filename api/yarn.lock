@@ -487,7 +487,7 @@ minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-morgan@^1.10.0:
+morgan@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.10.0.tgz#091778abc1fc47cd3509824653dae1faab6b17d7"
   integrity sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==
@@ -513,7 +513,7 @@ ms@2.1.3:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mysql2@^3.9.6:
+mysql2@3.9.6:
   version "3.9.6"
   resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.9.6.tgz#93e21a2eebbe2c1dc8caca425e850aace2273b50"
   integrity sha512-9NYUMLQv6yXnu+5hUh8PZ5CdKoG6VWDzXbojIdTyob8upNZXU3rBNQK9viaEqfgw+LMifhd+53VEZPxZk3bTWA==
