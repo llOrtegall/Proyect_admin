@@ -14,7 +14,7 @@ export async function getMetas(req: Request, res: Response) {
     const ventaTotalxProducto = result?.reduce((acc, curr) => {
       const keys = Object.keys(curr)
       keys.forEach(key => {
-        if (key !== 'FECHA') {
+        if (key !== 'FECHA' && key !== 'SUCURSAL') {
           acc[key] = acc[key] ? acc[key] + curr[key] : curr[key]
         }
       })
