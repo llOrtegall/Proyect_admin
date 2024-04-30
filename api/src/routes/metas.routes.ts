@@ -3,4 +3,4 @@ import { Router } from 'express'
 
 export const RouterMetas = Router()
 
-RouterMetas.get('/metas', getMetas)
+RouterMetas.get('/metas/:zona', getMetas)
