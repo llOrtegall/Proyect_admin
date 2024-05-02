@@ -3,4 +3,4 @@ import { Router } from 'express'
 
 export const metas = Router()
 
-metas.get('/sucursales', getSucursales)
+metas.get('/sucursales/:empresa', getSucursales)
