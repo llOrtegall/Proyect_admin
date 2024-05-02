@@ -30,8 +30,8 @@ export function CambiarCompany (): JSX.Element {
           >
 
             <option className="text-black font-semibold">Seleccione una empresa</option>
-            <option value='39628' className="font-bold ">Servired</option>
-            <option value='39627' className="font-bold ">Multired</option>
+            <option value='Servired' className="font-bold ">Servired</option>
+            <option value='Multired' className="font-bold ">Multired</option>
           </select>
         </article>
       </section>
