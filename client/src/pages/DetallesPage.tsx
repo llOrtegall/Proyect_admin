@@ -5,18 +5,13 @@ import { Input, Label } from '../components/iu'
 import { useFilter } from '../hooks/useFilters'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useAuth } from '../auth/AuthProvider'
 
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
-  const { user } = useAuth()
-
-  const empresa = user !== undefined ? user.empresa : null
 
   const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
 
   useEffect(() => {
-
     const fetchData = async (): Promise<void> => {
       const response = await axios.get('http://localhost:3000/api/sucursales')
       setData(response.data as Sucursales)
@@ -31,7 +26,6 @@ const DetallesPage = (): JSX.Element => {
     return () => {
       clearInterval(intervalId)
     }
-
   }, [])
 
   return (
