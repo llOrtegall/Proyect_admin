@@ -37,7 +37,7 @@ export interface MetasJamundi extends RowDataPacket{
   GIROS: number
   SOAT: number
   PROMO1: number
-  PROMO2: number
   RECAUDOS: number
   RECARGAS: number
+  PROMEDIO_DIARIO_CHANCE: number
 }

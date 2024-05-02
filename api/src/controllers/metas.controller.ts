@@ -11,6 +11,8 @@ export async function getMetas(req: Request, res: Response) {
 
   try {
     const result = await getMetasService(zona)
+    console.log(result?.length);
+    
     const ventaTotalxProducto = result?.reduce((acc, curr) => {
       const keys = Object.keys(curr)
       keys.forEach(key => {
