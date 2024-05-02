@@ -7,6 +7,8 @@ interface FilterPDV {
   setSearchPDV: React.Dispatch<React.SetStateAction<string>>
   searchCate: string
   setSearchCate: React.Dispatch<React.SetStateAction<string>>
+  handleClick: () => void
+  asc: boolean
 }
 
 function filterByPDV (pdv: Sucursales, searchPDV: string): Sucursales {
@@ -22,15 +24,32 @@ function filterByCate (pdv: Sucursales, searchCate: string): Sucursales {
   )
 }
 
+function filterByAscDes (pdv: Sucursales, asc: boolean): Sucursales {
+  return pdv.sort((a, b) => {
+    if (asc) {
+      return a.CHANCE - b.CHANCE
+    } else {
+      return b.CHANCE - a.CHANCE
+    }
+  })
+}
+
 export function useFilter (pdv: Sucursales): FilterPDV {
   const [searchPDV, setSearchPDV] = useState('')
   const [searchCate, setSearchCate] = useState('')
+  const [asc, setAsc] = useState(false)
+
+  const handleClick = (): void => {
+    setAsc(!asc)
+  }
 
   const filteredPDV = useMemo(() => {
     let filtered = filterByPDV(pdv, searchPDV)
     filtered = filterByCate(filtered, searchCate)
-    return filtered
-  }, [pdv, searchPDV, searchCate])
+    filtered = filterByAscDes(filtered, asc)
 
-  return { searchPDV, setSearchPDV, filteredPDV, setSearchCate, searchCate }
+    return filtered
+  }, [pdv, searchPDV, searchCate, asc])
+
+  return { searchPDV, setSearchPDV, filteredPDV, setSearchCate, searchCate, handleClick, asc }
 }

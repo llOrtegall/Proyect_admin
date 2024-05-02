@@ -1,8 +1,9 @@
 // Importaciones de módulos
+import { metas } from './routes/routes.js';
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { metas } from './routes/routes.js';
+
 
 // Creación de la aplicación Express
 const app = express();
