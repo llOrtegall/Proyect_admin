@@ -52,26 +52,8 @@ const data = [
   },
   {
     id: 9,
-    porcentaje: 10,
+    porcentaje: 60,
     nombre: 'META DEL DIA',
-    venta: '$1,200,000,000'
-  },
-  {
-    id: 10,
-    porcentaje: 10,
-    nombre: 'VENTA ACTUAL DEL DIA',
-    venta: '$1,200,000,000'
-  },
-  {
-    id: 11,
-    porcentaje: 10,
-    nombre: 'META DEL DIA',
-    venta: '$1,200,000,000'
-  },
-  {
-    id: 12,
-    porcentaje: 10,
-    nombre: 'VENTA ACTUAL DEL DIA',
     venta: '$1,200,000,000'
   }
 ]
@@ -87,7 +69,7 @@ const data2 = [
     id: 2,
     name: 'Ventas Del Día',
     venta: '23.000.234',
-    porcentaje: 50
+    porcentaje: 60
   }
 ]
 
@@ -110,7 +92,7 @@ function HomePage (): JSX.Element {
         }
       </section>
 
-      <section className='grid grid-cols-6 mx-10 gap-6'>
+      <section className='grid grid-cols-3 mx-10 gap-2'>
         {
           // * Se mapea el array de objetos data y se retorna un componente CardMetas por cada objeto
           data.map(item => {
