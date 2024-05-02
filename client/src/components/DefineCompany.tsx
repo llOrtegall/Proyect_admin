@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useAuth } from '../auth/AuthProvider'
+import { type Empresa } from '../types/user'
 import React from 'react'
 
 export function CambiarCompany (): JSX.Element {
@@ -8,7 +9,7 @@ export function CambiarCompany (): JSX.Element {
   const handleEmpresaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedEmpresa = e.target.value
     console.log('e.target.value', e.target.value)
-    setUser({ ...user, empresa: selectedEmpresa }) // Actualiza el contexto de autenticación con la empresa seleccionada
+    setUser({ ...user, empresa: selectedEmpresa as Empresa }) // Actualiza el contexto de autenticación con la empresa seleccionada
   }
 
   return (

@@ -1,4 +1,4 @@
-type Empresa = 'Multired' | 'Servired' | 'Multired y Servired'
+export type Empresa = 'Multired' | 'Servired' | 'Multired y Servired'
 
 type Proceso = 'Técnología' |
 'Contabilidad' |

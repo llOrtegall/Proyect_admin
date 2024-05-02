@@ -1,5 +1,7 @@
 import { CardComponent } from '../components/iu/CardComponent'
+import { CambiarCompany } from '../components/DefineCompany'
 import { CardMetas } from '../components/iu/cardMetas'
+import { useAuth } from '../auth/AuthProvider'
 
 const data = [
   {
@@ -78,29 +80,37 @@ const cumplimiento = 'Cumplimiento Servired Venta Total Del Día'
 const porcentaje = 60
 
 function HomePage (): JSX.Element {
+  const { user } = useAuth()
+
+  const empresa = user?.empresa
+
   return (
     <>
-      <section className='flex px-10 justify-center py-6'>
-        <CardComponent name={nombre} cumplimiento={cumplimiento} porcentaje={porcentaje} />
-      </section>
+      {empresa === 'Multired y Servired'
+        ? (<CambiarCompany />)
+        : (<>
+          <section className='flex px-10 justify-center py-6'>
+            <CardComponent name={nombre} cumplimiento={cumplimiento} porcentaje={porcentaje} />
+          </section>
 
-      <section className='flex px-12 gap-4 pb-4'>
-        {
-          data2.map(item => {
-            return (<CardComponent key={item.id} cumplimiento={item.venta} porcentaje={item.porcentaje} name={item.name}/>)
-          })
-        }
-      </section>
+          <section className='flex px-12 gap-4 pb-4'>
+            {
+              data2.map(item => {
+                return (<CardComponent key={item.id} cumplimiento={item.venta} porcentaje={item.porcentaje} name={item.name} />)
+              })
+            }
+          </section>
 
-      <section className='grid grid-cols-3 mx-10 gap-2'>
-        {
-          // * Se mapea el array de objetos data y se retorna un componente CardMetas por cada objeto
-          data.map(item => {
-            return (<CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />)
-          })
-        }
-      </section>
-
+          <section className='grid grid-cols-3 mx-10 gap-2'>
+            {
+              // * Se mapea el array de objetos data y se retorna un componente CardMetas por cada objeto
+              data.map(item => {
+                return (<CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />)
+              })
+            }
+          </section>
+        </>)
+      }
     </>
   )
 }

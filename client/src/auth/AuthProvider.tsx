@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
       void autentificaToken({ token }) // * ESTA FUNCION PIDE LA API VALIDAR EL TOKEN
         .then(res => {
           if (res.status === 200) {
-            console.log(res.data)
             login() // * Autentica al usuario si el token es válido
             setUser(res.data as User)
           }
@@ -51,7 +50,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   const login = (): void => {
     setIsAuthenticated(true)
 
-    navigate('/prueba') // * Redirige a la ruta '/home' al autenticarse
+    navigate('/home') // * Redirige a la ruta '/home' al autenticarse
   }
   const logout = (): void => {
     setIsAuthenticated(false)
