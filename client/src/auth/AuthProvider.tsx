@@ -15,7 +15,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const InitialUser: User = { apellidos: '', correo: '', empresa: '', id: '', nombres: '', proceso: '', rol: '', username: '' }
+const InitialUser: User = { apellidos: '', correo: '', id: '', nombres: '', rol: '', username: '' }
 
 // * Creación del contexto de autenticación
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
@@ -28,12 +28,13 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // * Verifica si el usuario está autenticado con el token si existe en el local storage
+    // TODO: Verifica El token si existe en el local storage
     const token = localStorage.getItem('token')
     if (token !== null) {
-      void autentificaToken({ token })
+      void autentificaToken({ token }) // * ESTA FUNCION PIDE LA API VALIDAR EL TOKEN
         .then(res => {
           if (res.status === 200) {
+            console.log(res.data)
             login() // * Autentica al usuario si el token es válido
             setUser(res.data as User)
           }
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
     } else {
       console.log('No hay token')
     }
-  }, [])
+  }, [isAuthenticated])
 
   const login = (): void => {
     setIsAuthenticated(true)

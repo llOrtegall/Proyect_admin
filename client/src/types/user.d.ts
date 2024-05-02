@@ -1,4 +1,4 @@
-type Empresa = 'Multired' | 'Servired'
+type Empresa = 'Multired' | 'Servired' | 'Multired y Servired'
 
 type Proceso = 'Técnología' |
 'Contabilidad' |
@@ -13,10 +13,10 @@ type Proceso = 'Técnología' |
 export interface User {
   apellidos: string
   correo: string
-  empresa: string
+  empresa?: Empresa
   id: string
   nombres: string
-  proceso: string
+  proceso?: Proceso
   rol: string
   username: string
 }
