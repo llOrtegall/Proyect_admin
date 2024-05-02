@@ -15,8 +15,6 @@ export interface MetasYumbo extends RowDataPacket{
   BETPLAY: number
   GIROS: number
   SOAT: number
-  PROMO1: number
-  PROMO2: number
   RECAUDOS: number
   RECARGAS: number
   PROMEDIO_DIARIO_CHANCE: number
@@ -32,7 +30,6 @@ export interface MetasYumbo extends RowDataPacket{
   PROMEDIO_DIARIO_BETPLAY: number
   PROMEDIO_DIARIO_GIROS: number
   PROMEDIO_DIARIO_SOAT: number
-  META_PROMO2: number
   PROMEDIO_DIARIO_RECAUDOS  : number
   PROMEDIO_DIARIO_RECARGAS: number
 }
@@ -52,7 +49,6 @@ export interface MetasJamundi extends RowDataPacket{
   BETPLAY: number
   GIROS: number
   SOAT: number
-  PROMO1: number
   RECAUDOS: number
   RECARGAS: number
   PROMEDIO_DIARIO_CHANCE: number
@@ -68,7 +64,6 @@ export interface MetasJamundi extends RowDataPacket{
   PROMEDIO_DIARIO_BETPLAY: number
   PROMEDIO_DIARIO_GIROS: number
   PROMEDIO_DIARIO_SOAT: number
-  META_PROMO2: number
   PROMEDIO_DIARIO_RECAUDOS: number
   PROMEDIO_DIARIO_RECARGAS: number
 }
