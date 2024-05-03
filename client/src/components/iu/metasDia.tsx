@@ -6,7 +6,7 @@ import { type Metas, type MetasJamundi } from '../../types/metas'
 
 const MetasDia = (): JSX.Element => {
   const { user } = useAuth()
-  const [data, setData] = useState<Metas | MetasJamundi>()
+  const [data, setData] = useState<Metas | MetasJamundi>({})
   const [percentage, setPercentage] = useState<number>(0)
 
   const company = user.empresa
