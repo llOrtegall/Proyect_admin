@@ -7,7 +7,7 @@ interface Props {
 
 // TODO: aqui solo recibe un objecto con dos propiedades, nombre y venta
 export function CardDia ({ nombre, venta }: Props): JSX.Element {
-  const formattedVentatotal = venta.toLocaleString()
+  const formattedVentatotal = venta.toLocaleString('es-CO', { style: 'decimal', currency: 'COP' })
   return (
         <Card decoration="top" decorationColor={'blue'}>
             <p className="text-tremor-default text-center mt-1 text-tremor-content dark:text-dark-tremor-content">{nombre}</p>

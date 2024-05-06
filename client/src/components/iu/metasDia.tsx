@@ -23,6 +23,14 @@ const MetasDia = (): JSX.Element => {
   const company = user.empresa
   const cumplimiento = `Cumplimiento Del Chance Del Dia ${company}`
 
+  const jamundi = data.CHOLADITO + data.PAGATODO_JAMUNDI
+
+  const yumbo = data.PAGAMAS + data.PAGATODO
+
+  const jamundipro = data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI
+
+  const yumbopro = data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO
+
   useEffect(() => {
     const fetchMetas = async (): Promise<void> => {
       try {
@@ -33,97 +41,34 @@ const MetasDia = (): JSX.Element => {
       }
     }
 
-    void fetchMetas()
+    const intervalId = setInterval(() => {
+      void fetchMetas()
+    }, 5000)
+
+    // Clear the interval on component unmount to avoid memory leaks
+    return () => { clearInterval(intervalId) }
   }, [company])
 
   useEffect(() => {
-    const calculatePercentage = (): void => {
-      const chance = Math.round((data.CHANCE +
-      (data.PAGAMAS | data.CHOLADITO | data.PAGATODO | data.PAGATODO_JAMUNDI) +
-      data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO) /
-      (data.PROMEDIO_DIARIO_CHANCE + (data.PROMEDIO_DIARIO_PAGAMAS | data.PROMEDIO_DIARIO_CHOLADITO | data.PROMEDIO_DIARIO_PAGATODO | data.PROMEDIO_DIARIO_PGTJAMUNDI) +
-      data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL) * 100)
-      setChance(chance)
-    }
-    calculatePercentage()
-  }, [data])
+    setChance(Math.round((data.CHANCE + (jamundi | yumbo) + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO) / (data.PROMEDIO_DIARIO_CHANCE + (jamundipro | yumbopro) + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL) * 100))
 
-  useEffect(() => {
-    const calculateVentaDia = (): void => {
-      const ventadia = (
-        data.CHANCE +
-        (data.PAGAMAS |
-        data.CHOLADITO |
-        data.PAGATODO |
-        data.PAGATODO_JAMUNDI) +
-        data.GANE5 +
-        data.PATA_MILLONARIA +
-        data.DOBLECHANCE +
-        data.CHANCE_MILLONARIO
-      )
-      setVentadia(ventadia)
-    }
+    setVentadia(data.CHANCE + (jamundi | yumbo) + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO)
 
-    const calculateVentaTotal = (): void => {
-      const ventatotal = (data.PROMEDIO_DIARIO_CHANCE +
-      (data.PROMEDIO_DIARIO_PAGAMAS |
-      data.PROMEDIO_DIARIO_CHOLADITO |
-      data.PROMEDIO_DIARIO_PAGATODO |
-      data.PROMEDIO_DIARIO_PGTJAMUNDI) +
-      data.PROMEDIO_DIARIO_PATAMI +
-      data.PROMEDIO_DIARIO_DOBLECHANCE +
-      data.PROMEDIO_DIARIO_CHMILL)
-      ventatotal.toLocaleString()
-      setTotal(ventatotal)
-    }
+    setTotal(data.PROMEDIO_DIARIO_CHANCE + (jamundipro | yumbopro) + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL)
 
-    calculateVentaDia()
-    calculateVentaTotal()
-  }, [data])
+    setAstro(Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100))
 
-  useEffect(() => {
-    const calculateAstro = (): void => {
-      const astro = Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100)
-      setAstro(astro)
-    }
+    setRecargas(Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100))
 
-    const calculateRecargas = (): void => {
-      const recargas = Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100)
-      setRecargas(recargas)
-    }
+    setLoteriFisica(Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100))
 
-    const calculateLoteriaFisica = (): void => {
-      const loteriaFisica = Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
-      setLoteriFisica(loteriaFisica)
-    }
+    setLoteriVirtual(Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100))
 
-    const calculateLoteriaVirtual = (): void => {
-      const loteriaVirtual = Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100)
-      setLoteriVirtual(loteriaVirtual)
-    }
+    setBetplay(Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100))
 
-    const calculateBetplay = (): void => {
-      const betplay = Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
-      setBetplay(betplay)
-    }
+    setGiros(Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100))
 
-    const calculateGiros = (): void => {
-      const giros = Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
-      setGiros(giros)
-    }
-
-    const calculateRecaudos = (): void => {
-      const recaudos = Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
-      setRecaudos(recaudos)
-    }
-
-    calculateAstro()
-    calculateRecargas()
-    calculateLoteriaFisica()
-    calculateLoteriaVirtual()
-    calculateBetplay()
-    calculateGiros()
-    calculateRecaudos()
+    setRecaudos(Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100))
   }, [data])
 
   const cumplimientoDIa = [
@@ -153,31 +98,31 @@ const MetasDia = (): JSX.Element => {
       porcentaje: recargas
     },
     {
-      id: 1,
+      id: 3,
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
       porcentaje: loteriaFisica
     },
     {
-      id: 3,
+      id: 4,
       nombre: 'LOT VIRTUAL',
       venta: data.LOTERIA_VIRTUAL,
       porcentaje: loteriaVirtual
     },
     {
-      id: 4,
+      id: 5,
       nombre: 'BETPLAY',
       venta: data.BETPLAY,
       porcentaje: betplay
     },
     {
-      id: 5,
+      id: 6,
       nombre: 'GIROS',
       venta: data.GIROS,
       porcentaje: giros
     },
     {
-      id: 6,
+      id: 7,
       nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
       porcentaje: recaudos
@@ -196,7 +141,10 @@ const MetasDia = (): JSX.Element => {
       <section className='flex px-12 gap-2 pb-4'>
         {
           cumplimientoDIa.map(item => {
-            return (<CardDia key={item.id} nombre={item.nombre} venta={item.venta} />)
+            return (<CardDia
+              key={item.id}
+              nombre={item.nombre}
+              venta={item.venta} />)
           })
         }
       </section>
@@ -204,7 +152,10 @@ const MetasDia = (): JSX.Element => {
       <section className='flex px-12 gap-5 pb-2'>
         {
           productos.map(item => {
-            return (<CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />)
+            return (<CardMetas key={item.id}
+               nombre={item.nombre}
+                venta={item.venta}
+                 porcentaje={item.porcentaje} />)
           })
         }
       </section>
