@@ -10,17 +10,9 @@ const MetasDia = (): JSX.Element => {
   const { user } = useAuth()
   const [data, setData] = useState<Metas | MetasJamundi>({})
   const [chance, setChance] = useState<number>(0)
-  const [ventadia, setVentadia] = useState<number>(0)
-  const [ventatotal, setTotal] = useState<number>(0)
-  const [astro, setAstro] = useState<number>(0)
-  const [recargas, setRecargas] = useState<number>(0)
-  const [loteriaFisica, setLoteriFisica] = useState<number>(0)
-  const [loteriaVirtual, setLoteriVirtual] = useState<number>(0)
-  const [betplay, setBetplay] = useState<number>(0)
-  const [giros, setGiros] = useState<number>(0)
-  const [recaudos, setRecaudos] = useState<number>(0)
 
   const company = user.empresa
+
   const cumplimiento = `Cumplimiento Del Chance Del Dia ${company}`
 
   const jamundi = data.CHOLADITO + data.PAGATODO_JAMUNDI
@@ -48,36 +40,18 @@ const MetasDia = (): JSX.Element => {
 
   useEffect(() => {
     setChance(Math.round((data.CHANCE + (jamundi | yumbo) + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO) / (data.PROMEDIO_DIARIO_CHANCE + (jamundipro | yumbopro) + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL) * 100))
-
-    setVentadia(data.CHANCE + (jamundi | yumbo) + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO)
-
-    setTotal(data.PROMEDIO_DIARIO_CHANCE + (jamundipro | yumbopro) + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL)
-
-    setAstro(Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100))
-
-    setRecargas(Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100))
-
-    setLoteriFisica(Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100))
-
-    setLoteriVirtual(Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100))
-
-    setBetplay(Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100))
-
-    setGiros(Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100))
-
-    setRecaudos(Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100))
   }, [data])
 
   const cumplimientoDIa = [
     {
       id: 1,
       nombre: 'META DEL DIA',
-      venta: ventatotal
+      venta: data.PROMEDIO_DIARIO_CHANCE + (jamundipro | yumbopro) + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
     },
     {
       id: 2,
       nombre: 'VENTA ACTUAL DEL DIA',
-      venta: ventadia
+      venta: data.CHANCE + (jamundi | yumbo) + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
     }
   ]
 
@@ -86,43 +60,43 @@ const MetasDia = (): JSX.Element => {
       id: 1,
       nombre: 'ASTRO',
       venta: data.ASTRO,
-      porcentaje: astro
+      porcentaje: Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100)
     },
     {
       id: 2,
       nombre: 'RECARGAS',
       venta: data.RECARGAS,
-      porcentaje: recargas
+      porcentaje: Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100)
     },
     {
       id: 3,
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
-      porcentaje: loteriaFisica
+      porcentaje: Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
     },
     {
       id: 4,
       nombre: 'LOT VIRTUAL',
       venta: data.LOTERIA_VIRTUAL,
-      porcentaje: loteriaVirtual
+      porcentaje: Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100)
     },
     {
       id: 5,
       nombre: 'BETPLAY',
       venta: data.BETPLAY,
-      porcentaje: betplay
+      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
     },
     {
       id: 6,
       nombre: 'GIROS',
       venta: data.GIROS,
-      porcentaje: giros
+      porcentaje: Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
     },
     {
       id: 7,
       nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
-      porcentaje: recaudos
+      porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
     }
   ]
 
