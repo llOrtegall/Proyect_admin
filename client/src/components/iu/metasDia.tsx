@@ -41,12 +41,9 @@ const MetasDia = (): JSX.Element => {
       }
     }
 
-    const intervalId = setInterval(() => {
+    setInterval(() => {
       void fetchMetas()
     }, 5000)
-
-    // Clear the interval on component unmount to avoid memory leaks
-    return () => { clearInterval(intervalId) }
   }, [company])
 
   useEffect(() => {
@@ -153,9 +150,9 @@ const MetasDia = (): JSX.Element => {
         {
           productos.map(item => {
             return (<CardMetas key={item.id}
-               nombre={item.nombre}
-                venta={item.venta}
-                 porcentaje={item.porcentaje} />)
+              nombre={item.nombre}
+              venta={item.venta}
+              porcentaje={item.porcentaje} />)
           })
         }
       </section>
