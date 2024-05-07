@@ -27,6 +27,7 @@ const MetasDia = (): JSX.Element => {
     const fetchMetas = async (): Promise<void> => {
       try {
         const response = await axios.get(`http://localhost:3000/api/metas/${company === 'Servired' ? '39628' : '39627'}`)
+        console.log('first', response.data)
         setData(company === 'Servired' ? response.data as MetasJamundi : response.data as Metas)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -88,12 +89,18 @@ const MetasDia = (): JSX.Element => {
     },
     {
       id: 6,
+      nombre: 'BALOTO',
+      venta: data.SOAT,
+      porcentaje: Math.round((data.SOAT / data.PROMEDIO_DIARIO_SOAT) * 100)
+    },
+    {
+      id: 7,
       nombre: 'GIROS',
       venta: data.GIROS,
       porcentaje: Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
     },
     {
-      id: 7,
+      id: 8,
       nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
       porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
@@ -102,7 +109,7 @@ const MetasDia = (): JSX.Element => {
 
   return (
     <>
-      <section className="flex px-10 justify-center py-6">
+      <section className="flex px-10 justify-center py-4">
         <CardComponent
           cumplimiento={cumplimiento}
           porcentaje={chance}
@@ -120,7 +127,7 @@ const MetasDia = (): JSX.Element => {
         }
       </section>
 
-      <section className='flex px-12 gap-5 pb-2'>
+      <section className='px-12 grid grid-cols-4 gap-2 pb-4 '>
         {
           productos.map(item => {
             return (<CardMetas key={item.id}
