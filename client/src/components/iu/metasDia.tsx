@@ -109,14 +109,14 @@ const MetasDia = (): JSX.Element => {
 
   return (
     <>
-      <section className="flex px-10 justify-center py-4">
+      <section className="flex px-10 justify-center py-4 uppercase font-bold">
         <CardComponent
           cumplimiento={cumplimiento}
           porcentaje={chance}
         />
       </section>
 
-      <section className='flex px-12 gap-2 pb-4'>
+      <section className='flex px-12 gap-2 pb-4 font-bold'>
         {
           cumplimientoDIa.map(item => {
             return (<CardDia
@@ -127,7 +127,7 @@ const MetasDia = (): JSX.Element => {
         }
       </section>
 
-      <section className='px-12 grid grid-cols-4 gap-2 pb-4 '>
+      <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
         {
           productos.map(item => {
             return (<CardMetas key={item.id}
