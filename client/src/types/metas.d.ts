@@ -14,6 +14,7 @@ export interface Metas {
   SOAT: number
   RECAUDOS: number
   RECARGAS: number
+  PROMO2: number
   PROMEDIO_DIARIO_CHANCE: number
   PROMEDIO_DIARIO_PAGAMAS: number
   PROMEDIO_DIARIO_PAGATODO: number
@@ -29,6 +30,7 @@ export interface Metas {
   PROMEDIO_DIARIO_SOAT: number
   PROMEDIO_DIARIO_RECAUDOS: number
   PROMEDIO_DIARIO_RECARGAS: number
+  META_PROMO2: number
 }
 
 export interface MetasJamundi {
@@ -47,6 +49,7 @@ export interface MetasJamundi {
   SOAT: number
   RECAUDOS: number
   RECARGAS: number
+  PROMO2: number
   PROMEDIO_DIARIO_CHANCE: number
   PROMEDIO_DIARIO_CHOLADITO: number
   PROMEDIO_DIARIO_PGTJAMUNDI: number
@@ -62,4 +65,5 @@ export interface MetasJamundi {
   PROMEDIO_DIARIO_SOAT: number
   PROMEDIO_DIARIO_RECAUDOS: number
   PROMEDIO_DIARIO_RECARGAS: number
+  META_PROMO2: number
 }
