@@ -1,9 +1,9 @@
 import { Card, ProgressCircle } from '@tremor/react'
 
 interface Props {
-  porcentaje: number
   nombre: string
   venta: number
+  porcentaje: number
 }
 
 // TODO: aqui solo recibe un objecto con dos propiedades, nombre y venta

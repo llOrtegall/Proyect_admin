@@ -1,10 +1,14 @@
-import { CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaDiaMultired, CalcularVentaDiaServired } from '../utils/funciones'
+import {
+  CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaDiaMultired,
+  CalcularVentaDiaServired, MapearProductosMultired, MapearProductosServired
+} from '../utils/funciones'
 import { type MetasServired, type MetasMultired } from '../types/metas'
 import { CardComponent } from './iu/CardComponent'
 import { type Empresa } from '../types/user'
 import { useEffect, useState } from 'react'
 import { CardDia } from './iu/cardDia'
 import axios from 'axios'
+import { CardMetas } from './iu/cardMetas'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   const [dataServired, setDataServired] = useState<MetasServired>()
@@ -51,6 +55,27 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
               {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
             </article>
             )
+      }
+
+      {
+        company === 'Servired'
+          ? (
+            <section className='px-12 grid grid-cols-3 gap-2 pb-4 font-bold'>
+              {dataServired !== undefined
+                ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                : null
+              }
+            </section>
+            )
+          : (
+            <section className='px-12 grid grid-cols-3 gap-2 pb-4 font-bold'>
+              {dataMultired !== undefined
+                ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                : null
+              }
+            </section>
+            )
+
       }
 
     </section>
