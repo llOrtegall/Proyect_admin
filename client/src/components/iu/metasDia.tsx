@@ -7,12 +7,12 @@ import axios from 'axios'
 import { CardMetas } from './cardMetas'
 
 const MetasDia = (): JSX.Element => {
+  /*
   const { user } = useAuth()
   const [data, setData] = useState<Metas | MetasJamundi>({})
   const [chance, setChance] = useState<number>(0)
 
   const company = user.empresa
-
   const cumplimiento = `Cumplimiento Del Chance Del Dia ${company}`
 
   const jamundi = data.CHOLADITO + data.PAGATODO_JAMUNDI
@@ -111,10 +111,11 @@ const MetasDia = (): JSX.Element => {
       porcentaje: Math.round((data.PROMO2 / data.META_PROMO2) * 100)
     }
   ]
+  */
 
   return (
     <>
-      <section className="flex px-10 justify-center py-4 uppercase font-bold">
+      {/* <section className="flex px-10 justify-center py-4 uppercase font-bold">
         <CardComponent
           cumplimiento={cumplimiento}
           porcentaje={chance}
@@ -141,7 +142,7 @@ const MetasDia = (): JSX.Element => {
               porcentaje={item.porcentaje} />)
           })
         }
-      </section>
+      </section> */}
 
     </>
   )

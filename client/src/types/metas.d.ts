@@ -1,4 +1,4 @@
-export interface Metas {
+export interface MetasMultired {
   CHANCE: number
   PAGAMAS: number
   PAGATODO: number
@@ -33,7 +33,7 @@ export interface Metas {
   META_PROMO2: number
 }
 
-export interface MetasJamundi {
+export interface MetasServired {
   CHANCE: number
   CHOLADITO: number
   PAGATODO_JAMUNDI: number

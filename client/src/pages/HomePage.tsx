@@ -5,14 +5,12 @@ import DahsBoard from '../components/DashBoard'
 function HomePage (): JSX.Element {
   const { user } = useAuth()
 
-  const empresa = user?.empresa
-
   return (
     <>
       {
-        empresa === 'Multired y Servired'
+        user.empresa === 'Multired y Servired'
           ? (<CambiarCompany />)
-          : (<DahsBoard />)
+          : (<DahsBoard company={user.empresa}/>)
       }
     </>
   )
