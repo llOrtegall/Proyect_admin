@@ -2,8 +2,9 @@ import {
   CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaDiaMultired,
   CalcularVentaDiaServired, MapearProductosMultired, MapearProductosServired
 } from '../utils/funciones'
+
 import { type MetasServired, type MetasMultired } from '../types/metas'
-import { CardComponent } from './iu/CardComponent'
+
 import { type Empresa } from '../types/user'
 import { useEffect, useState } from 'react'
 import { CardMetas } from './iu/cardMetas'
@@ -35,48 +36,53 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
   // TODO: INTENTAR MANEJAR AMBAS EMPRESAS EN UN SOLO ESTADO ES COMPLICADO MEJOR PROBAR MEJOR IMPLEMENTACIÓN CON UN RENDERIZADO CONDICIONAL  */
   return (
-    <section>
+    <section className='flex flex-col gap-4'>
 
-      <article className="flex px-10 justify-center py-4 uppercase font-bold">
-        <CardComponent cumplimiento={'12'} porcentaje={28} />
+      <article className='flex flex-col px-12 gap-2'>
+
+        <article className='w-full'>
+          <CardMetas nombre={`Cumplimiento ${company}`} porcentaje={80} venta={23040300} />
+        </article>
+
+        {
+          company === 'Servired'
+            ? (
+              <article className='flex items-center w-full'>
+                {dataServired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaServired(dataServired)} /> : null}
+                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaServired(dataServired)} /> : null}
+              </article>
+              )
+            : (
+              <article className='flex items-center w-full'>
+                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
+                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
+              </article>
+              )
+        }
       </article>
 
-      {
-        company === 'Servired'
-          ? (
-            <article className='flex px-12 gap-2 pb-4 font-bold'>
-              {dataServired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaServired(dataServired)} /> : null}
-              {dataServired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaServired(dataServired)} /> : null}
-            </article>
-            )
-          : (
-            <article className='flex px-12 gap-2 pb-4 font-bold'>
-              {dataMultired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
-              {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
-            </article>
-            )
-      }
+      <article className=''>
+        {
+          company === 'Servired'
+            ? (
+              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
+                {dataServired !== undefined
+                  ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                  : null
+                }
+              </section>
+              )
+            : (
+              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
+                {dataMultired !== undefined
+                  ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                  : null
+                }
+              </section>
+              )
 
-      {
-        company === 'Servired'
-          ? (
-            <section className='px-12 grid grid-cols-3 gap-2 pb-4 font-bold'>
-              {dataServired !== undefined
-                ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                : null
-              }
-            </section>
-            )
-          : (
-            <section className='px-12 grid grid-cols-3 gap-2 pb-4 font-bold'>
-              {dataMultired !== undefined
-                ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                : null
-              }
-            </section>
-            )
-
-      }
+        }
+      </article>
 
     </section>
   )
