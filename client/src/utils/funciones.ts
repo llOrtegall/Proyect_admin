@@ -7,6 +7,20 @@ interface Products {
   porcentaje: number
 }
 
+export function porcentajeCumplimientoServired (data: MetasServired): number {
+  const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+
+  return (Math.round((VentaChance / Promedio) * 100))
+}
+
+export function porcentajeCumplimientoMultired (data: MetasMultired): number {
+  const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+
+  return (Math.round((VentaChance / Promedio) * 100))
+}
+
 export function CalcularMetaDiaServired (data: MetasServired): number {
   return data.PROMEDIO_DIARIO_CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
 }
@@ -16,10 +30,12 @@ export function CalcularMetaDiaMultired (data: MetasMultired): number {
 }
 
 export function CalcularVentaDiaServired (data: MetasServired): number {
+  // * falta agregar todos los productos para la venta total de servired
   return data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
 }
 
 export function CalcularVentaDiaMultired (data: MetasMultired): number {
+  // * falta agregar todos los productos para la venta total de Multired
   return data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
 }
 

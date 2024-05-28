@@ -1,10 +1,13 @@
 import {
+  porcentajeCumplimientoServired,
   CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaDiaMultired,
-  CalcularVentaDiaServired, MapearProductosMultired, MapearProductosServired
+  CalcularVentaDiaServired, MapearProductosMultired, MapearProductosServired,
+  porcentajeCumplimientoMultired
 } from '../utils/funciones'
 
 import { type MetasServired, type MetasMultired } from '../types/metas'
 
+import { CardComponent } from './iu/CardComponent'
 import { type Empresa } from '../types/user'
 import { useEffect, useState } from 'react'
 import { CardMetas } from './iu/cardMetas'
@@ -12,26 +15,34 @@ import { CardDia } from './iu/cardDia'
 import axios from 'axios'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
-  const [dataServired, setDataServired] = useState<MetasServired>()
-  const [dataMultired, setDataMultired] = useState<MetasMultired>()
+  const [dataServired, setDataServired] = useState<MetasServired>() // * AQUI SE ASIGNA LA DATA PARA SEVIRED
+  const [dataMultired, setDataMultired] = useState<MetasMultired>() // * AQUI SE ASIGNA LA DATA PARA MULTIRED
 
   // TODO: Esta forma de tipar la respuesta funciona sin embargo al implementar un hook personalizado se podria mejorar
   // TODO: por el momento quedara así para continuar con el renderizado de la información
   useEffect(() => {
-    void axios.get(`http://localhost:3000/api/metas/${company === 'Servired' ? '39628' : '39627'}`)
-      .then(response => {
-        const data = response.data
-        if (company === 'Servired') {
-          setDataServired(data as MetasServired)
-        } else if (company === 'Multired') {
-          setDataMultired(data as MetasMultired)
-        } else {
-          console.log('Company not found')
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    const fetchData = (): void => {
+      void axios.get(`http://localhost:3000/api/metas/${company === 'Servired' ? '39628' : '39627'}`)
+        .then(response => {
+          const data = response.data
+          if (company === 'Servired') {
+            setDataServired(data as MetasServired)
+          } else if (company === 'Multired') {
+            setDataMultired(data as MetasMultired)
+          } else {
+            console.log('Company not found')
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
+    fetchData() // Fetch data immediately
+
+    const intervalId = setInterval(fetchData, 5 * 60 * 1000) // Fetch data every 5 minutes
+
+    return () => { clearInterval(intervalId) } // TODO: limpia el intervalo para evitar fugas de memoria y errores cuando el componente se desmonta
   }, [company])
 
   // TODO: INTENTAR MANEJAR AMBAS EMPRESAS EN UN SOLO ESTADO ES COMPLICADO MEJOR PROBAR MEJOR IMPLEMENTACIÓN CON UN RENDERIZADO CONDICIONAL  */
@@ -41,7 +52,11 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
       <article className='flex flex-col px-12 gap-2'>
 
         <article className='w-full'>
-          <CardMetas nombre={`Cumplimiento ${company}`} porcentaje={80} venta={23040300} />
+          {
+            company === 'Servired'
+              ? (dataServired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
+              : (dataMultired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
+          }
         </article>
 
         {
