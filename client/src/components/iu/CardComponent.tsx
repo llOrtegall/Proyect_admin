@@ -2,7 +2,7 @@ import { Card, ProgressBar } from '@tremor/react'
 
 interface Props {
   porcentaje: number
-  cumplimiento: number
+  cumplimiento: string
 }
 
 export function CardComponent ({ porcentaje, cumplimiento }: Props): JSX.Element {

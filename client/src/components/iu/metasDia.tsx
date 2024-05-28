@@ -8,11 +8,9 @@ const MetasDia = (): JSX.Element => {
   const cumplimiento = `Cumplimiento Del Chance Del Dia ${company}`
 
   const jamundi = data.CHOLADITO + data.PAGATODO_JAMUNDI
-
   const yumbo = data.PAGAMAS + data.PAGATODO
 
   const jamundipro = data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI
-
   const yumbopro = data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO
 
   useEffect(() => {
