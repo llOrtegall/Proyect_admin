@@ -8,6 +8,7 @@ interface Props {
 
 // TODO: aqui solo recibe un objecto con dos propiedades, nombre y venta
 export function CardMetas ({ nombre, venta, porcentaje }: Props): JSX.Element {
+  console.log(porcentaje)
   return (
     <Card decoration="top" decorationColor={porcentaje > 80 ? 'emerald' : porcentaje > 50 ? 'lime' : 'red'} >
       <p className="text-tremor-default text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{nombre}</p>

@@ -6,9 +6,9 @@ import { type MetasServired, type MetasMultired } from '../types/metas'
 import { CardComponent } from './iu/CardComponent'
 import { type Empresa } from '../types/user'
 import { useEffect, useState } from 'react'
+import { CardMetas } from './iu/cardMetas'
 import { CardDia } from './iu/cardDia'
 import axios from 'axios'
-import { CardMetas } from './iu/cardMetas'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   const [dataServired, setDataServired] = useState<MetasServired>()
