@@ -1,11 +1,3 @@
-import { useAuth } from '../../auth/AuthProvider'
-import { CardComponent } from './CardComponent'
-import { useEffect, useState } from 'react'
-import { type Metas, type MetasJamundi } from '../../types/metas'
-import { CardDia } from './cardDia'
-import axios from 'axios'
-import { CardMetas } from './cardMetas'
-
 const MetasDia = (): JSX.Element => {
   /*
   const { user } = useAuth()
@@ -115,7 +107,8 @@ const MetasDia = (): JSX.Element => {
 
   return (
     <>
-      {/* <section className="flex px-10 justify-center py-4 uppercase font-bold">
+      {/*
+      <section className="flex px-10 justify-center py-4 uppercase font-bold">
         <CardComponent
           cumplimiento={cumplimiento}
           porcentaje={chance}
