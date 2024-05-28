@@ -1,7 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
-
-export interface MetasYumbo extends RowDataPacket{
-  FECHA: Date
+export interface Metas {
   CHANCE: number
   PAGAMAS: number
   PAGATODO: number
@@ -31,13 +28,12 @@ export interface MetasYumbo extends RowDataPacket{
   PROMEDIO_DIARIO_BETPLAY: number
   PROMEDIO_DIARIO_GIROS: number
   PROMEDIO_DIARIO_SOAT: number
-  PROMEDIO_DIARIO_RECAUDOS  : number
+  PROMEDIO_DIARIO_RECAUDOS: number
   PROMEDIO_DIARIO_RECARGAS: number
   META_PROMO2: number
 }
 
-export interface MetasJamundi extends RowDataPacket{
-  FECHA: Date
+export interface MetasJamundi {
   CHANCE: number
   CHOLADITO: number
   PAGATODO_JAMUNDI: number
@@ -59,7 +55,7 @@ export interface MetasJamundi extends RowDataPacket{
   PROMEDIO_DIARIO_PGTJAMUNDI: number
   PROMEDIO_DIARIO_GANE5: number
   PROMEDIO_DIARIO_PATAMI: number
-  PROMEDIO_DIARIO_DOBLECHANCE: number     
+  PROMEDIO_DIARIO_DOBLECHANCE: number
   PROMEDIO_DIARIO_CHMILL: number
   PROMEDIO_DIARIO_ASTRO: number
   PROMEDIO_DIARIO_LF: number

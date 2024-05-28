@@ -7,7 +7,6 @@ function HomePage (): JSX.Element {
 
   const empresa = user?.empresa
 
-  console.log(user)
   return (
     <>
       {
