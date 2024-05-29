@@ -8,7 +8,6 @@ export function CambiarCompany (): JSX.Element {
 
   const handleEmpresaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedEmpresa = e.target.value
-    console.log('e.target.value', e.target.value)
     setUser({ ...user, empresa: selectedEmpresa as Empresa }) // Actualiza el contexto de autenticación con la empresa seleccionada
   }
 

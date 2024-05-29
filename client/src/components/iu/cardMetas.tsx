@@ -1,3 +1,4 @@
+import { DeterminarColor } from '../../utils/funciones'
 import { Card, ProgressCircle } from '@tremor/react'
 
 interface Props {
@@ -22,11 +23,7 @@ function DeterminarColor (porcentaje: number): string {
   }
 }
 
-// TODO: COLORES QUE ACEPTA ["slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
-
-// TODO: aqui solo recibe un objecto con dos propiedades, nombre y venta
 export function CardMetas ({ nombre, venta, porcentaje }: Props): JSX.Element {
-  console.log(porcentaje)
   return (
     <Card decoration="top" decorationColor={DeterminarColor(porcentaje)} >
       <p className="text-tremor-default text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{nombre}</p>

@@ -49,9 +49,24 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   return (
     <section className='flex flex-col gap-4'>
 
-      <article className='flex flex-col px-12 gap-2'>
+      <section className='flex gap-2 px-12'>
 
-        <article className='w-full'>
+        <article className='w-6/12 h-full'>
+          {
+            company === 'Servired'
+              ? <>
+                {dataServired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaServired(dataServired)} /> : null}
+                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaServired(dataServired)} /> : null}
+              </>
+
+              : <>
+                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
+                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
+              </>
+          }
+        </article>
+
+        <article className='flex w-6/12 max-h-max'>
           {
             company === 'Servired'
               ? (dataServired !== undefined ? <CardComponent cumplimiento={'Cumplimiento Chance Del Dia ' + company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
@@ -59,45 +74,26 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
           }
         </article>
 
-        {
-          company === 'Servired'
-            ? (
-              <article className='flex items-center w-full'>
-                {dataServired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaServired(dataServired)} /> : null}
-                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaServired(dataServired)} /> : null}
-              </article>
-              )
-            : (
-              <article className='flex items-center w-full'>
-                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
-                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
-              </article>
-              )
-        }
-      </article>
+      </section>
 
-      <article className=''>
+      <section className='grid grid-cols-3 gap-2 px-12'>
         {
           company === 'Servired'
-            ? (
-              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
-                {dataServired !== undefined
+            ? <>
+              {
+                dataServired !== undefined
                   ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
                   : null
-                }
-              </section>
-              )
-            : (
-              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
-                {dataMultired !== undefined
-                  ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                  : null
-                }
-              </section>
-              )
-
+              }
+            </>
+            : <>
+              {dataMultired !== undefined
+                ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                : null
+              }
+            </>
         }
-      </article>
+      </section>
 
     </section>
   )
