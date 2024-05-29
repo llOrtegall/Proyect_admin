@@ -76,28 +76,24 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
       </section>
 
-      <article className=''>
+      <section className='grid grid-cols-3 gap-2 px-12'>
         {
           company === 'Servired'
-            ? (
-              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
-                {dataServired !== undefined
+            ? <>
+              {
+                dataServired !== undefined
                   ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
                   : null
-                }
-              </section>
-              )
-            : (
-              <section className='px-12 grid grid-cols-4 gap-2 pb-4 font-bold'>
-                {dataMultired !== undefined
-                  ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                  : null
-                }
-              </section>
-              )
-
+              }
+            </>
+            : <>
+              {dataMultired !== undefined
+                ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
+                : null
+              }
+            </>
         }
-      </article>
+      </section>
 
     </section>
   )
