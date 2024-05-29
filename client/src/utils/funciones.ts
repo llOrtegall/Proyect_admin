@@ -96,7 +96,7 @@ export function MapearProductosServired (data: MetasServired): Products[] {
     },
     {
       id: 9,
-      nombre: 'RECAUDOS ',
+      nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
       porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
     },
@@ -118,8 +118,7 @@ export function MapearProductosServired (data: MetasServired): Products[] {
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
       porcentaje: Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
-    },
-
+    }
   ]
 }
 
@@ -175,7 +174,7 @@ export function MapearProductosMultired (data: MetasMultired): Products[] {
     },
     {
       id: 9,
-      nombre: 'RECAUDOS ',
+      nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
       porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
     },
