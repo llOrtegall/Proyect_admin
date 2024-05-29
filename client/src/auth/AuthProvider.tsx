@@ -15,7 +15,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const InitialUser: User = { apellidos: '', correo: '', id: '', nombres: '', rol: '', username: '' }
+const InitialUser: User = { apellidos: '', correo: '', id: '', nombres: '', rol: '', username: '', empresa: 'Multired y Servired' }
 
 // * Creación del contexto de autenticación
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
