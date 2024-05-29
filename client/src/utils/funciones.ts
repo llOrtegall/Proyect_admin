@@ -42,6 +42,12 @@ export function CalcularVentaDiaMultired (data: MetasMultired): number {
 export function MapearProductosServired (data: MetasServired): Products[] {
   return [
     {
+      id: 3,
+      nombre: 'CHANCE',
+      venta: data.CHANCE,
+      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100)
+    },
+    {
       id: 1,
       nombre: 'ASTRO',
       venta: data.ASTRO,
@@ -52,12 +58,6 @@ export function MapearProductosServired (data: MetasServired): Products[] {
       nombre: 'RECARGAS',
       venta: data.RECARGAS,
       porcentaje: Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100)
-    },
-    {
-      id: 3,
-      nombre: 'CHANCE',
-      venta: data.CHANCE,
-      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100)
     },
     {
       id: 4,
@@ -88,6 +88,12 @@ export function MapearProductosServired (data: MetasServired): Products[] {
       nombre: 'CHANCE MILLONARIO',
       venta: data.CHANCE_MILLONARIO,
       porcentaje: Math.round((data.CHANCE_MILLONARIO / data.PROMEDIO_DIARIO_CHMILL) * 100)
+    },
+    {
+      id: 9,
+      nombre: 'BETPLAY',
+      venta: data.BETPLAY,
+      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
     }
   ]
 }
