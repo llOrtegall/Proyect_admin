@@ -19,7 +19,6 @@ const DetallesPage = (): JSX.Element => {
     const fetchData = async (): Promise<void> => {
       const response = await axios.get(`http://localhost:3000/api/sucursal/${company === 'Servired' ? '39628' : '39627'}`)
       setData(response.data as Sucursales)
-      console.log(response)
     }
 
     // Llama a fetchData inmediatamente y luego cada 5 minutos

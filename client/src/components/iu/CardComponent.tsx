@@ -1,4 +1,5 @@
 import { Card, ProgressBar } from '@tremor/react'
+import { DeterminarColor } from '../../utils/funciones'
 
 interface Props {
   porcentaje: number
@@ -7,10 +8,12 @@ interface Props {
 
 export function CardComponent ({ porcentaje, cumplimiento }: Props): JSX.Element {
   return (
-    <Card decoration="top" decorationColor={porcentaje > 80 ? 'emerald' : porcentaje > 50 ? 'lime' : 'red'} >
-      <p className="text-tremor-default text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{cumplimiento}</p>
-      <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{porcentaje} %</p>
-      <ProgressBar className='py-2' value={porcentaje} color={porcentaje > 80 ? 'emerald' : porcentaje > 50 ? 'lime' : 'red'}/>
+    <Card decoration="top" decorationColor={DeterminarColor(porcentaje)} className='flex flex-col justify-around'>
+      <p className="text-center font-semibold text-2xl">Venta Productos Chance Empresa:
+        <span className='font-bold uppercase'> {cumplimiento} </span>
+      </p>
+      <p className="text-3xl text-center font-semibold">Cumplimiento: {porcentaje} %</p>
+      <ProgressBar className='py-2' value={porcentaje} color={porcentaje > 80 ? 'emerald' : porcentaje > 50 ? 'lime' : 'red' } />
     </Card>
   )
 }
