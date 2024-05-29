@@ -12,7 +12,7 @@ function DeterminarColor (porcentaje: number): string {
   } else if (porcentaje < 40) {
     return 'orange'
   } else if (porcentaje < 60) {
-    return 'amber'
+    return 'rose'
   } else if (porcentaje < 80) {
     return 'lime'
   } else if (porcentaje < 100) {
