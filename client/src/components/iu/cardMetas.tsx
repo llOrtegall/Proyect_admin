@@ -7,9 +7,22 @@ interface Props {
   porcentaje: number
 }
 
-// TODO: COLORES QUE ACEPTA ["slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
+function DeterminarColor (porcentaje: number): string {
+  if (porcentaje < 20) {
+    return 'red'
+  } else if (porcentaje < 40) {
+    return 'orange'
+  } else if (porcentaje < 60) {
+    return 'rose'
+  } else if (porcentaje < 80) {
+    return 'lime'
+  } else if (porcentaje < 100) {
+    return 'green'
+  } else {
+    return 'emerald'
+  }
+}
 
-// TODO: aqui solo recibe un objecto con dos propiedades, nombre y venta
 export function CardMetas ({ nombre, venta, porcentaje }: Props): JSX.Element {
   return (
     <Card decoration="top" decorationColor={DeterminarColor(porcentaje)} >

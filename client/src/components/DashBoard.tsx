@@ -69,8 +69,8 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
         <article className='flex w-6/12 max-h-max'>
           {
             company === 'Servired'
-              ? (dataServired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
-              : (dataMultired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
+              ? (dataServired !== undefined ? <CardComponent cumplimiento={'Cumplimiento Chance Del Dia ' + company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
+              : (dataMultired !== undefined ? <CardComponent cumplimiento={'Cumplimiento Chance Del Dia ' + company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
           }
         </article>
 
