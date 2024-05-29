@@ -1,7 +1,7 @@
 import {
   porcentajeCumplimientoServired,
-  CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaDiaMultired,
-  CalcularVentaDiaServired, MapearProductosMultired, MapearProductosServired,
+  CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaProductosChanceMultired,
+  CalcularVentaProductosChanceServired, MapearProductosMultired, MapearProductosServired,
   porcentajeCumplimientoMultired
 } from '../utils/funciones'
 
@@ -55,13 +55,12 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
           {
             company === 'Servired'
               ? <>
-                {dataServired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaServired(dataServired)} /> : null}
-                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaServired(dataServired)} /> : null}
+                {dataServired !== undefined ? <CardDia nombre='Meta Del Día Chance' venta={CalcularMetaDiaServired(dataServired)} /> : null}
+                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día Chance' venta={CalcularVentaProductosChanceServired(dataServired)} /> : null}
               </>
-
               : <>
-                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
-                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día' venta={CalcularVentaDiaMultired(dataMultired)} /> : null}
+                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día Chance' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
+                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día Chance' venta={CalcularVentaProductosChanceMultired(dataMultired)} /> : null}
               </>
           }
         </article>

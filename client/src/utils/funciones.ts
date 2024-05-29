@@ -31,13 +31,13 @@ export function CalcularMetaDiaMultired (data: MetasMultired): number {
   return (Promedio)
 }
 
-export function CalcularVentaDiaServired (data: MetasServired): number {
+export function CalcularVentaProductosChanceServired (data: MetasServired): number {
   // * falta agregar todos los productos para la venta total de servired
   const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   return (VentaChance)
 }
 
-export function CalcularVentaDiaMultired (data: MetasMultired): number {
+export function CalcularVentaProductosChanceMultired (data: MetasMultired): number {
   // * falta agregar todos los productos para la venta total de Multired
   const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   return (VentaChance)
@@ -46,12 +46,6 @@ export function CalcularVentaDiaMultired (data: MetasMultired): number {
 export function MapearProductosServired (data: MetasServired): Products[] {
   return [
     {
-      id: 1,
-      nombre: 'CHANCE',
-      venta: data.CHANCE,
-      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100)
-    },
-    {
       id: 2,
       nombre: 'ASTRO',
       venta: data.ASTRO,
@@ -89,7 +83,6 @@ export function MapearProductosServired (data: MetasServired): Products[] {
     },
     {
       id: 8,
-
       nombre: 'GIROS',
       venta: data.GIROS,
       porcentaje: Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
@@ -108,16 +101,15 @@ export function MapearProductosServired (data: MetasServired): Products[] {
     },
     {
       id: 11,
-      nombre: 'BETPLAY',
-      venta: data.BETPLAY,
-      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
-
-    },
-    {
-      id: 12,
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
       porcentaje: Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
+    },
+    {
+      id: 12,
+      nombre: 'CHOLADITO',
+      venta: data.CHOLADITO,
+      porcentaje: Math.round((data.CHOLADITO / data.PROMEDIO_DIARIO_CHOLADITO) * 100)
     }
   ]
 }
@@ -125,12 +117,6 @@ export function MapearProductosServired (data: MetasServired): Products[] {
 export function MapearProductosMultired (data: MetasMultired): Products[] {
   return [
     {
-      id: 1,
-      nombre: 'CHANCE',
-      venta: data.CHANCE,
-      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100)
-    },
-    {
       id: 2,
       nombre: 'ASTRO',
       venta: data.ASTRO,
@@ -186,15 +172,15 @@ export function MapearProductosMultired (data: MetasMultired): Products[] {
     },
     {
       id: 11,
-      nombre: 'BETPLAY',
-      venta: data.BETPLAY,
-      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
-    },
-    {
-      id: 12,
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
       porcentaje: Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
+    },
+    {
+      id: 12,
+      nombre: 'PAGA MAS',
+      venta: data.PAGAMAS,
+      porcentaje: Math.round((data.PAGAMAS / data.PROMEDIO_DIARIO_PAGAMAS) * 100)
     }
   ]
 }
