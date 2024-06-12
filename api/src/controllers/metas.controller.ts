@@ -10,18 +10,19 @@ export async function getMetas(req: Request, res: Response) {
   }
 
   try {
-    const result = await getMetasService(zona)
+    const results = await getMetasService(zona)
     
-    // const ventaTotalxProducto = result?.reduce((acc, curr) => {
+    // const ventaTotalxProducto = results.reduce((acc, curr) => {
     //   const keys = Object.keys(curr)
     //   keys.forEach(key => {
-    //     if (key !== 'FECHA' && key !== 'SUCURSAL') {
+    //     if (key !== 'SUCURSAL') {
     //       acc[key] = acc[key] ? acc[key] + curr[key] : curr[key]
     //     }
     //   })   
     //   return acc
     // })
-   return res.status(200).json(result)
+
+    return res.status(200).json(results)
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
