@@ -31,6 +31,8 @@ const DetallesPage = (): JSX.Element => {
     }
   }, [])
 
+  console.log(data.length)
+
   return (
     <>
 
