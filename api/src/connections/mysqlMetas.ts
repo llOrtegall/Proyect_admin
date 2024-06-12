@@ -1,12 +1,16 @@
-import { createPool } from 'mysql2/promise'
+import { Sequelize } from 'sequelize';
 import 'dotenv/config'
 
-export const pool_metas = createPool(
-  {
-    host: '172.20.1.92',
-    port: 3306,
-    user: 'consultametas',
-    password: 'JOeC7GhDJdTGPViFRoca',
-    database: 'GAMBLE'
-  }
-)
+const host = process.env.DB_METAS_HOST as string;
+const port = process.env.DB_METAS_PORT as string;
+const user = process.env.DB_METAS_USER as string;
+const pass = process.env.DB_METAS_PASS as string;
+const database = process.env.DB_METAS_USE as string;
+
+const con_db = new Sequelize(database, user, pass, {
+  host: host,
+  port: parseInt(port),
+  dialect: 'mariadb'
+});
+
+export { con_db }
