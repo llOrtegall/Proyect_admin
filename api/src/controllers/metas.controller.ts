@@ -11,17 +11,6 @@ export async function getMetas(req: Request, res: Response) {
 
   try {
     const results = await getMetasService(zona)
-    
-    // const ventaTotalxProducto = results.reduce((acc, curr) => {
-    //   const keys = Object.keys(curr)
-    //   keys.forEach(key => {
-    //     if (key !== 'SUCURSAL') {
-    //       acc[key] = acc[key] ? acc[key] + curr[key] : curr[key]
-    //     }
-    //   })   
-    //   return acc
-    // })
-
     return res.status(200).json(results)
   } catch (error) {
     console.log(error);
