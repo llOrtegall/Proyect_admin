@@ -60,6 +60,6 @@ export const getMetasService = async (zona: string) => {
     console.log(results);
     return results
   } catch (error) {
-    throw new Error('Error fetching metas')
+    throw error
   }
 }

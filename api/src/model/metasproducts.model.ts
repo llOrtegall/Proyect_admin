@@ -1,4 +1,4 @@
-import { con_db } from '../connections/mysqlMetas'
+import { con_db } from '../connections/mariaDB'
 import { Model, DataTypes } from 'sequelize'
 
 class MetasProducts extends Model { }
