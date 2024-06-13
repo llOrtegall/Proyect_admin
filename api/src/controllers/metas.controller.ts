@@ -9,7 +9,7 @@ export const getMetasController = async (req: Request, res: Response) => {
     const acc: { [key: string]: number } = {};
 
     const sumaTotal = metas.reduce((acc, meta) => {
-      const { FECHA, SUCURSAL, ZONA, ...rest } = meta
+      const { FECHA, SUCURSAL, ZONA, VERSION, ...rest } = meta
 
       Object.entries(rest).forEach(([key, value]) => {
         if (acc[key]) {

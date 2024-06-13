@@ -5,8 +5,7 @@ export const getMetasService = async () => {
   try {
 
     const results = await Metas.findAll({
-      where: { ZONA: 39627, FECHA: fn('CURDATE') },
-      limit: 2
+      where: { ZONA: 39627, FECHA: fn('CURDATE') }
     })
 
     return results.map( meta => meta.dataValues)
