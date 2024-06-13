@@ -1,6 +1,7 @@
 import { MetasProducts } from '../model/metasproducts.model'
 import { getMetasService } from '../services/metas.services'
 import { Response, Request } from 'express'
+import { MapearProductos } from '../utils/funtions';
 
 interface ProductsMetas {
   [key: string]: number;
@@ -17,11 +18,14 @@ export async function getMetas(req: Request, res: Response) {
   try {
     const results = await getMetasService(zona)
     const products = ReturnDatavalues(results)
-    const suma = sumarValoresDeObjetos(products)
+    const prodSum = sumarValoresDeObjetos(products)
 
-    const metaDia = CalcularMetaDiaServired(suma)
+    const metaDia = ventaAct(prodSum)
+    const ventaDia = metaDiaAct(prodSum)
 
-    return res.status(200).json({suma, metaDia})
+    const mapProducts = MapearProductos(prodSum)
+
+    return res.status(200).json({mapProducts, metaDia, ventaDia})
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
@@ -40,8 +44,12 @@ export async function getMetas(req: Request, res: Response) {
 //   }
 // }
 
-function CalcularMetaDiaServired (data: any): number {
+function metaDiaAct (data: any): number {
   return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+}
+
+function ventaAct (data: any): number {
+  return data.CHANCE + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
 }
 
 function ReturnDatavalues( results: MetasProducts[] ): ProductsMetas[] {
