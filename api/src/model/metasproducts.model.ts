@@ -1,7 +1,7 @@
 import { con_db } from '../connections/mariaDB'
 import { Model, Optional, Sequelize, DataTypes } from 'sequelize'
 
-type MetasAttributes = {
+export interface MetasAttributes {
   FECHA: Date,
   CHANCE: number,
   PAGAMAS: number,

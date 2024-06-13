@@ -5,11 +5,11 @@ export const getMetasController = async (req: Request, res: Response) => {
   try {
     const metas = await getMetasService()
 
-    // Asumiendo que todas las metas tienen las mismas claves además de FECHA
-    const acc: { [key: string]: number } = {};
+    const acc: { [key: string]: number } = {}
 
+    // Asumiendo que todas las metas tienen las mismas claves además de FECHA
     const sumaTotal = metas.reduce((acc, meta) => {
-      const { FECHA, SUCURSAL, ZONA, VERSION, ...rest } = meta
+      const { FECHA, ZONA, SUCURSAL, VERSION, ...rest } = meta
 
       Object.entries(rest).forEach(([key, value]) => {
         if (acc[key]) {
