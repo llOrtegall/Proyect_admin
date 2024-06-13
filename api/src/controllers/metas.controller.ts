@@ -1,5 +1,10 @@
+import { MetasProducts } from '../model/metasproducts.model'
 import { getMetasService } from '../services/metas.services'
 import { Response, Request } from 'express'
+
+interface ProductsMetas {
+  [key: string]: number;
+}
 
 export async function getMetas(req: Request, res: Response) {
   const { zona } = req.params
@@ -11,7 +16,13 @@ export async function getMetas(req: Request, res: Response) {
 
   try {
     const results = await getMetasService(zona)
-    return res.status(200).json(results)
+    
+    const products = ReturnDatavalues(results)
+
+    const suma = sumarValoresDeObjetos(products)
+
+
+    return res.status(200).json(suma)
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
@@ -29,3 +40,27 @@ export async function getMetas(req: Request, res: Response) {
 //     res.status(500).json({ message: error })
 //   }
 // }
+
+function ReturnDatavalues( results: MetasProducts[] ): ProductsMetas[] {
+  return results.map( results => results.dataValues)
+}
+
+function sumarValoresDeObjetos(arrayDeObjetos: ProductsMetas[]): ProductsMetas {
+  // Asumiendo que ProductsMetas es un tipo con propiedades numéricas
+  const objetoSuma: Record<string, number> = {}; // Usando Record para permitir claves de tipo string
+
+  arrayDeObjetos.forEach(objeto => {
+    Object.keys(objeto).forEach(key => {
+      // Asegurándonos de que objeto[key] es tratado como un número
+      const valor = objeto[key] as number;
+      if (!objetoSuma[key]) {
+        objetoSuma[key] = valor;
+      } else {
+        objetoSuma[key] += valor;
+      }
+    });
+  });
+
+  // Aquí necesitarás asegurarte de que objetoSuma se ajusta al tipo ProductsMetas antes de retornarlo
+  return objetoSuma as ProductsMetas;
+}
