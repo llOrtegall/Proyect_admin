@@ -1,64 +1,15 @@
-/* 
-import { type MetasYumbo, type MetasJamundi } from '../types/metas'
-import { pool_metas } from '../connections/mysqlMetas'
-import { SelectQuery } from '../connections/querys'
-
-const PRODUCTOS_JAMUNDI = ['CHANCE', 'CHOLADITO', 'PAGATODO_JAMUNDI', 'GANE5', 'PATA_MILLONARIA', 'DOBLECHANCE', 'CHANCE_MILLONARIO', 'ASTRO', 'LOTERIA_FISICA', 'LOTERIA_VIRTUAL', 'BETPLAY', 'GIROS', 'SOAT', 'RECAUDOS', 'RECARGAS', 'PROMO2', 'SUCURSAL', 'PROMEDIO_DIARIO_CHANCE', 'PROMEDIO_DIARIO_CHOLADITO', 'PROMEDIO_DIARIO_PGTJAMUNDI', 'PROMEDIO_DIARIO_GANE5', 'PROMEDIO_DIARIO_PATAMI', 'PROMEDIO_DIARIO_DOBLECHANCE', 'PROMEDIO_DIARIO_CHMILL', 'PROMEDIO_DIARIO_ASTRO', 'PROMEDIO_DIARIO_LF', 'PROMEDIO_DIARIO_LV', 'PROMEDIO_DIARIO_BETPLAY', 'PROMEDIO_DIARIO_GIROS', 'PROMEDIO_DIARIO_SOAT',  'PROMEDIO_DIARIO_RECAUDOS', 'PROMEDIO_DIARIO_RECARGAS', 'META_PROMO2']
-
-const PRODUCTOS_YUMBO = ['CHANCE', 'PAGAMAS', 'PAGATODO', 'GANE5', 'PATA_MILLONARIA', 'DOBLECHANCE', 'CHANCE_MILLONARIO', 'ASTRO', 'LOTERIA_FISICA', 'LOTERIA_VIRTUAL', 'BETPLAY', 'GIROS', 'SOAT', 'RECAUDOS', 'RECARGAS', 'PROMO2', 'SUCURSAL', 'PROMEDIO_DIARIO_CHANCE', 'PROMEDIO_DIARIO_PAGAMAS', 'PROMEDIO_DIARIO_PAGATODO', 'PROMEDIO_DIARIO_GANE5', 'PROMEDIO_DIARIO_PATAMI', 'PROMEDIO_DIARIO_DOBLECHANCE', 'PROMEDIO_DIARIO_CHMILL', 'PROMEDIO_DIARIO_ASTRO', 'PROMEDIO_DIARIO_LF', 'PROMEDIO_DIARIO_LV', 'PROMEDIO_DIARIO_BETPLAY', 'PROMEDIO_DIARIO_GIROS', 'PROMEDIO_DIARIO_SOAT',  'PROMEDIO_DIARIO_RECAUDOS', 'PROMEDIO_DIARIO_RECARGAS', 'META_PROMO2']
-
-const ZONA_YUMBO = "39627"
-const ZONA_JAMUNDI = "39628"
-
-const getProductos = (zona: string) => zona === ZONA_YUMBO ? PRODUCTOS_YUMBO.join(",") : PRODUCTOS_JAMUNDI.join(",")
-
-export const getMetasService = async (zona: string) => {
-  const QUERY = `SELECT ${getProductos(zona)} FROM METASPRODUCTOS WHERE FECHA = CURDATE() AND ZONA = ?`
-
-  try {
-    if (zona === ZONA_YUMBO) {
-      return SelectQuery<MetasYumbo>('', QUERY, [zona])
-    } else if (zona === ZONA_JAMUNDI) {
-      return SelectQuery<MetasJamundi>('', QUERY, [zona])
-    }
-  } catch (error) {
-    console.error(error)
-    throw new Error('Error fetching metas')
-  }
-}
-
-export const getSucursalService = async (zona: string) => {
-  const QUERY = `SELECT mp.${getProductos(zona)},ip.NOMBRE AS PDV_NOMBRE,ip.CATEGORIA AS PDV_CATE,ip.CODIGO AS PDV_SUCURSAL
-                 FROM METASPRODUCTOS mp 
-                 JOIN INFORMACION_PUNTOSVENTA ip ON mp.SUCURSAL = ip.CODIGO 
-                 WHERE mp.FECHA = CURDATE() AND mp.ZONA = ?`
-  try {
-    if (zona === ZONA_YUMBO) {
-      return SelectQuery<MetasYumbo>('', QUERY, [zona])
-    } else if (zona === ZONA_JAMUNDI) {
-      return SelectQuery<MetasJamundi>('', QUERY, [zona])
-    }
-  } catch (error) {
-    console.error(error)
-    throw new Error('Error fetching sucursal')
-  }
- }
-
-*/
-import { MetasProducts } from '../model/metasproducts.model'
+import { Metas } from '../model/metasproducts.model'
 import { fn } from 'sequelize'
 
-const PRODUCTS_MULTIRED = ['CHANCE', 'PAGAMAS', 'PAGATODO', 'GANE5', 'PATA_MILLONARIA', 'DOBLECHANCE', 'CHANCE_MILLONARIO', 'ASTRO', 'LOTERIA_FISICA', 'LOTERIA_VIRTUAL', 'BETPLAY', 'GIROS', 'SOAT', 'RECAUDOS', 'RECARGAS', 'PROMO2', 'SUCURSAL', 'PROMEDIO_DIARIO_CHANCE', 'PROMEDIO_DIARIO_PAGAMAS', 'PROMEDIO_DIARIO_PAGATODO', 'PROMEDIO_DIARIO_GANE5', 'PROMEDIO_DIARIO_PATAMI', 'PROMEDIO_DIARIO_DOBLECHANCE', 'PROMEDIO_DIARIO_CHMILL', 'PROMEDIO_DIARIO_ASTRO', 'PROMEDIO_DIARIO_LF', 'PROMEDIO_DIARIO_LV', 'PROMEDIO_DIARIO_BETPLAY', 'PROMEDIO_DIARIO_GIROS', 'PROMEDIO_DIARIO_SOAT', 'PROMEDIO_DIARIO_RECAUDOS', 'PROMEDIO_DIARIO_RECARGAS', 'MT_CHANCE', 'MT_PAGAMAS', 'MT_PAGATODO', 'MT_GANE5', 'MT_PATA_MILLONARIA', 'MT_DOBLECHANCE', 'MT_CHANCE_MILLONARIO', 'MT_ASTRO', 'MT_LOTERIA_FISICA', 'MT_LOTERIA_VIRTUAL', 'MT_BETPLAY', 'MT_GIROS', 'MT_SOAT', 'MT_RECAUDOS', 'MT_RECARGAS', 'META_PROMO1', 'META_PROMO2']
-
-export const getMetasService = async (zona: string) => {
+export const getMetasService = async () => {
   try {
-    await MetasProducts.sync()
-    const results = await MetasProducts.findAll({
-      attributes: PRODUCTS_MULTIRED,
-      where: { ZONA: zona, FECHA: fn('CURDATE') }
+
+    const results = await Metas.findAll({
+      where: { ZONA: 39627, FECHA: fn('CURDATE') },
+      limit: 2
     })
 
-    return results
+    return results.map( meta => meta.dataValues)
   } catch (error) {
     throw error
   }

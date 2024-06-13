@@ -1,8 +1,8 @@
-import { getMetas } from '../controllers/metas.controller'
+import { getMetasController } from '../controllers/metas.controller'
 import { Router } from 'express'
 
 export const RouterMetas = Router()
 
-RouterMetas.get('/metas/:zona', getMetas)
+RouterMetas.get('/metas', getMetasController)
 
 /* RouterMetas.get('/sucursal/:zona', getSucursal) */
