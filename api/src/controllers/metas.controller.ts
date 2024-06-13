@@ -16,13 +16,12 @@ export async function getMetas(req: Request, res: Response) {
 
   try {
     const results = await getMetasService(zona)
-    
     const products = ReturnDatavalues(results)
-
     const suma = sumarValoresDeObjetos(products)
 
+    const metaDia = CalcularMetaDiaServired(suma)
 
-    return res.status(200).json(suma)
+    return res.status(200).json({suma, metaDia})
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
@@ -40,6 +39,10 @@ export async function getMetas(req: Request, res: Response) {
 //     res.status(500).json({ message: error })
 //   }
 // }
+
+function CalcularMetaDiaServired (data: any): number {
+  return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+}
 
 function ReturnDatavalues( results: MetasProducts[] ): ProductsMetas[] {
   return results.map( results => results.dataValues)

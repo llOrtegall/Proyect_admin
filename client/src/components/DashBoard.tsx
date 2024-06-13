@@ -1,8 +1,6 @@
 import {
-  porcentajeCumplimientoServired,
-  CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaProductosChanceMultired,
-  CalcularVentaProductosChanceServired, MapearProductosMultired, MapearProductosServired,
-  porcentajeCumplimientoMultired
+  porcentajeCumplimientoServired, CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaProductosChanceMultired,
+  CalcularVentaProductosChanceServired, MapearProductosMultired, MapearProductosServired, porcentajeCumplimientoMultired
 } from '../utils/funciones'
 
 import { type MetasServired, type MetasMultired } from '../types/metas'
