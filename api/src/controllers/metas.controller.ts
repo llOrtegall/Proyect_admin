@@ -1,4 +1,4 @@
-import { getMetasService } from '../services/metas.services'
+import { getMetasService, getMetasPdvService } from '../services/metas.services'
 import { Request, Response } from 'express'
 
 interface ACC { 
@@ -36,9 +36,9 @@ export const getMetasPdv = async (req: Request, res: Response) => {
   const zona = parseInt(data.zona)
 
   try {
-    const metas = await getMetasService(zona)
+    const data = await getMetasPdvService(zona)
 
-    res.json(metas)
+    res.json(data)
   } catch (error) {
     console.log(error);
     res.status(500).send('Error en el servidor')

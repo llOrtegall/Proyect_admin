@@ -13,7 +13,7 @@ const DetallesPage = (): JSX.Element => {
   const { user } = useAuth()
   const company = user.empresa
 
-  const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
+  // const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -38,12 +38,12 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='bg-blue-200 p-2 flex justify-around items-center'>
 
-        <section className='text-center gap-2 flex items-center'>
+        {/* <section className='text-center gap-2 flex items-center'>
           <Label>Filtrar PDVS:</Label>
           <Input value={searchPDV} onChange={ev => { setSearchPDV(ev.target.value) }} placeholder='38656 | Punto Principal ...' />
-        </section>
+        </section> */}
 
-        <section className='text-center gap-2 flex items-center'>
+        {/* <section className='text-center gap-2 flex items-center'>
           <Label>Categorías:</Label>
           <Select className='w-min' placeholder='Seleccionar Categoría' value={searchCate} onValueChange={setSearchCate}>
             <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
@@ -53,7 +53,7 @@ const DetallesPage = (): JSX.Element => {
             <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
             <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
           </Select>
-        </section>
+        </section> */}
 
         <section className='text-center flex gap-2 items-center'>
           <Label>N° Logins:</Label>
@@ -79,9 +79,9 @@ const DetallesPage = (): JSX.Element => {
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
-              <TableHeaderCell className={`text-center flex items-center cursor-pointer select-none hover:text-blue-600 ${asc ? '' : 'text-blue-600'}`}
+              {/* <TableHeaderCell className={`text-center flex items-center cursor-pointer select-none hover:text-blue-600 ${asc ? '' : 'text-blue-600'}`}
                 onClick={handleClick}>{asc ? <RiArrowDownSFill /> : <RiArrowUpSFill />} <span>Cum. Chance</span>
-              </TableHeaderCell>
+              </TableHeaderCell> */}
               <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Astro</TableHeaderCell>
               <TableHeaderCell className='text-center'>Cum. Betplay</TableHeaderCell>
@@ -91,12 +91,12 @@ const DetallesPage = (): JSX.Element => {
           </TableHead>
           <TableBody>
             {
-              filteredPDV.map(pdv => {
+              data.map(pdv => {
                 return (
-                  <TableRow key={pdv.PDV_SUCURSAL}>
-                    <TableCell className='text-center'>{pdv.PDV_SUCURSAL}</TableCell>
-                    <TableCell className='text-center'>{pdv.PDV_CATE}</TableCell>
-                    <TableCell className='text-center'>{pdv.PDV_NOMBRE}</TableCell>
+                  <TableRow key={pdv.SUCURSAL}>
+                    <TableCell className='text-center'>{pdv.SUCURSAL}</TableCell>
+                    <TableCell className='text-center'>{pdv.sucursale.NOMBRE}</TableCell>
+                    <TableCell className='text-center'>{pdv.sucursale.CATEGORIA}</TableCell>
                     <TableCell className='text-center'>$ {pdv.CHANCE}</TableCell>
                     <TableCell className='text-center'>$ {pdv.RECARGAS}</TableCell>
                     <TableCell className='text-center'>$ {pdv.ASTRO}</TableCell>

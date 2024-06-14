@@ -1,8 +1,9 @@
 import { Sucursal, SucursalreationAttributes } from '../types/sucursales'
-import { Model, DataTypes } from 'sequelize'
 import { con_db } from '../connections/mariaDB'
+import { Model, DataTypes } from 'sequelize'
+import { Metas } from './metasproducts.model'
 
-class Sucursales extends Model<Sucursal, SucursalreationAttributes> {
+class PuntosVenta extends Model<Sucursal, SucursalreationAttributes> {
   declare ZONA: number
   declare CCOSTO: number
   declare CODIGO: number
@@ -23,7 +24,7 @@ class Sucursales extends Model<Sucursal, SucursalreationAttributes> {
   declare VERSION: string
 }
 
-Sucursales.init({
+PuntosVenta.init({
   ZONA: { type: DataTypes.INTEGER },
   CCOSTO: { type: DataTypes.INTEGER },
   CODIGO: { type: DataTypes.NUMBER, primaryKey: true , unique: true},
@@ -44,7 +45,11 @@ Sucursales.init({
   VERSION: { type: DataTypes.STRING }
 }, {
   sequelize: con_db,
-  modelName: 'sucursales',
+  modelName: 'PuntosVenta',
   tableName: 'INFORMACION_PUNTOSVENTA',
   timestamps: false
 })
+
+PuntosVenta.belongsTo(Metas, { foreignKey: 'CODIGO', targetKey: 'SUCURSAL'});
+
+export { PuntosVenta }

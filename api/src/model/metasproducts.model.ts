@@ -1,6 +1,6 @@
 import { MetasAttributes, MetasCreationAttributes } from '../types/interfaces'
-import { Model, DataTypes } from 'sequelize'
 import { con_db } from '../connections/mariaDB'
+import { Model, DataTypes } from 'sequelize'
 
 class Metas extends Model<MetasAttributes, MetasCreationAttributes> {
   declare FECHA: Date
@@ -132,5 +132,6 @@ Metas.init({
   tableName: 'METASPRODUCTOS',
   timestamps: false
 })
+
 
 export { Metas }
