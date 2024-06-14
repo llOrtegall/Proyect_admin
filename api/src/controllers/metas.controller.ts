@@ -30,3 +30,17 @@ export const getMetasController = async (req: Request, res: Response) => {
     res.status(500).send('Error en el servidor')
   }
 }
+
+export const getMetasPdv = async (req: Request, res: Response) => {
+  const data = req.params
+  const zona = parseInt(data.zona)
+
+  try {
+    const metas = await getMetasService(zona)
+
+    res.json(metas)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error en el servidor')
+  }
+}
