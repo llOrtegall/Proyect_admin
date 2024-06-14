@@ -1,24 +1,24 @@
 import { Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
-import { RiNumbersLine, RiDatabase2Fill /* RiArrowUpSFill, RiArrowDownSFill */ } from '@remixicon/react'
-import { type InfoPdv } from '../types/sucursal'
-import { /* Input, */ Label } from '../components/iu'
-// import { useFilter } from '../hooks/useFilters'
+import { RiNumbersLine, RiDatabase2Fill, RiArrowUpSFill, RiArrowDownSFill } from '@remixicon/react'
+import { type Sucursales } from '../types/sucursal'
+import { Input, Label } from '../components/iu'
+import { useFilter } from '../hooks/useFilters'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '../auth/AuthProvider'
 
 const DetallesPage = (): JSX.Element => {
-  const [data, setData] = useState<InfoPdv[]>([])
+  const [data, setData] = useState<Sucursales>([])
 
   const { user } = useAuth()
   const company = user.empresa
 
-  // const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
+  const { filteredPDV, searchCate, searchPDV, setSearchCate, setSearchPDV, handleClick, asc } = useFilter(data)
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const response = await axios.get(`http://localhost:3000/api/sucursal/${company === 'Servired' ? '39628' : '39627'}`)
-      setData(response.data as InfoPdv[])
+      setData(response.data as Sucursales)
     }
 
     // Llama a fetchData inmediatamente y luego cada 5 minutos
@@ -38,12 +38,12 @@ const DetallesPage = (): JSX.Element => {
 
       <section className='bg-blue-200 p-2 flex justify-around items-center'>
 
-        {/* <section className='text-center gap-2 flex items-center'>
+        <section className='text-center gap-2 flex items-center'>
           <Label>Filtrar PDVS:</Label>
           <Input value={searchPDV} onChange={ev => { setSearchPDV(ev.target.value) }} placeholder='38656 | Punto Principal ...' />
-        </section> */}
+        </section>
 
-        {/* <section className='text-center gap-2 flex items-center'>
+        <section className='text-center gap-2 flex items-center'>
           <Label>Categorías:</Label>
           <Select className='w-min' placeholder='Seleccionar Categoría' value={searchCate} onValueChange={setSearchCate}>
             <SelectItem className='flex justify-around cursor-pointer' value="">TODAS</SelectItem>
@@ -53,7 +53,7 @@ const DetallesPage = (): JSX.Element => {
             <SelectItem className='flex justify-around cursor-pointer' value="PLATA">PLATA</SelectItem>
             <SelectItem className='flex justify-around cursor-pointer' value="BRONCE">BRONCE</SelectItem>
           </Select>
-        </section> */}
+        </section>
 
         <section className='text-center flex gap-2 items-center'>
           <Label>N° Logins:</Label>
@@ -79,30 +79,30 @@ const DetallesPage = (): JSX.Element => {
               <TableHeaderCell className='text-center'>Sucursal</TableHeaderCell>
               <TableHeaderCell className='text-center'>Categoría</TableHeaderCell>
               <TableHeaderCell className='text-center'>Nombre</TableHeaderCell>
-              {/* <TableHeaderCell className={`text-center flex items-center cursor-pointer select-none hover:text-blue-600 ${asc ? '' : 'text-blue-600'}`}
-                onClick={handleClick}>{asc ? <RiArrowDownSFill /> : <RiArrowUpSFill />} <span>Cum. Chance</span>
-              </TableHeaderCell> */}
-              <TableHeaderCell className='text-center'>Cum. Recargas</TableHeaderCell>
-              <TableHeaderCell className='text-center'>Cum. Astro</TableHeaderCell>
-              <TableHeaderCell className='text-center'>Cum. Betplay</TableHeaderCell>
-              <TableHeaderCell className='text-center'>Cum. Recaudos</TableHeaderCell>
-              <TableHeaderCell className='text-center'>Cum. Raspe</TableHeaderCell>
+              <TableHeaderCell className={`text-center flex items-center cursor-pointer select-none hover:text-blue-600 ${asc ? '' : 'text-blue-600'}`}
+                onClick={handleClick}>{asc ? <RiArrowDownSFill /> : <RiArrowUpSFill />} <span>Venta Chance</span>
+              </TableHeaderCell>
+              <TableHeaderCell className='text-center'>Venta Recargas</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Venta Astro</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Venta Betplay</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Venta Recaudos</TableHeaderCell>
+              <TableHeaderCell className='text-center'>Venta Raspe</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {
-              data.map(pdv => {
+              filteredPDV.map(pdv => {
                 return (
                   <TableRow key={pdv.CODIGO}>
-                    <TableCell className='text-center'>{pdv.NOMBRE}</TableCell>
+                    <TableCell className='text-center'>{pdv.CODIGO}</TableCell>
                     <TableCell className='text-center'>{pdv.CATEGORIA}</TableCell>
-                    <TableCell className='text-center'>{pdv.SUPERVISOR}</TableCell>
+                    <TableCell className='text-center'>{pdv.NOMBRE}</TableCell>
                     <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.RECARGAS}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.ASTRO}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.BETPLAY}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.RECAUDOS}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.PROMO2}</TableCell>
                   </TableRow>
                 )
               })

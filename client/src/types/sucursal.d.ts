@@ -1,4 +1,4 @@
-export interface Products {
+interface Products {
   ASTRO: number
   CHANCE: number
   BETPLAY: number
@@ -50,10 +50,12 @@ export interface Products {
   PROMEDIO_DIARIO_GIROS: number
 }
 
-export interface InfoPdv {
+interface InfoPdv {
   NOMBRE: string | null
   CODIGO: number
   SUPERVISOR: string
   CATEGORIA: string
   meta: Products
 }
+
+export type Sucursales = InfoPdv[]

@@ -12,24 +12,24 @@ interface FilterPDV {
 }
 
 function filterByPDV (pdv: Sucursales, searchPDV: string): Sucursales {
-  return pdv.filter(({ PDV_NOMBRE, PDV_SUCURSAL }) =>
-    PDV_NOMBRE.toLowerCase().includes(searchPDV.toLowerCase()) ||
-    PDV_SUCURSAL.toString().toLowerCase().includes(searchPDV.toLowerCase())
+  return pdv.filter(({ NOMBRE, CODIGO }) =>
+    ((NOMBRE != null) ? NOMBRE.toLowerCase().includes(searchPDV.toLowerCase()) : false) ||
+    ((CODIGO !== 0) ? CODIGO.toString().toLowerCase().includes(searchPDV.toLowerCase()) : false)
   )
 }
 
 function filterByCate (pdv: Sucursales, searchCate: string): Sucursales {
-  return pdv.filter(({ PDV_CATE }) =>
-    PDV_CATE.toLowerCase().includes(searchCate.toLowerCase())
+  return pdv.filter(({ CATEGORIA }) =>
+    CATEGORIA.toLowerCase().includes(searchCate.toLowerCase())
   )
 }
 
 function filterByAscDes (pdv: Sucursales, asc: boolean): Sucursales {
   return pdv.sort((a, b) => {
     if (asc) {
-      return a.CHANCE - b.CHANCE
+      return a.meta.CHANCE - b.meta.CHANCE
     } else {
-      return b.CHANCE - a.CHANCE
+      return b.meta.CHANCE - a.meta.CHANCE
     }
   })
 }
