@@ -52,7 +52,7 @@ export const getMetasPdvService = async (zona: number) => {
       attributes: ['NOMBRE', 'CODIGO', 'SUPERVISOR', 'CATEGORIA'],
       where: { ZONA: zona },
       include: {
-        attributes: ZonaCompany(zona),
+        attributes: ZonaCompany(zona), // funcion que detecta el tipo de zona para retornar los atributos correctos
         model: Metas,
         where: { ZONA: zona, FECHA: fn('CURDATE') } 
       },

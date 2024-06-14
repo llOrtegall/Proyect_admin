@@ -1,14 +1,14 @@
 import { Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
-import { RiNumbersLine, RiDatabase2Fill, RiArrowUpSFill, RiArrowDownSFill } from '@remixicon/react'
-import { type Sucursales } from '../types/sucursal'
-import { Input, Label } from '../components/iu'
-import { useFilter } from '../hooks/useFilters'
+import { RiNumbersLine, RiDatabase2Fill /* RiArrowUpSFill, RiArrowDownSFill */ } from '@remixicon/react'
+import { type InfoPdv } from '../types/sucursal'
+import { /* Input, */ Label } from '../components/iu'
+// import { useFilter } from '../hooks/useFilters'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '../auth/AuthProvider'
 
 const DetallesPage = (): JSX.Element => {
-  const [data, setData] = useState<Sucursales>([])
+  const [data, setData] = useState<InfoPdv[]>([])
 
   const { user } = useAuth()
   const company = user.empresa
@@ -18,7 +18,7 @@ const DetallesPage = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const response = await axios.get(`http://localhost:3000/api/sucursal/${company === 'Servired' ? '39628' : '39627'}`)
-      setData(response.data as Sucursales)
+      setData(response.data as InfoPdv[])
     }
 
     // Llama a fetchData inmediatamente y luego cada 5 minutos
@@ -93,16 +93,16 @@ const DetallesPage = (): JSX.Element => {
             {
               data.map(pdv => {
                 return (
-                  <TableRow key={pdv.SUCURSAL}>
-                    <TableCell className='text-center'>{pdv.SUCURSAL}</TableCell>
-                    <TableCell className='text-center'>{pdv.sucursale.NOMBRE}</TableCell>
-                    <TableCell className='text-center'>{pdv.sucursale.CATEGORIA}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.CHANCE}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.RECARGAS}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.ASTRO}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.BETPLAY}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.RECARGAS}</TableCell>
-                    <TableCell className='text-center'>$ {pdv.RECAUDOS}</TableCell>
+                  <TableRow key={pdv.CODIGO}>
+                    <TableCell className='text-center'>{pdv.NOMBRE}</TableCell>
+                    <TableCell className='text-center'>{pdv.CATEGORIA}</TableCell>
+                    <TableCell className='text-center'>{pdv.SUPERVISOR}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
+                    <TableCell className='text-center'>$ {pdv.meta.CHANCE}</TableCell>
                   </TableRow>
                 )
               })

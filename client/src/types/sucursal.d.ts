@@ -1,86 +1,59 @@
-interface infoPdv {
-  ZONA: number
-  CCOSTO: number
-  CODIGO: number
-  NOMBRE: string
-  DIRECCION: string
-  BARRIO: string
-  LATITUD: string
-  LONGITUD: string
-  TIPO: string
-  DISPOSITIVO: string
-  CATEGORIA: string
-  SUPERVISOR: string
-  ARRENDATARIO: string
-  ESTADO: string
-  FECHASYS: string
-  FECHA_ACCESO: string
-  LOGIN: string
-  VERSION: string
-}
-
-interface Sucursal {
-  FECHA: string
+export interface Products {
   ASTRO: number
-  BETPLAY: number
-  CCOSTO: number
   CHANCE: number
+  BETPLAY: number
   CHANCE_MILLONARIO: number
-  PAGATODO_JAMUNDI: number
-  CHOLADITO: number
   DOBLECHANCE: number
   GANE5: number
-  GIROS: number
-  LOTERIA_FISICA: number
-  LOTERIA_VIRTUAL: number
   PAGAMAS: number
   PAGATODO: number
   PATA_MILLONARIA: number
-  RECAUDOS: number
+  LOTERIA_VIRTUAL: number
+  LOTERIA_FISICA: number
   RECARGAS: number
   SOAT: number
-  ZONA: number
-  SUCURSAL: number
-  MT_CHANCE: number
-  PROMEDIO_DIARIO_CHANCE: number
-  MT_PAGAMAS: number
-  PROMEDIO_DIARIO_PAGAMAS: number
-  MT_PAGATODO: number
-  PROMEDIO_DIARIO_PAGATODO: number
-  MT_GANE5: number
-  PROMEDIO_DIARIO_GANE5: number
-  MT_PAGATODO_JAMUNDI: number
-  PROMEDIO_DIARIO_PGTJAMUNDI: number
-  MT_CHOLADITO: number
-  PROMEDIO_DIARIO_CHOLADITO: number
-  MT_PATA_MILLONARIA: number
-  PROMEDIO_DIARIO_PATAMI: number
-  MT_DOBLECHANCE: number
-  PROMEDIO_DIARIO_DOBLECHANCE: number
-  MT_CHANCE_MILLONARIO: number
-  PROMEDIO_DIARIO_CHMILL: number
-  MT_ASTRO: number
-  PROMEDIO_DIARIO_ASTRO: number
-  MT_LOTERIA_FISICA: number
-  PROMEDIO_DIARIO_LF: number
-  MT_LOTERIA_VIRTUAL: number
-  PROMEDIO_DIARIO_LV: number
-  MT_BETPLAY: number
-  PROMEDIO_DIARIO_BETPLAY: number
-  MT_GIROS: number
-  PROMEDIO_DIARIO_GIROS: number
-  MT_SOAT: number
-  PROMEDIO_DIARIO_SOAT: number
-  MT_RECAUDOS: number
-  PROMEDIO_DIARIO_RECAUDOS: number
-  MT_RECARGAS: number
-  PROMEDIO_DIARIO_RECARGAS: number
+  RECAUDOS: number
+  GIROS: number
   PROMO1: number
-  META_PROMO1: number
   PROMO2: number
+  MT_ASTRO: number
+  MT_CHANCE: number
+  MT_BETPLAY: number
+  MT_CHANCE_MILLONARIO: number
+  MT_DOBLECHANCE: number
+  MT_GANE5: number
+  MT_PAGAMAS: number
+  MT_PAGATODO: number
+  MT_PATA_MILLONARIA: number
+  MT_LOTERIA_VIRTUAL: number
+  MT_LOTERIA_FISICA: number
+  MT_RECARGAS: number
+  MT_SOAT: number
+  MT_RECAUDOS: number
+  MT_GIROS: number
+  META_PROMO1: number
   META_PROMO2: number
-  VERSION: number
-  sucursale: infoPdv
+  PROMEDIO_DIARIO_ASTRO: number
+  PROMEDIO_DIARIO_CHANCE: number
+  PROMEDIO_DIARIO_BETPLAY: number
+  PROMEDIO_DIARIO_CHMILL: number
+  PROMEDIO_DIARIO_DOBLECHANCE: number
+  PROMEDIO_DIARIO_GANE5: number
+  PROMEDIO_DIARIO_PAGAMAS: number
+  PROMEDIO_DIARIO_PAGATODO: number
+  PROMEDIO_DIARIO_PATAMI: number
+  PROMEDIO_DIARIO_LF: number
+  PROMEDIO_DIARIO_LV: number
+  PROMEDIO_DIARIO_RECARGAS: number
+  PROMEDIO_DIARIO_SOAT: number
+  PROMEDIO_DIARIO_RECAUDOS: number
+  PROMEDIO_DIARIO_GIROS: number
 }
 
-export type Sucursales = Sucursal[]
+export interface InfoPdv {
+  NOMBRE: string | null
+  CODIGO: number
+  SUPERVISOR: string
+  CATEGORIA: string
+  meta: Products
+}
