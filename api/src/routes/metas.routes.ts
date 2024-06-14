@@ -3,6 +3,6 @@ import { Router } from 'express'
 
 export const RouterMetas = Router()
 
-RouterMetas.get('/metas', getMetasController)
+RouterMetas.get('/metas/:zona', getMetasController)
 
 /* RouterMetas.get('/sucursal/:zona', getSucursal) */

@@ -6,8 +6,11 @@ interface ACC {
 }
 
 export const getMetasController = async (req: Request, res: Response) => {
+  const data = req.params
+  const zona = parseInt(data.zona)
+
   try {
-    const metas = await getMetasService()
+    const metas = await getMetasService(zona)
 
     const newMeta = metas.map( meta => {
       const { FECHA, ZONA, SUCURSAL, VERSION, CCOSTO,  ...rest } = meta
@@ -16,16 +19,12 @@ export const getMetasController = async (req: Request, res: Response) => {
 
     const reduceMetas = newMeta.reduce((acc: ACC, meta: any) => {
       for (const key in meta) {
-        if (acc[key]) {
-          acc[key] += meta[key]
-        } else {
-          acc[key] = meta[key]
-        }
+        if (acc[key]) { acc[key] += meta[key] } else { acc[key] = meta[key] }
       }
       return acc
     }, {})
 
-    res.json(reduceMetas) // Devuelve el objeto con la suma total de las propiedades
+    res.json(reduceMetas)
   } catch (error) {
     console.log(error);
     res.status(500).send('Error en el servidor')
