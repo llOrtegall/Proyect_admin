@@ -8,6 +8,8 @@ class Metas extends Model<MetasAttributes, MetasCreationAttributes> {
   declare PAGAMAS: number
   declare PAGATODO: number
   declare GANE5: number
+  declare PAGATODO_JAMUNDI: number
+  declare CHOLADITO: number
   declare PATA_MILLONARIA: number
   declare DOBLECHANCE: number
   declare CHANCE_MILLONARIO: number
@@ -70,6 +72,8 @@ Metas.init({
   CCOSTO: { type: DataTypes.NUMBER, allowNull: false },
   CHANCE: { type: DataTypes.NUMBER, allowNull: false },
   CHANCE_MILLONARIO: { type: DataTypes.NUMBER, allowNull: false },
+  PAGATODO_JAMUNDI: { type: DataTypes.NUMBER, allowNull: false },
+  CHOLADITO: { type: DataTypes.NUMBER, allowNull: false },
   DOBLECHANCE: { type: DataTypes.NUMBER, allowNull: false },
   GANE5: { type: DataTypes.NUMBER, allowNull: false },
   GIROS: { type: DataTypes.NUMBER, allowNull: false },

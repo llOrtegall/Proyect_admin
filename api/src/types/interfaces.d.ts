@@ -6,6 +6,8 @@ export interface MetasAttributes {
   PAGAMAS: number,
   PAGATODO: number,
   GANE5: number,
+  PAGATODO_JAMUNDI: number,
+  CHOLADITO: number,
   PATA_MILLONARIA: number,
   DOBLECHANCE: number,
   CHANCE_MILLONARIO: number,
