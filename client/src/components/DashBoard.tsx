@@ -1,9 +1,4 @@
-import {
-  porcentajeCumplimientoServired, CalcularMetaDiaMultired, CalcularMetaDiaServired, CalcularVentaProductosChanceMultired,
-  CalcularVentaProductosChanceServired, MapearProductosMultired, MapearProductosServired, porcentajeCumplimientoMultired
-} from '../utils/funciones'
-
-import { type MetasServired, type MetasMultired } from '../types/metas'
+import { type Dashboard } from '../types/metas'
 
 import { CardComponent } from './iu/CardComponent'
 import { type Empresa } from '../types/user'
@@ -13,23 +8,13 @@ import { CardDia } from './iu/cardDia'
 import axios from 'axios'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
-  const [dataServired, setDataServired] = useState<MetasServired>() // * AQUI SE ASIGNA LA DATA PARA SEVIRED
-  const [dataMultired, setDataMultired] = useState<MetasMultired>() // * AQUI SE ASIGNA LA DATA PARA MULTIRED
+  const [data, setData] = useState<Dashboard>()
 
-  // TODO: Esta forma de tipar la respuesta funciona sin embargo al implementar un hook personalizado se podria mejorar
-  // TODO: por el momento quedara así para continuar con el renderizado de la información
   useEffect(() => {
     const fetchData = (): void => {
       void axios.get(`http://localhost:3000/api/metas/${company === 'Servired' ? '39628' : '39627'}`)
         .then(response => {
-          const data = response.data
-          if (company === 'Servired') {
-            setDataServired(data as MetasServired)
-          } else if (company === 'Multired') {
-            setDataMultired(data as MetasMultired)
-          } else {
-            console.log('Company not found')
-          }
+          setData(response.data as Dashboard)
         })
         .catch(error => {
           console.log(error)
@@ -51,23 +36,18 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
         <article className='flex w-6/12 max-h-max'>
           {
-            company === 'Servired'
-              ? (dataServired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
-              : (dataMultired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
+            data?.porcentaje !== undefined && <CardComponent key={1} porcentaje={data.porcentaje} cumplimiento={company} />
           }
         </article>
 
         <article className='w-6/12 h-full'>
           {
-            company === 'Servired'
-              ? <>
-                {dataServired !== undefined ? <CardDia nombre='Meta Del Día Chance' venta={CalcularMetaDiaServired(dataServired)} /> : null}
-                {dataServired !== undefined ? <CardDia nombre='Venta Actual Día Chance' venta={CalcularVentaProductosChanceServired(dataServired)} /> : null}
+            data?.metaDia !== undefined && data.ventaChance !== undefined && (
+              <>
+                <CardDia nombre='Meta Del Día Chance' venta={data?.metaDia} />
+                <CardDia nombre='Venta Actual Día Chance' venta={data?.ventaChance} />
               </>
-              : <>
-                {dataMultired !== undefined ? <CardDia nombre='Meta Del Día Chance' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
-                {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día Chance' venta={CalcularVentaProductosChanceMultired(dataMultired)} /> : null}
-              </>
+            )
           }
         </article>
 
@@ -75,20 +55,11 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
       <section className='grid grid-cols-3 gap-2 px-12'>
         {
-          company === 'Servired'
-            ? <>
-              {
-                dataServired !== undefined
-                  ? MapearProductosServired(dataServired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                  : null
-              }
-            </>
-            : <>
-              {dataMultired !== undefined
-                ? MapearProductosMultired(dataMultired).map(item => <CardMetas key={item.id} nombre={item.nombre} porcentaje={item.porcentaje} venta={item.venta} />)
-                : null
-              }
-            </>
+          data?.products !== undefined && data?.products.length !== 0 && (
+            data.products.map(item => (
+              <CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />
+            ))
+          )
         }
       </section>
 
