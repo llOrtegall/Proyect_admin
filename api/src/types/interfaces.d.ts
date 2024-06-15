@@ -65,6 +65,6 @@ export interface MetasAttributes {
 
 export interface MetasProductMultired extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'CCOSTO' | 'SUCURSAL' | 'CHOLADITO' | 'MT_CHOLADITO' | 'PAGATODO_JAMUNDI' | 'MT_PAGATODO_JAMUNDI' | 'PROMEDIO_DIARIO_CHOLADITO' | 'PROMEDIO_DIARIO_PGTJAMUNDI' > {}
 
-export interface MetasProductServired extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'COSTO' | 'SUCURSAL' | 'PAGAMAS' | 'MT_PAGAMAS' | 'PAGATODO' | 'MT_PAGATODO' > {}
+export interface MetasProductServired extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'COSTO' | 'SUCURSAL' | 'PAGAMAS' | 'MT_PAGAMAS' | 'PAGATODO' | 'MT_PAGATODO' | 'PROMEDIO_DIARIO_PAGAMAS' | 'PROMEDIO_DIARIO_PAGATODO' > {}
 
 export type MetasCreationAttributes = Optional<MetasAttributes, 'SUCURSAL'>
