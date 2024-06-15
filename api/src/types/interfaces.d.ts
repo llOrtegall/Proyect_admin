@@ -5,9 +5,9 @@ export interface MetasAttributes {
   CHANCE: number,
   PAGAMAS: number,
   PAGATODO: number,
-  GANE5: number,
-  PAGATODO_JAMUNDI: number,
   CHOLADITO: number,
+  PAGATODO_JAMUNDI: number,
+  GANE5: number,
   PATA_MILLONARIA: number,
   DOBLECHANCE: number,
   CHANCE_MILLONARIO: number,
@@ -63,6 +63,8 @@ export interface MetasAttributes {
   VERSION: string
 }
 
-export interface MetasProduct extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'COSTO' | 'SUCURSAL'> {}
+export interface MetasProductMultired extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'CCOSTO' | 'SUCURSAL' | 'CHOLADITO' | 'MT_CHOLADITO' | 'PAGATODO_JAMUNDI' | 'MT_PAGATODO_JAMUNDI' | 'PROMEDIO_DIARIO_CHOLADITO' | 'PROMEDIO_DIARIO_PGTJAMUNDI' > {}
+
+export interface MetasProductServired extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'COSTO' | 'SUCURSAL' | 'PAGAMAS' | 'MT_PAGAMAS' | 'PAGATODO' | 'MT_PAGATODO' > {}
 
 export type MetasCreationAttributes = Optional<MetasAttributes, 'SUCURSAL'>
