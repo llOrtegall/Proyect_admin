@@ -37,6 +37,7 @@ export const getMetasService = async (zona: number) => {
   try {
 
     const results = await Metas.findAll({
+     attributes: ZonaCompany(zona),
      where: { ZONA: zona, FECHA: fn('CURDATE') }
     })
 

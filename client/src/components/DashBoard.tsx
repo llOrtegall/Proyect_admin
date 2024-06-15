@@ -49,6 +49,14 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
       <section className='flex gap-2 px-12'>
 
+        <article className='flex w-6/12 max-h-max'>
+          {
+            company === 'Servired'
+              ? (dataServired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
+              : (dataMultired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
+          }
+        </article>
+
         <article className='w-6/12 h-full'>
           {
             company === 'Servired'
@@ -60,14 +68,6 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
                 {dataMultired !== undefined ? <CardDia nombre='Meta Del Día Chance' venta={CalcularMetaDiaMultired(dataMultired)} /> : null}
                 {dataMultired !== undefined ? <CardDia nombre='Venta Actual Día Chance' venta={CalcularVentaProductosChanceMultired(dataMultired)} /> : null}
               </>
-          }
-        </article>
-
-        <article className='flex w-6/12 max-h-max'>
-          {
-            company === 'Servired'
-              ? (dataServired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoServired(dataServired)} /> : null)
-              : (dataMultired !== undefined ? <CardComponent cumplimiento={company} porcentaje={porcentajeCumplimientoMultired(dataMultired)} /> : null)
           }
         </article>
 

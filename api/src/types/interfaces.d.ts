@@ -63,4 +63,6 @@ export interface MetasAttributes {
   VERSION: string
 }
 
+export interface MetasProduct extends Omit<MetasAttributes, 'FECHA' | 'VERSION' | 'ZONA' | 'COSTO' | 'SUCURSAL'> {}
+
 export type MetasCreationAttributes = Optional<MetasAttributes, 'SUCURSAL'>
