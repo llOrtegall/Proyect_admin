@@ -1,6 +1,6 @@
 import { getMetasService, getMetasPdvService } from '../services/metas.services'
 import { MetasProductMultired, MetasProductServired } from '../types/interfaces'
-import { MetaChance, PorcentajeCumplimiento, ReduceMultired, ReduceServired, VentaChanceDia } from '../utils/funtions';
+import { MapearProductosZona, MetaChance, PorcentajeCumplimiento, ReduceMultired, ReduceServired, VentaChanceDia } from '../utils/funtions';
 import { Request, Response } from 'express'
 
 const initialObjectMultired = {
@@ -134,11 +134,8 @@ export const getMetasController = async (req: Request, res: Response) => {
     const metaDia = MetaChance(test, zona);
     const ventaChance = VentaChanceDia(test, zona);
     const porcentaje = PorcentajeCumplimiento(test, zona);
-
-    console.log({ metaDia, ventaChance, porcentaje });
-    
-
-    return res.json(test);
+    const products = MapearProductosZona(test, zona); 
+    return res.json({ metaDia, ventaChance, porcentaje, products });
   } catch (error) {
     console.log(error);
     return res.status(500).send('Error en el servidor');
