@@ -1,4 +1,32 @@
 import { MetasProductMultired, MetasProductServired } from "../types/interfaces";
+function CalcularMetaDiaServired (data: MetasProductServired): number {
+  return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+}
+function CalcularMetaDiaMultired (data: MetasProductMultired): number {
+  return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+}
+function CalcularVentaProductosChanceServired (data: MetasProductServired): number {
+  // * falta agregar todos los productos para la venta total de servired
+  const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  return (VentaChance)
+}
+function CalcularVentaProductosChanceMultired (data: MetasProductMultired): number {
+  // * falta agregar todos los productos para la venta total de Multired
+  const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  return (VentaChance)
+}
+function porcentajeCumplimientoServired (data: MetasProductServired): number {
+  const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+
+  return (Math.round((VentaChance / Promedio) * 100))
+}
+function porcentajeCumplimientoMultired (data: MetasProductMultired): number {
+  const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
+  const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
+
+  return (Math.round((VentaChance / Promedio) * 100))
+}
 
 export function MapearProductos (data: any) {
   return [
@@ -131,6 +159,7 @@ export function ReduceServired (acc: MetasProductServired, meta: MetasProductSer
     BETPLAY: acc.BETPLAY + meta.BETPLAY,
     CHANCE: acc.CHANCE + meta.CHANCE,
     CHANCE_MILLONARIO: acc.CHANCE_MILLONARIO + meta.CHANCE_MILLONARIO,
+    PAGATODO_JAMUNDI: acc.PAGATODO_JAMUNDI + meta.PAGATODO_JAMUNDI,
     DOBLECHANCE: acc.DOBLECHANCE + meta.DOBLECHANCE,
     CHOLADITO: acc.CHOLADITO + meta.CHOLADITO,
     GANE5: acc.GANE5 + meta.GANE5,
@@ -140,6 +169,7 @@ export function ReduceServired (acc: MetasProductServired, meta: MetasProductSer
     MT_ASTRO: acc.MT_ASTRO + meta.MT_ASTRO,
     MT_BETPLAY: acc.MT_BETPLAY + meta.MT_BETPLAY,
     MT_CHANCE: acc.MT_CHANCE + meta.MT_CHANCE,
+    MT_PAGATODO_JAMUNDI: acc.MT_PAGATODO_JAMUNDI + meta.MT_PAGATODO_JAMUNDI,
     MT_CHANCE_MILLONARIO: acc.MT_CHANCE_MILLONARIO + meta.MT_CHANCE_MILLONARIO,
     MT_DOBLECHANCE: acc.MT_DOBLECHANCE + meta.MT_DOBLECHANCE,
     MT_GANE5: acc.MT_GANE5 + meta.MT_GANE5,
@@ -147,7 +177,6 @@ export function ReduceServired (acc: MetasProductServired, meta: MetasProductSer
     MT_LOTERIA_FISICA: acc.MT_LOTERIA_FISICA + meta.MT_LOTERIA_FISICA,
     MT_LOTERIA_VIRTUAL: acc.MT_LOTERIA_VIRTUAL + meta.MT_LOTERIA_VIRTUAL,
     MT_CHOLADITO: acc.MT_CHOLADITO + meta.MT_CHOLADITO,
-    PAGATODO_JAMUNDI: acc.PAGATODO_JAMUNDI + meta.PAGATODO_JAMUNDI,
     MT_PATA_MILLONARIA: acc.MT_PATA_MILLONARIA + meta.MT_PATA_MILLONARIA,
     MT_RECARGAS: acc.MT_RECARGAS + meta.MT_RECARGAS,
     MT_RECAUDOS: acc.MT_RECAUDOS + meta.MT_RECAUDOS,
@@ -176,4 +205,19 @@ export function ReduceServired (acc: MetasProductServired, meta: MetasProductSer
     RECAUDOS: acc.RECAUDOS + meta.RECAUDOS,
     SOAT: acc.SOAT + meta.SOAT
   }
+}
+
+export function MetaChance (data: MetasProductMultired | MetasProductServired, zona: number) {
+  if(zona === 39627) return CalcularMetaDiaMultired(data as MetasProductMultired)
+  if(zona === 39628) return CalcularMetaDiaServired(data as MetasProductServired)
+}
+
+export function VentaChanceDia (data: MetasProductMultired | MetasProductServired, zona: number) {
+  if(zona === 39627) return CalcularVentaProductosChanceMultired(data as MetasProductMultired)
+  if(zona === 39628) return CalcularVentaProductosChanceServired(data as MetasProductServired)
+}
+
+export function PorcentajeCumplimiento (data: MetasProductMultired | MetasProductServired, zona: number) {
+  if(zona === 39627) return porcentajeCumplimientoMultired(data as MetasProductMultired)
+  if(zona === 39628) return porcentajeCumplimientoServired(data as MetasProductServired)
 }
