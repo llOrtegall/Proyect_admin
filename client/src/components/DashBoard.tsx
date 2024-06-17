@@ -41,7 +41,7 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
         {
           <div className='flex w-3/12 justify-center flex-col gap-2'>
             <h1 className='text-center text-3xl font-semibold dark:text-white'>Cumplimiento {company} </h1>
-            <CardDia nombre='Meta Chance' venta={data?.metaDia} />
+            <CardDia nombre='Meta Chance' venta={data?.metaDia} porcentaje={data.porcentaje}/>
             <CardDia nombre='Venta Actual Chance' venta={data?.ventaChance} />
           </div>
         }
