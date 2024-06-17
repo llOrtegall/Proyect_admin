@@ -33,7 +33,7 @@ export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
       <Legend
         categories={sales.map(sale => sale.name)}
         colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
-        className="font-semibold text-lg mt-4 w-80 h-20 overflow-y-auto"
+        className="font-semibold text-lg mt-4 w-96 h-auto"
       />
     </section>
   )
