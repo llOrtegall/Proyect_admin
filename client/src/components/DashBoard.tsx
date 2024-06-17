@@ -1,14 +1,15 @@
-import { type Dashboard } from '../types/metas'
+import { CardMetas, CardDia } from './iu'
 
-import { CardComponent } from './iu/CardComponent'
+import { type Dashboard } from '../types/metas'
 import { type Empresa } from '../types/user'
+
 import { useEffect, useState } from 'react'
-import { CardMetas } from './iu/cardMetas'
-import { CardDia } from './iu/cardDia'
 import axios from 'axios'
 
+import { DonutChartComp } from './iu/DonutChart'
+
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
-  const [data, setData] = useState<Dashboard>()
+  const [data, setData] = useState<Dashboard>({ metaDia: 0, porcentaje: 0, products: [], ventaChance: 0 })
 
   useEffect(() => {
     const fetchData = (): void => {
@@ -28,42 +29,26 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
     return () => { clearInterval(intervalId) } // TODO: limpia el intervalo para evitar fugas de memoria y errores cuando el componente se desmonta
   }, [company])
 
-  // TODO: INTENTAR MANEJAR AMBAS EMPRESAS EN UN SOLO ESTADO ES COMPLICADO MEJOR PROBAR MEJOR IMPLEMENTACIÓN CON UN RENDERIZADO CONDICIONAL  */
   return (
-    <section className='flex flex-col gap-4'>
+    <>
+      <DonutChartComp />
 
-      <section className='flex gap-2 px-12'>
+      {
+          <div className=''>
+            <CardDia nombre='Meta Del Día Chance' venta={data?.metaDia} />
+            <CardDia nombre='Venta Actual Día Chance' venta={data?.ventaChance} />
+          </div>
+        }
 
-        <article className='flex w-6/12 max-h-max'>
-          {
-            data?.porcentaje !== undefined && <CardComponent key={1} porcentaje={data.porcentaje} cumplimiento={company} />
-          }
-        </article>
-
-        <article className='w-6/12 h-full'>
-          {
-            data?.metaDia !== undefined && data.ventaChance !== undefined && (
-              <>
-                <CardDia nombre='Meta Del Día Chance' venta={data?.metaDia} />
-                <CardDia nombre='Venta Actual Día Chance' venta={data?.ventaChance} />
-              </>
-            )
-          }
-        </article>
-
-      </section>
-
-      <section className='grid grid-cols-3 gap-2 px-12'>
+      <section className='grid grid-cols-4 gap-2 px-2'>
         {
-          data?.products !== undefined && data?.products.length !== 0 && (
-            data.products.map(item => (
-              <CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />
-            ))
-          )
+          data.products.map(item => (
+            <CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />
+          ))
         }
       </section>
 
-    </section>
+    </>
   )
 }
 
