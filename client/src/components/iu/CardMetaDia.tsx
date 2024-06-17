@@ -11,7 +11,7 @@ interface Props {
 export function CardMetaDia ({ titulo, venta, porcentaje }: Props): JSX.Element {
   const vtaFortCol = new Intl.NumberFormat('es-CO').format(venta)
   return (
-    <Card className="flex flex-col gap-2" decoration="top" decorationColor={DeterminarColor(porcentaje)}>
+    <Card className="flex flex-col gap-2 dark:text-white" decoration="top" decorationColor={DeterminarColor(porcentaje)}>
       <p className="text-2xl font-semibold text-center">{titulo}</p>
       <p className="text-2xl font-semibold text-center">$ {vtaFortCol}</p>
       <ProgressBar value={porcentaje} color={DeterminarColor(porcentaje)} />

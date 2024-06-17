@@ -3,9 +3,9 @@ import { RiNumbersLine, RiDatabase2Fill, RiArrowUpSFill, RiArrowDownSFill } from
 import { type Sucursales } from '../types/sucursal'
 import { Input, Label } from '../components/iu'
 import { useFilter } from '../hooks/useFilters'
+import { useAuth } from '../auth/AuthProvider'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useAuth } from '../auth/AuthProvider'
 
 const DetallesPage = (): JSX.Element => {
   const [data, setData] = useState<Sucursales>([])
@@ -30,8 +30,6 @@ const DetallesPage = (): JSX.Element => {
       clearInterval(intervalId)
     }
   }, [])
-
-  console.log(data.length)
 
   return (
     <>

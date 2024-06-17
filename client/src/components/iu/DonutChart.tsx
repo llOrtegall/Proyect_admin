@@ -13,12 +13,6 @@ export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
   const selectedProducts = items.slice(startIndex)
 
   const sales = selectedProducts.map(item => ({ name: item.nombre, sales: item.venta }))
-  /*
-    "slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber", "yellow", "lime", "green",
-    "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
-  */
-
-  console.log(sales)
 
   return (
     <section className=''>

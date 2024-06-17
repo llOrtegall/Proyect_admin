@@ -1,5 +1,11 @@
 import { MetasProductMultired, MetasProductServired } from "../types/interfaces";
 
+function CalcularPorcentaje({venta, meta}: { venta: number, meta: number }): string {
+  const porcentaje = (venta / meta) * 100;
+  const porcentajeLimitado = Math.min(porcentaje, 100); // Asegura que el máximo sea 100
+  return porcentajeLimitado.toFixed(2);
+}
+
 function CalcularMetaDiaServired (data: MetasProductServired): number {
   return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
 }
@@ -36,86 +42,86 @@ function MapearProductosServired (data: MetasProductServired) {
       id: 1,
       nombre: 'ASTRO',
       venta: data.ASTRO,
-      porcentaje: Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.ASTRO, meta: data.PROMEDIO_DIARIO_ASTRO})
     },
     {
       id: 2,
       nombre: 'RECARGAS',
       venta: data.RECARGAS,
-      porcentaje: Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.RECARGAS, meta: data.PROMEDIO_DIARIO_RECARGAS})
     },
     {
       id: 3,
       nombre: 'LOT VIRTUAL',
       venta: data.LOTERIA_VIRTUAL,
-      porcentaje: Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.LOTERIA_VIRTUAL, meta: data.PROMEDIO_DIARIO_LV})
     },
     {
       id: 4,
       nombre: 'BETPLAY',
       venta: data.BETPLAY,
-      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.BETPLAY, meta: data.PROMEDIO_DIARIO_BETPLAY})
     },
     {
       id: 5,
       nombre: 'BALOTO',
       venta: data.SOAT,
-      porcentaje: Math.round((data.SOAT / data.PROMEDIO_DIARIO_SOAT) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.SOAT, meta: data.PROMEDIO_DIARIO_SOAT})
     },
     {
       id: 6,
       nombre: 'RASPE Y LISTO',
       venta: data.PROMO2,
-      porcentaje: Math.round((data.PROMO2 / data.META_PROMO2) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PROMO2, meta: data.META_PROMO2})
     },
     {
       id: 7,
       nombre: 'GIROS',
       venta: data.GIROS,
-      porcentaje: Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.GIROS, meta: data.PROMEDIO_DIARIO_GIROS})
     },
     {
       id: 8,
       nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
-      porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.RECAUDOS, meta: data.PROMEDIO_DIARIO_RECAUDOS})
     },
     {
       id: 9,
       nombre: 'CHANCE',
       venta: data.CHANCE,
-      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.CHANCE, meta: data.PROMEDIO_DIARIO_CHANCE})
     },
     {
       id: 10,
       nombre: 'CHOLADITO',
       venta: data.CHOLADITO,
-      porcentaje: Math.round((data.CHOLADITO / data.PROMEDIO_DIARIO_CHOLADITO) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.CHOLADITO, meta: data.PROMEDIO_DIARIO_CHOLADITO})
     },{
       id: 11,
       nombre: 'PAGA TODO SERVIRED',
       venta: data.PAGATODO_JAMUNDI,
-      porcentaje: Math.round((data.PAGATODO_JAMUNDI / data.PROMEDIO_DIARIO_PGTJAMUNDI) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PAGATODO_JAMUNDI, meta: data.PROMEDIO_DIARIO_PGTJAMUNDI})
     },{
       id: 12, 
       nombre: 'GANE 5',
       venta: data.GANE5,
-      porcentaje: Math.round((data.GANE5 / data.PROMEDIO_DIARIO_GANE5) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.GANE5, meta: data.PROMEDIO_DIARIO_GANE5})
     },{
       id: 13,
       nombre: 'PATA MILLONARIA',
       venta: data.PATA_MILLONARIA,
-      porcentaje: Math.round((data.PATA_MILLONARIA / data.PROMEDIO_DIARIO_PATAMI) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PATA_MILLONARIA, meta: data.PROMEDIO_DIARIO_PATAMI})
     },{
       id: 14,
       nombre: 'DOBLE CHANCE',
       venta: data.DOBLECHANCE,
-      porcentaje: Math.round((data.DOBLECHANCE / data.PROMEDIO_DIARIO_DOBLECHANCE) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.DOBLECHANCE, meta: data.PROMEDIO_DIARIO_DOBLECHANCE})
     },{
       id: 15,
       nombre: 'CHANCE MILLONARIO',
       venta: data.CHANCE_MILLONARIO,
-      porcentaje: Math.round((data.CHANCE_MILLONARIO / data.PROMEDIO_DIARIO_CHMILL) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.CHANCE_MILLONARIO, meta: data.PROMEDIO_DIARIO_CHMILL})
     }
   ]
 }
@@ -126,97 +132,97 @@ function MapearProductosMultired (data: MetasProductMultired) {
       id: 1,
       nombre: 'ASTRO',
       venta: data.ASTRO,
-      porcentaje: Math.round((data.ASTRO / data.PROMEDIO_DIARIO_ASTRO) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.ASTRO, meta: data.PROMEDIO_DIARIO_ASTRO})
     },
     {
       id: 2,
       nombre: 'RECARGAS',
       venta: data.RECARGAS,
-      porcentaje: Math.round((data.RECARGAS / data.PROMEDIO_DIARIO_RECARGAS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.RECARGAS, meta: data.PROMEDIO_DIARIO_RECARGAS})
     },
     {
       id: 3,
       nombre: 'LOT VIRTUAL',
       venta: data.LOTERIA_VIRTUAL,
-      porcentaje: Math.round((data.LOTERIA_VIRTUAL / data.PROMEDIO_DIARIO_LV) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.LOTERIA_VIRTUAL, meta: data.PROMEDIO_DIARIO_LV})
     },
     {
       id: 4,
       nombre: 'BETPLAY',
       venta: data.BETPLAY,
-      porcentaje: Math.round((data.BETPLAY / data.PROMEDIO_DIARIO_BETPLAY) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.BETPLAY, meta: data.PROMEDIO_DIARIO_BETPLAY})
     },
     {
       id: 5,
       nombre: 'BALOTO',
       venta: data.SOAT,
-      porcentaje: Math.round((data.SOAT / data.PROMEDIO_DIARIO_SOAT) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.SOAT, meta: data.PROMEDIO_DIARIO_SOAT})
     },
     {
       id: 6,
       nombre: 'RASPE Y LISTO',
       venta: data.PROMO2,
-      porcentaje: Math.round((data.PROMO2 / data.META_PROMO2) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PROMO2, meta: data.META_PROMO2})
     },
     {
       id: 7,
       nombre: 'GIROS',
       venta: data.GIROS,
-      porcentaje: Math.round((data.GIROS / data.PROMEDIO_DIARIO_GIROS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.GIROS, meta: data.PROMEDIO_DIARIO_GIROS})
     },
     {
       id: 8,
       nombre: 'RECAUDOS',
       venta: data.RECAUDOS,
-      porcentaje: Math.round((data.RECAUDOS / data.PROMEDIO_DIARIO_RECAUDOS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.RECAUDOS, meta: data.PROMEDIO_DIARIO_RECAUDOS})
     },
     {
       id: 9,
       nombre: 'LOT FISICA',
       venta: data.LOTERIA_FISICA,
-      porcentaje: Math.round((data.LOTERIA_FISICA / data.PROMEDIO_DIARIO_LF) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.LOTERIA_FISICA, meta: data.PROMEDIO_DIARIO_LF})
     },
     {
       id: 10,
       nombre: 'CHANCE',
       venta: data.CHANCE,
-      porcentaje: Math.round((data.CHANCE / data.PROMEDIO_DIARIO_CHANCE) * 100) 
+      porcentaje: CalcularPorcentaje({venta: data.CHANCE, meta: data.PROMEDIO_DIARIO_CHANCE})
     },
     {
       id: 11,
       nombre: 'PAGA MAS',
       venta: data.PAGAMAS,
-      porcentaje: Math.round((data.PAGAMAS / data.PROMEDIO_DIARIO_PAGAMAS) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PAGAMAS, meta: data.PROMEDIO_DIARIO_PAGAMAS})
     },
     {
       id: 12,
       nombre: 'PAGA TODO',
       venta: data.PAGATODO,
-      porcentaje: Math.round((data.PAGATODO / data.PROMEDIO_DIARIO_PAGATODO) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PAGATODO, meta: data.PROMEDIO_DIARIO_PAGATODO})
     },
     {
       id: 13,
       nombre: 'GANE 5',
       venta: data.GANE5,
-      porcentaje: Math.round((data.GANE5 / data.PROMEDIO_DIARIO_GANE5) * 100) 
+      porcentaje: CalcularPorcentaje({venta: data.GANE5, meta: data.PROMEDIO_DIARIO_GANE5})
     },
     {
       id: 14,
       nombre: 'PATA MILLONARIA',
       venta: data.PATA_MILLONARIA,
-      porcentaje: Math.round((data.PATA_MILLONARIA / data.PROMEDIO_DIARIO_PATAMI) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.PATA_MILLONARIA, meta: data.PROMEDIO_DIARIO_PATAMI})
     },
     {
       id: 15,
       nombre: 'DOBLE CHANCE',
       venta: data.DOBLECHANCE,
-      porcentaje: Math.round((data.DOBLECHANCE / data.PROMEDIO_DIARIO_DOBLECHANCE) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.DOBLECHANCE, meta: data.PROMEDIO_DIARIO_DOBLECHANCE})
     },
     {
       id: 16,
       nombre: 'CHANCE MILLONARIO',
       venta: data.CHANCE_MILLONARIO,
-      porcentaje: Math.round((data.CHANCE_MILLONARIO / data.PROMEDIO_DIARIO_CHMILL) * 100)
+      porcentaje: CalcularPorcentaje({venta: data.CHANCE_MILLONARIO, meta: data.PROMEDIO_DIARIO_CHMILL})
     }
 
   ]
