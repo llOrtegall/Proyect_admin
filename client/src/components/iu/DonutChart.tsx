@@ -6,7 +6,7 @@ const valueFormatter = (number: number): string =>
 
 export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
   // Determina el número de elementos que deseas seleccionar
-  const numberOfItemsToSelect = 6
+  const numberOfItemsToSelect = 7
   // Calcula el índice de inicio para seleccionar los últimos elementos
   const startIndex = Math.max(items.length - numberOfItemsToSelect, 0)
   // Selecciona los últimos elementos basado en el startIndex
@@ -17,6 +17,9 @@ export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
     "slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber", "yellow", "lime", "green",
     "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
   */
+
+  console.log(sales)
+
   return (
     <section className=''>
       <DonutChart
@@ -24,12 +27,12 @@ export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
         category="sales"
         index="name"
         valueFormatter={valueFormatter}
-        colors={['blue', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'indigo']}
+        colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
         className="w-80 h-80 text-2xl font-semibold"
       />
       <Legend
         categories={sales.map(sale => sale.name)}
-        colors={['blue', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'indigo']}
+        colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
         className="font-semibold text-lg mt-4 w-80 h-20 overflow-y-auto"
       />
     </section>
