@@ -1,4 +1,4 @@
-import { CardMetas, CardDia } from './iu'
+import { CardMetas, CardMetaDia } from './iu'
 
 import { type Dashboard } from '../types/metas'
 import { type Empresa } from '../types/user'
@@ -8,6 +8,7 @@ import axios from 'axios'
 
 import { DonutChartComp } from './iu/DonutChart'
 import { Card } from '@tremor/react'
+import { CardVentaDia } from './iu/CardVentaDia'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   const [data, setData] = useState<Dashboard>({ metaDia: 0, porcentaje: 0, products: [], ventaChance: 0 })
@@ -42,8 +43,8 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
         <Card className='w-4/12 flex flex-col justify-center gap-4'>
 
           <h1 className='text-center text-3xl font-semibold dark:text-white'>Cumplimiento {company} </h1>
-          <CardDia nombre='Meta Chance' venta={data?.metaDia} porcentaje={data.porcentaje} />
-          <CardDia nombre='Venta Actual Chance' venta={data?.ventaChance} />
+          <CardMetaDia titulo='Meta Productos Chance' venta={data?.metaDia} porcentaje={data.porcentaje} />
+          <CardVentaDia nombre='Venta Actual Chance' venta={data.ventaChance} />
         </Card>
       </article>
 
