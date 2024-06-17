@@ -1,50 +1,37 @@
 import { DonutChart, Legend } from '@tremor/react'
 import { type Product } from '../../types/metas'
 
-const sales = [
-  {
-    name: 'New York',
-    sales: 980
-  },
-  {
-    name: 'London',
-    sales: 456
-  },
-  {
-    name: 'Hong Kong',
-    sales: 390
-  },
-  {
-    name: 'San Francisco',
-    sales: 240
-  },
-  {
-    name: 'Singapore',
-    sales: 190
-  }
-]
-
 const valueFormatter = (number: number): string =>
-  `$ ${Intl.NumberFormat('CO').format(number).toString()}`
+  `$ ${Intl.NumberFormat('es-CO').format(number).toString()}`
 
 export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
-  console.log(items)
+  // Determina el número de elementos que deseas seleccionar
+  const numberOfItemsToSelect = 6
+  // Calcula el índice de inicio para seleccionar los últimos elementos
+  const startIndex = Math.max(items.length - numberOfItemsToSelect, 0)
+  // Selecciona los últimos elementos basado en el startIndex
+  const selectedProducts = items.slice(startIndex)
 
+  const sales = selectedProducts.map(item => ({ name: item.nombre, sales: item.venta }))
+  /*
+    "slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber", "yellow", "lime", "green",
+    "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
+  */
   return (
-    <section className='w-full flex bg-slate-200'>
-        <DonutChart
-          data={sales}
-          category="sales"
-          index="name"
-          valueFormatter={valueFormatter}
-          colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
-          className="w-60 h-60"
-        />
-        <Legend
-          categories={['New York', 'London', 'Hong Kong', 'San Francisco', 'Singapore']}
-          colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
-          className=""
-        />
+    <section className=''>
+      <DonutChart
+        data={sales}
+        category="sales"
+        index="name"
+        valueFormatter={valueFormatter}
+        colors={['blue', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'indigo']}
+        className="w-80 h-80 text-2xl font-semibold"
+      />
+      <Legend
+        categories={sales.map(sale => sale.name)}
+        colors={['blue', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'indigo']}
+        className="font-semibold text-lg mt-4 w-80 h-20 overflow-y-auto"
+      />
     </section>
   )
 }

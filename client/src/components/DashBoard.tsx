@@ -31,14 +31,18 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
   return (
     <>
-      <DonutChartComp items={data.products}/>
+      <article className='flex w-full items-center px-2 py-8'>
+        <div className='flex w-8/12 justify-center'>
+          <DonutChartComp items={data.products} />
+        </div>
 
-      {
-          <div className=''>
+        {
+          <div className='flex w-3/12 justify-center flex-col gap-10'>
             <CardDia nombre='Meta Del Día Chance' venta={data?.metaDia} />
             <CardDia nombre='Venta Actual Día Chance' venta={data?.ventaChance} />
           </div>
         }
+      </article>
 
       <section className='grid grid-cols-4 gap-2 px-2'>
         {
