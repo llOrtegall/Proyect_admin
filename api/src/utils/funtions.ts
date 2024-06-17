@@ -1,32 +1,35 @@
 import { MetasProductMultired, MetasProductServired } from "../types/interfaces";
+
 function CalcularMetaDiaServired (data: MetasProductServired): number {
   return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
 }
+
 function CalcularMetaDiaMultired (data: MetasProductMultired): number {
   return data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
 }
+
 function CalcularVentaProductosChanceServired (data: MetasProductServired): number {
-  // * falta agregar todos los productos para la venta total de servired
   const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   return (VentaChance)
 }
+
 function CalcularVentaProductosChanceMultired (data: MetasProductMultired): number {
-  // * falta agregar todos los productos para la venta total de Multired
   const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   return (VentaChance)
 }
+
 function porcentajeCumplimientoServired (data: MetasProductServired): number {
   const VentaChance = data.CHANCE + data.CHOLADITO + data.PAGATODO_JAMUNDI + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_CHOLADITO + data.PROMEDIO_DIARIO_PGTJAMUNDI + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
-
   return (Math.round((VentaChance / Promedio) * 100))
 }
+
 function porcentajeCumplimientoMultired (data: MetasProductMultired): number {
   const VentaChance = data.CHANCE + data.PAGAMAS + data.PAGATODO + data.GANE5 + data.PATA_MILLONARIA + data.DOBLECHANCE + data.CHANCE_MILLONARIO
   const Promedio = data.PROMEDIO_DIARIO_CHANCE + data.PROMEDIO_DIARIO_PAGAMAS + data.PROMEDIO_DIARIO_PAGATODO + data.PROMEDIO_DIARIO_GANE5 + data.PROMEDIO_DIARIO_PATAMI + data.PROMEDIO_DIARIO_DOBLECHANCE + data.PROMEDIO_DIARIO_CHMILL
-
   return (Math.round((VentaChance / Promedio) * 100))
 }
+
 function MapearProductosServired (data: MetasProductServired) {
   return [
     {
@@ -97,6 +100,7 @@ function MapearProductosServired (data: MetasProductServired) {
     }
   ]
 }
+
 function MapearProductosMultired (data: MetasProductMultired) {
   return [
     {
@@ -167,8 +171,6 @@ function MapearProductosMultired (data: MetasProductMultired) {
     }
   ]
 }
-
-// TODO: FUNTIONS
 
 export function ReduceMultired (acc: MetasProductMultired, meta: MetasProductMultired){
   return {

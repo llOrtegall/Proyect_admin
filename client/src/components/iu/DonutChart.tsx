@@ -1,4 +1,5 @@
 import { DonutChart, Legend } from '@tremor/react'
+import { type Product } from '../../types/metas'
 
 const sales = [
   {
@@ -26,21 +27,23 @@ const sales = [
 const valueFormatter = (number: number): string =>
   `$ ${Intl.NumberFormat('CO').format(number).toString()}`
 
-export function DonutChartComp (): JSX.Element {
+export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
+  console.log(items)
+
   return (
-    <section className=''>
+    <section className='w-full flex bg-slate-200'>
         <DonutChart
           data={sales}
           category="sales"
           index="name"
           valueFormatter={valueFormatter}
           colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
-          className="w-40"
+          className="w-60 h-60"
         />
         <Legend
           categories={['New York', 'London', 'Hong Kong', 'San Francisco', 'Singapore']}
           colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
-          className="max-w-xs"
+          className=""
         />
     </section>
   )

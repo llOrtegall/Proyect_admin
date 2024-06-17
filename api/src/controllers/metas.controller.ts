@@ -1,6 +1,6 @@
+import { MapearProductosZona, MetaChance, PorcentajeCumplimiento, ReduceMultired, ReduceServired, VentaChanceDia } from '../utils/funtions';
 import { getMetasService, getMetasPdvService } from '../services/metas.services'
 import { MetasProductMultired, MetasProductServired } from '../types/interfaces'
-import { MapearProductosZona, MetaChance, PorcentajeCumplimiento, ReduceMultired, ReduceServired, VentaChanceDia } from '../utils/funtions';
 import { Request, Response } from 'express'
 
 const initialObjectMultired = {

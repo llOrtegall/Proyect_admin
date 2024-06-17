@@ -31,7 +31,7 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
 
   return (
     <>
-      <DonutChartComp />
+      <DonutChartComp items={data.products}/>
 
       {
           <div className=''>
