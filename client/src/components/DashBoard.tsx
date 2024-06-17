@@ -31,21 +31,30 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   }, [company])
 
   return (
-    <>
-      <Card className='flex'>
-        <div className='flex w-8/12 justify-center flex-col items-center gap-2'>
+    <section>
+
+      <article className='flex gap-2 mx-1'>
+        <Card className='w-8/12 flex flex-col justify-center items-center'>
           <h1 className='text-center text-3xl font-semibold dark:text-white'>Productos Chance {company}</h1>
           <DonutChartComp items={data.products} />
-        </div>
+        </Card>
 
-        {
-          <div className='flex w-3/12 justify-center flex-col gap-2'>
-            <h1 className='text-center text-3xl font-semibold dark:text-white'>Cumplimiento {company} </h1>
-            <CardDia nombre='Meta Chance' venta={data?.metaDia} porcentaje={data.porcentaje}/>
-            <CardDia nombre='Venta Actual Chance' venta={data?.ventaChance} />
-          </div>
-        }
-      </Card>
+        <Card className='w-4/12 flex flex-col justify-center gap-4'>
+
+          <h1 className='text-center text-3xl font-semibold dark:text-white'>Cumplimiento {company} </h1>
+          <CardDia nombre='Meta Chance' venta={data?.metaDia} porcentaje={data.porcentaje} />
+          <CardDia nombre='Venta Actual Chance' venta={data?.ventaChance} />
+
+          <ul className='flex justify-between text-center font-medium'>
+            <li className='text-red-500'>Menor a 20%<div></div></li>
+            <li className='text-orange-500'>Menor a 40%</li>
+            <li className='text-yellow-500'>Menor a 90%</li>
+            <li className='text-cyan-500'>Menor a 99%</li>
+            <li className='text-green-500'>100 %</li>
+          </ul>
+
+        </Card>
+      </article>
 
       <h1 className='text-center text-2xl py-2 font-semibold dark:text-white'>Resumen Cumplimiento Productos y/o Servicios {company}</h1>
       <section className='grid grid-cols-4 gap-2 px-2'>
@@ -56,7 +65,7 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
         }
       </section>
 
-    </>
+    </section>
   )
 }
 
