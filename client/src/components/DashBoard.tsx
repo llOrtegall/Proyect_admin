@@ -34,7 +34,7 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   return (
     <>
 
-      <article className='flex gap-2 mx-1'>
+      <article className='lg:flex gap-2 mx-1'>
         <Card className='lg:w-6/12 2xl:w-7/12 flex flex-col items-center' >
           <Title className='text-center'>Productos Chance {company}</Title>
           <DonutChartComp items={data.products} />
