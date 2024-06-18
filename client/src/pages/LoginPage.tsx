@@ -35,7 +35,7 @@ function LoginPage (): JSX.Element {
           </div>
         </article>
 
-        <article className=''>
+        <article className='flex w-full items-center justify-center'>
           <Button>Iniciar Sesión</Button>
         </article>
 
