@@ -35,20 +35,20 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
     <>
 
       <article className='flex gap-2 mx-1'>
-        <Card className='lg:w-6/12 w-8/12 flex flex-col items-center' >
+        <Card className='lg:w-6/12 2xl:w-7/12 flex flex-col items-center' >
           <Title className='text-center'>Productos Chance {company}</Title>
           <DonutChartComp items={data.products} />
         </Card>
 
-        <Card className='lg:w-6/12 w-4/12 flex flex-col gap-2'>
+        <Card className='lg:w-6/12 2xl:w-5/12 flex flex-col gap-2'>
           <Title className='text-center'>Cumplimiento {company} </Title>
           <CardMetaDia titulo='Meta Productos Chance' venta={data?.metaDia} porcentaje={data.porcentaje} />
           <CardVentaDia nombre='Venta Actual Chance' venta={data.ventaChance} />
         </Card>
       </article>
 
-      <h1 className='text-center text-2xl py-2 font-semibold dark:text-white'>Resumen Cumplimiento Productos y/o Servicios {company}</h1>
-      <section className='grid grid-cols-4 gap-2 px-2'>
+      <Title className='text-center py-2 border mx-1 my-1 rounded-md'>Resumen Cumplimiento Productos y/o Servicios {company}</Title>
+      <section className='grid lg:grid-cols-3 2xl:grid-cols-4 gap-2 px-2'>
         {
           data.products.map(item => (
             <CardMetas key={item.id} nombre={item.nombre} venta={item.venta} porcentaje={item.porcentaje} />

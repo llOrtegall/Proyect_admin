@@ -1,5 +1,5 @@
 import { DeterminarColor } from '../../utils/funciones'
-import { Card, ProgressCircle } from '@tremor/react'
+import { Card, ProgressCircle, Title } from '@tremor/react'
 
 interface Props {
   nombre: string
@@ -10,12 +10,12 @@ interface Props {
 export function CardMetas ({ nombre, venta, porcentaje }: Props): JSX.Element {
   return (
     <Card decoration="top" decorationColor={DeterminarColor(porcentaje)} >
-      <p className="text-tremor-default text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{nombre}</p>
-      <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
+      <Title className="text-center">{nombre}</Title>
+      <Title className="lg:text-lg text-center ">
         {nombre === 'GIROS' ? '#' : nombre === 'RECAUDOS' ? '#' : '$'} {new Intl.NumberFormat('en-ES').format(venta)}
-      </p>
+      </Title>
       <ProgressCircle className='py-2' size="lg" value={porcentaje} color={DeterminarColor(porcentaje)}>
-        <p className="text-xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{porcentaje}%</p>
+        <Title className="lg:text-sm">{porcentaje}%</Title>
       </ProgressCircle>
     </Card>
   )

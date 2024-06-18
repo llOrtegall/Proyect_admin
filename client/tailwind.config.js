@@ -14,6 +14,9 @@ export default {
     transparent: 'transparent',
     current: 'currentColor',
     extend: {
+      screens: {
+        '2xl': '1440px',
+      },
       colors: {
         // light mode
         tremor: {
