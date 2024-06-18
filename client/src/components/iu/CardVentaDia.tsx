@@ -1,4 +1,4 @@
-import { Card } from '@tremor/react'
+import { Card, Title } from '@tremor/react'
 
 interface Props {
   nombre: string
@@ -9,8 +9,8 @@ interface Props {
 export function CardVentaDia ({ nombre, venta }: Props): JSX.Element {
   return (
     <Card decoration="top" decorationColor={'blue'}>
-      <p className="text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold text-xl">{nombre}</p>
-      <p className="text-3xl text-center mt-1 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
+      <Title className="text-center">{nombre}</Title>
+      <p className="text-center font-semibold lg:text-xl">
         $ {new Intl.NumberFormat('en-ES').format(venta)}
       </p>
     </Card>

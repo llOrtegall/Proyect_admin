@@ -1,5 +1,5 @@
 import { DeterminarColor } from '../../utils/funciones'
-import { Card, ProgressBar } from '@tremor/react'
+import { Card, ProgressBar, Title } from '@tremor/react'
 
 interface Props {
   titulo: string
@@ -12,8 +12,8 @@ export function CardMetaDia ({ titulo, venta, porcentaje }: Props): JSX.Element 
   const vtaFortCol = new Intl.NumberFormat('es-CO').format(venta)
   return (
     <Card className="flex flex-col gap-2 dark:text-white" decoration="top" decorationColor={DeterminarColor(porcentaje)}>
-      <p className="text-2xl font-semibold text-center">{titulo}</p>
-      <p className="text-2xl font-semibold text-center">$ {vtaFortCol}</p>
+      <Title className="text-center">{titulo}</Title>
+      <p className="text-center font-semibold">$ {vtaFortCol}</p>
       <ProgressBar value={porcentaje} color={DeterminarColor(porcentaje)} />
       <p className='text-center font-medium'>Progreso Meta: {porcentaje} %</p>
     </Card>
