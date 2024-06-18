@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { DonutChartComp } from './iu/DonutChart'
-import { Card } from '@tremor/react'
+import { Card, Title } from '@tremor/react'
 import { CardVentaDia } from './iu/CardVentaDia'
 
 const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
@@ -32,15 +32,15 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
   }, [company])
 
   return (
-    <section>
+    <>
 
       <article className='flex gap-2 mx-1'>
-        <Card className='w-8/12 flex flex-col justify-center items-center'>
-          <h1 className='text-center text-3xl font-semibold dark:text-white'>Productos Chance {company}</h1>
+        <Card className='lg:w-6/12 w-8/12 flex flex-col items-center' >
+          <Title className='text-center'>Productos Chance {company}</Title>
           <DonutChartComp items={data.products} />
         </Card>
 
-        <Card className='w-4/12 flex flex-col justify-center gap-4'>
+        <Card className='lg:w-6/12 w-4/12 flex flex-col justify-center gap-4'>
 
           <h1 className='text-center text-3xl font-semibold dark:text-white'>Cumplimiento {company} </h1>
           <CardMetaDia titulo='Meta Productos Chance' venta={data?.metaDia} porcentaje={data.porcentaje} />
@@ -57,7 +57,7 @@ const DahsBoard = ({ company }: { company: Empresa }): JSX.Element => {
         }
       </section>
 
-    </section>
+    </>
   )
 }
 

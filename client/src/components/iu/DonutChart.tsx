@@ -15,20 +15,20 @@ export function DonutChartComp ({ items }: { items: Product[] }): JSX.Element {
   const sales = selectedProducts.map(item => ({ name: item.nombre, sales: item.venta }))
 
   return (
-    <section className=''>
+    <>
       <DonutChart
         data={sales}
         category="sales"
         index="name"
         valueFormatter={valueFormatter}
         colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
-        className="w-80 h-80 text-2xl font-semibold"
+        className="lg:w-64 lg:h-64 lg:my-2"
       />
       <Legend
         categories={sales.map(sale => sale.name)}
         colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
-        className="font-semibold text-lg mt-4 w-96 h-auto"
+        className=""
       />
-    </section>
+    </>
   )
 }
