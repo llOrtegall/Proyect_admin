@@ -2,7 +2,10 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export function Button ({ children, ...props }: Props): JSX.Element {
   return (
-    <button type="submit" className="p-2 w-full dark:hover:bg-blue-500 dark:bg-blue-700 dark:shadow-blue-500/10 bg-blue-500 rounded-lg text-white font-semibold hover:bg-blue-700 shadow-lg shadow-blue-500/50" {...props}>
+    <button type="submit" className="p-2 rounded-md
+    bg-gradient-to-b from-malibu-500 to-malibu-600 text-white
+    hover:bg-gradient-to-b hover:from-malibu-600 hover:to-malibu-700
+    " {...props}>
       {children}
     </button>
   )

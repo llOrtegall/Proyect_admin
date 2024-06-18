@@ -12,7 +12,7 @@ const Links = [
 const LinkComponent = ({ link, name }: { link: string, name: string }): JSX.Element => {
   return (
   <li>
-    <NavLink to={`${link}`} className='font-semibold hover:text-rose-600 dark:hover:text-blue-300'>{name}</NavLink>
+    <NavLink to={`${link}`} className='text-gray-800 font-medium hover:text-white'>{name}</NavLink>
   </li>
   )
 }
@@ -22,18 +22,18 @@ function NavBar (): JSX.Element {
   const { toggleTheme } = useTheme()
 
   return (
-    <nav className='bg-blue-200 py-3 dark:bg-slate-900 dark:text-white'>
+    <nav className='bg-malibu-300 lg:py-2'>
       <ul className='flex items-center justify-around'>
 
         <figure className='flex'>
-          <img src="/gane.webp" alt="logo de gane" className='w-[120px]' />
+          <img src="/gane.webp" alt="logo de gane" className='w-24 py-2 lg:w-20 xl:w-24 2xl:w-28 ' />
         </figure>
 
-        <div className='flex gap-4 text-xl'>
+        <div className='hidden lg:flex gap-4 text-xl'>
           {Links.map((link, index) => <LinkComponent key={index} link={link.link} name={link.name} />)}
         </div>
 
-        <article className='flex gap-4'>
+        <article className='hidden lg:flex lg:gap-4'>
           <Switch onChange={toggleTheme} />
           <Button onClick={logout}>Cerrar Sesión</Button>
         </article>
