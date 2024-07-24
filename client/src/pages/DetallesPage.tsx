@@ -100,8 +100,8 @@ const DetallesPage = (): JSX.Element => {
                 return (
                   <TableRow key={pdv.CODIGO}>
                     <TableCell className='text-center'>
-                    <span className='text-xs text-red-500 dark:text-red-400 hover:text-blue-600 cursor-pointer'
-                    onClick={handleClicks(pdv.CODIGO)}></span>
+                    <span className='text-xs text-teal-400 hover:text-blue-600 cursor-pointer'
+                    onClick={handleClicks(pdv.CODIGO)}>{(pdv.CODIGO)}</span>
                       </TableCell>
                     <TableCell className='text-center'>{pdv.CATEGORIA}</TableCell>
                     <TableCell className='text-center'>{pdv.NOMBRE}</TableCell>
