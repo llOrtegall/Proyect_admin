@@ -1,6 +1,7 @@
 import { MapearProductosZona, MetaChance, PorcentajeCumplimiento, ReduceMultired, ReduceServired, VentaChanceDia } from '../utils/funtions';
 import { getMetasService, getMetasPdvService } from '../services/metas.services'
 import { MetasProductMultired, MetasProductServired } from '../types/interfaces'
+import { Metas } from '../model/metasproducts.model';
 import { Request, Response } from 'express'
 
 const initialObjectMultired = {
@@ -158,10 +159,17 @@ export const getMetasPdv = async (req: Request, res: Response) => {
 
 export const getMetasSucursal = async (req: Request, res: Response) => {
   const data = req.params
-  const zona = parseInt(data.zona)
   const sucursal = parseInt(data.sucursal)
   try {
-    
+    const result = await Metas.findOne({ 
+      where: { SUCURSAL: sucursal } 
+    })
+
+    if (!result) {
+      return res.status(404).json({ message: 'No se encontraron metas para esta sucursal' })
+    }
+
+    return res.status(200).json(result)
   } catch (error) {
     console.log(error);
     return res.status(500).send('Error en el servidor')

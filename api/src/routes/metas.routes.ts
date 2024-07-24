@@ -7,4 +7,4 @@ RouterMetas.get('/metas/:zona', getMetasController)
 
 RouterMetas.get('/sucursal/:zona', getMetasPdv)
 
-RouterMetas.get('/metas/:zona/:sucursal', getMetasSucursal)
+RouterMetas.get('/metaspdv/:sucursal', getMetasSucursal)
