@@ -15,6 +15,7 @@ function App (): JSX.Element {
         <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/' />}>
           <Route path="/home" element={<Home />} />
           <Route path='/detalles' element={<DetallesPage />} />
+          <Route path='/sucursal/:sucursal' element={<DetallesPage />} />
         </Route>
       </Routes>
     </>
