@@ -155,3 +155,15 @@ export const getMetasPdv = async (req: Request, res: Response) => {
     return res.status(500).send('Error en el servidor')
   }
 }
+
+export const getMetasSucursal = async (req: Request, res: Response) => {
+  const data = req.params
+  const zona = parseInt(data.zona)
+  const sucursal = parseInt(data.sucursal)
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send('Error en el servidor')
+  }
+}
