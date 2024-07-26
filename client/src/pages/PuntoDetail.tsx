@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Card } from '@tremor/react'
+import { CarProduct } from '../components/iu/CarProduct'
 
 const PuntoDetail = (): JSX.Element => {
   const { codigo } = useParams<{ codigo: string }>()
 
-  const [data, setData] = useState()
+  const [data, setData] = useState<Record<string, any> | null>(null) // Cambia el tipo según la estructura de tu data
 
   console.log(codigo)
 
@@ -16,6 +17,7 @@ const PuntoDetail = (): JSX.Element => {
     axios.get(`http://localhost:3000/api/metaspdv/${codigo}`)
       .then(res => {
         setData(res.data)
+        console.log('first', res.data)
       })
       .catch(err => {
         console.error('Error en getRecaudo', err)
@@ -23,19 +25,23 @@ const PuntoDetail = (): JSX.Element => {
   }, [codigo])
 
   return (
-    <Card className="p-4 shadow-lg rounded-lg bg-white flex flex-col items-center gap-6">
+    <Card className="grid lg:grid-cols-4 2xl:grid-cols-4 gap-4 px-2 ">
       {
-        data !== undefined
+        data !== null
           ? (
             <>
-                <p className="font-bold text-gray-700"> <span className="font-bold">Fecha: </span>{data.FECHA}</p>
+              {
+                Object.entries(data).map(([nombre, venta]) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <CarProduct nombre={nombre} venta={venta} />
+                ))
+              }
             </>
             )
           : (
             <h1 className="font-medium text-center text-gray-700">Cargando...</h1>
             )
       }
-
     </Card>
   )
 }
