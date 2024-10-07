@@ -1,11 +1,9 @@
 import { useTheme } from '../contexts/ThemeContext'
-import { useAuth } from '../auth/AuthProvider'
 import { NavLink } from 'react-router-dom'
 import { Switch } from '@tremor/react'
-import { Button } from './iu'
 
 const Links = [
-  { link: '/home', name: 'Home' },
+  { link: '/', name: 'Home' },
   { link: '/detalles', name: 'Detalles' }
 ]
 
@@ -18,7 +16,6 @@ const LinkComponent = ({ link, name }: { link: string, name: string }): JSX.Elem
 }
 
 function NavBar (): JSX.Element {
-  const { logout } = useAuth()
   const { toggleTheme } = useTheme()
 
   return (
@@ -35,7 +32,6 @@ function NavBar (): JSX.Element {
 
         <article className='hidden lg:flex lg:gap-4'>
           <Switch onChange={toggleTheme} />
-          <Button onClick={logout}>Cerrar Sesión</Button>
         </article>
 
       </ul>
