@@ -2,7 +2,7 @@ import { RouterMetas } from './routes/metas.routes'
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
-import 'dotenv/config'
+ 
 
 const app = express()
 const port = process.env.PORT || 3000
