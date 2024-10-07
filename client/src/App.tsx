@@ -12,12 +12,12 @@ function App (): JSX.Element {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Login />} index />
-        <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/' />}>
-          <Route path="/home" element={<Home />} />
+        {/* <Route path='/' element={<Login />} index />
+        <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo='/' />}> */}
+          <Route path="/" element={<Home />} />
           <Route path='/detalles' element={<DetallesPage />} />
           <Route path="/detalles/sucursal/:codigo" element={<PuntoDetail />} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </>
   )
