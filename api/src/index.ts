@@ -2,7 +2,6 @@ import { RouterMetas } from './routes/metas.routes'
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
- 
 
 const app = express()
 const port = process.env.PORT || 3000
