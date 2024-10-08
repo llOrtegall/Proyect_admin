@@ -3,10 +3,14 @@ import { type Product } from '../types/metas'
 
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { CardMetaDia } from './iu'
 
+const calcularPorcentaje = (venta: number, meta: number) => {
+  return Math.round((venta / meta) * 100)
+}
 
 const DashBoard = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Product[] | null>(null)
 
   useEffect(() => {
     axios.get('http://localhost:4000/api/metas')
@@ -19,8 +23,11 @@ const DashBoard = () => {
   }, [])
 
   return (
-    <article className='lg:flex gap-2 mx-1'>
-      <DonutChartComp products={products} />
+    <article className='p-2'>
+      <DonutChartComp products={products!} />
+      {
+        products?.map( p => (<CardMetaDia key={p.producto} porcentaje={calcularPorcentaje(p.vta_dia, p.meta_dia)} titulo={p.producto} venta={p.vta_dia} />))
+      }
     </article>
   )
 }
