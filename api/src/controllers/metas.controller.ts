@@ -85,7 +85,6 @@ export const getMetasController = async (req: Request, res: Response) => {
     }, initialReduce);
     
     const products = productDefinitions.map((product, index) => ({
-      id: ++index,
       producto: product.name,
       vta_dia: reduce[product.key as keyof ReduceType],
       meta_dia: reduce[product.metaKey as keyof ReduceType]

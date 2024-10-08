@@ -1,7 +1,7 @@
 import DahsBoard from '../components/DashBoard'
 
 function HomePage(): JSX.Element {
-  return (<DahsBoard company={'Multired'} />)
+  return (<DahsBoard />)
 }
 
 export default HomePage

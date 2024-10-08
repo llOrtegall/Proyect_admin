@@ -11,16 +11,16 @@ export function DonutChartComp({ products }: { products: Product[] }) {
         products && (
           <DonutChart
             data={products}
-            category=""
-            index="name"
+            category="vta_dia"
+            index="producto"
             valueFormatter={value => value.toLocaleString()}
-            colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
-            className="lg:w-64 lg:h-64 lg:my-2"
+            colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow', 'red', 'blue', 'green', 'pink', 'purple', 'yellow']}
+            className="w-96 h-96"
           />
         )
       }
       {/* <Legend
-        categories={sales.map(sale => sale.name)}
+        categories={products.map(product => product.producto)}
         colors={['rose-400', 'indigo', 'emerald', 'sky', 'teal', 'purple', 'yellow']}
         className=""
       /> */}

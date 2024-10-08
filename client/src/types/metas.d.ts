@@ -1,3 +1,6 @@
 export interface Product {
-  product: string;
+  id: number
+  producto: string
+  vta_dia: number
+  meta_dia: number
 }
