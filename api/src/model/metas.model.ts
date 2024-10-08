@@ -18,6 +18,18 @@ interface MetaAttributes {
   giros: number;
   soat: number;
   recargas: number;
+  promedio_diario_chance: number;
+  promedio_diario_pagamas: number;
+  promedio_diario_pagatodo: number;
+  promedio_diario_doblechance: number;
+  promedio_diario_chmill: number;
+  promedio_diario_astro: number;
+  promedio_diario_lf: number;
+  promedio_diario_lv: number;
+  promedio_diario_betplay: number;
+  promedio_diario_giros: number;
+  promedio_diario_soat: number;
+  promedio_diario_recargas: number;
 }
 
 type MetaCreationAttributes = Optional<MetaAttributes, 'sucursal'>;
@@ -38,6 +50,18 @@ export class Meta extends Model<MetaAttributes, MetaCreationAttributes> {
   declare giros: number;
   declare soat: number;
   declare recargas: number;
+  declare promedio_diario_chance: number;
+  declare promedio_diario_pagamas: number;
+  declare promedio_diario_pagatodo: number;
+  declare promedio_diario_doblechance: number;
+  declare promedio_diario_chmill: number;
+  declare promedio_diario_astro: number;
+  declare promedio_diario_lf: number;
+  declare promedio_diario_lv: number;
+  declare promedio_diario_betplay: number;
+  declare promedio_diario_giros: number;
+  declare promedio_diario_soat: number;
+  declare promedio_diario_recargas: number;
 }
 
 Meta.init({
@@ -55,7 +79,19 @@ Meta.init({
   betplay: { type: DataTypes.INTEGER, allowNull: false },
   giros: { type: DataTypes.INTEGER, allowNull: false },
   soat: { type: DataTypes.INTEGER, allowNull: false },
-  recargas: { type: DataTypes.INTEGER, allowNull: false }
+  recargas: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_chance: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_pagamas: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_pagatodo: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_doblechance: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_chmill: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_astro: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_lf: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_lv: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_betplay: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_giros: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_soat: { type: DataTypes.INTEGER, allowNull: false },
+  promedio_diario_recargas: { type: DataTypes.INTEGER, allowNull: false }
 }, {
   sequelize: con_db,
   tableName: 'METASPRODUCTOS',
