@@ -3,7 +3,8 @@ import { con_db } from '../connections'
 
 
 interface MetaAttributes {
-  sucursal: string;
+  sucursal: number;
+  zona: number;
   fecha: Date;
   chance: number;
   pagamas: number;
@@ -22,7 +23,8 @@ interface MetaAttributes {
 type MetaCreationAttributes = Optional<MetaAttributes, 'sucursal'>;
 
 export class Meta extends Model<MetaAttributes, MetaCreationAttributes> {
-  declare sucursal: string;
+  declare sucursal: number;
+  declare zona: number;
   declare fecha: Date;
   declare chance: number;
   declare pagamas: number;
@@ -39,7 +41,8 @@ export class Meta extends Model<MetaAttributes, MetaCreationAttributes> {
 }
 
 Meta.init({
-  sucursal: { type: DataTypes.STRING, allowNull: false, primaryKey: true },
+  sucursal: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+  zona: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
   fecha: { type: DataTypes.DATE, allowNull: false, primaryKey: true },
   chance: { type: DataTypes.INTEGER, allowNull: false },
   pagamas: { type: DataTypes.INTEGER, allowNull: false },
