@@ -118,7 +118,7 @@ export const getMetasController = async (req: Request, res: Response) => {
       producto: product.name,
       vta_dia: reduce[product.key as keyof ReduceType],
       meta_dia: reduce[product.metaKey as keyof ReduceType]
-    }));
+    })).sort((a, b) => b.vta_dia - a.vta_dia);
 
     return res.status(200).json(products)
   } catch (error) {

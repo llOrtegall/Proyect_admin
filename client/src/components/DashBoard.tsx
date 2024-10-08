@@ -10,7 +10,7 @@ const calcularPorcentaje = (venta: number, meta: number) => {
 }
 
 const DashBoard = () => {
-  const [products, setProducts] = useState<Product[] | null>(null)
+  const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
     axios.get('http://localhost:4000/api/metas')
@@ -24,10 +24,14 @@ const DashBoard = () => {
 
   return (
     <article className='p-2'>
-      <DonutChartComp products={products!} />
-      {
-        products?.map( p => (<CardMetaDia key={p.producto} porcentaje={calcularPorcentaje(p.vta_dia, p.meta_dia)} titulo={p.producto} venta={p.vta_dia} />))
-      }
+      <section>
+        <DonutChartComp products={products!} />
+      </section>
+      <section className='grid grid-cols-4 gap-2'>
+        {
+          products?.map(p => (<CardMetaDia key={p.producto} porcentaje={calcularPorcentaje(p.vta_dia, p.meta_dia)} titulo={p.producto} venta={p.vta_dia} />))
+        }
+      </section>
     </article>
   )
 }
